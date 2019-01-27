@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row">
+    <div class="col s5">
+      <div class="card">
+        <div class="card-content">
+          <form #userForm = "ngForm" (ngSubmit) = "addUser(userForm)">
+            <div class="row">
+                <div class="input-field col s12">
+                  <input type = "text" name = "name" #name = "ngModel" [(ngModel)]="userService.selectedUser.name" placeholder="Enter your name">
+                </div>
+                <div class="input-field col s12">
+                  <input type = "text" name = "lastName" #lastName = "ngModel" [(ngModel)]="userService.selectedUser.lastName" placeholder="Enter your last name">
+                </div>
+                <div class="input-field col s12">
+                  <input type = "text" name = "email" #email = "ngModel" [(ngModel)]="userService.selectedUser.email" placeholder="Enter your email">
+                </div>
+                <div class="input-field col s12">
+                  <input type = "text" name = "password" #password = "ngModel" [(ngModel)]="userService.selectedUser.password" placeholder="Enter your password">
+                </div>
+                <div class="input-field col s12">
+                  <input type = "text" name = "phone" #phone = "ngModel" [(ngModel)]="userService.selectedUser.phone" placeholder="Enter your phone">
+                </div>
+                <div class="card-action">
+                  <div class = "input-field col s12">
+                    <button class = "btn">Save</button>
+                    <button class = "btn right" (click) = "resetForm(userForm)">Clean</button>
+                  </div>
+                </div>          
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col s7">
+
+    </div>
+  </div>
+</div>
