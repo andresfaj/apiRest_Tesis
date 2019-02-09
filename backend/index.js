@@ -11,7 +11,7 @@ const cors = require('cors');
 const {mongoose} = require('./database');
 
 //Settings 
-app.set('port', process.env.PORT || 5000);
+app.set('port', process.env.PORT || 8000);
 //Middleware
 app.use(morgan('dev'));
 app.use(express.json());
