@@ -1,0 +1,63 @@
+<ngb-carousel *ngIf="images">
+    <ng-template ngbSlide>
+      <img [src]="images[0]" alt="Random first slide">
+      <div class="carousel-caption">
+        <h3>First slide label</h3>
+        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+      </div>
+    </ng-template>
+    <ng-template ngbSlide>
+      <img [src]="images[1]" alt="Random second slide">
+      <div class="carousel-caption">
+        <h3>Second slide label</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      </div>
+    </ng-template>
+    <ng-template ngbSlide>
+      <img [src]="images[2]" alt="Random third slide">
+      <div class="carousel-caption">
+        <h3>Third slide label</h3>
+        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+      </div>
+    </ng-template>
+</ngb-carousel>
+
+<div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+
+  <mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title> Navega en 360 </mat-card-title>
+    </mat-card-header>
+    <img mat-card-image src="https://realityreload.com/media/cache/small/custom/domain_1/image_files/sitemgr_photo_280.jpg">
+    <mat-card-content>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis, molestias quasi maiores rerum consequuntur pariatur optio totam tempore tenetur cumque ex harum unde dolores necessitatibus nobis ipsum aperiam assumenda accusantium.
+      </p>
+    </mat-card-content>    
+  </mat-card>
+
+  <mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title> Despliega objetos 3D </mat-card-title>
+    </mat-card-header>
+    <img mat-card-image src="https://www.easterngraphics.com/pcon/en/wp-content/uploads/2010/09/Actiu.png">
+    <mat-card-content>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis, molestias quasi maiores rerum consequuntur pariatur optio totam tempore tenetur cumque ex harum unde dolores necessitatibus nobis ipsum aperiam assumenda accusantium.
+      </p>
+    </mat-card-content>    
+  </mat-card>
+
+  <mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title> Asegura tú decisión </mat-card-title>
+    </mat-card-header>
+    <img mat-card-image src="http://elempresario.mx/sites/default/files/imagecache/nota_completa/shutterstock_131772284.jpg" alt="Photo of a Shiba Inu">
+    <mat-card-content>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis, molestias quasi maiores rerum consequuntur pariatur optio totam tempore tenetur cumque ex harum unde dolores necessitatibus nobis ipsum aperiam assumenda accusantium.
+      </p>
+    </mat-card-content>    
+  </mat-card>
+  
+</div>

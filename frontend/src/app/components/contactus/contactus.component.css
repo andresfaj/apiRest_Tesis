@@ -1,0 +1,9 @@
+.example-full-width {
+    width: 100%;
+}
+
+.example-form{
+    margin: auto;
+    margin-top: 7rem;
+    display: inline-block;
+}

@@ -1,0 +1,31 @@
+<div class="div">
+  <p> name: {{nombre}}  </p>
+  <p> edad: {{edad}}</p>
+  <p> street: {{address.street }} </p>
+  <p> city: {{address.city }} </p>
+  <p> hobbies: </p>
+  <u>
+    <li *ngFor = "let hobbie of hobbies">
+      {{hobbie}}
+    </li>
+  </u>
+</div>
+
+<ul>
+  <li *ngFor = "let user of users">
+    {{ user }} <button mat-button (click)="deleteUser(user)">Delete user</button>
+  </li>
+</ul>
+
+<ul>
+  <app-pruebas2 *ngFor = "let user of users" [usuarios]="user"></app-pruebas2>
+</ul>
+
+<form (submit)="addUser(newUser)">
+  <mat-form-field>
+    <input matInput placeholder="Ingrese el nombre" #newUser>
+  </mat-form-field>  
+  <button mat-button> Send user </button>
+</form>
+
+

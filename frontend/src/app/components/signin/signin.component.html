@@ -1,0 +1,45 @@
+<div class="container2" fxLayoutAlign="center">
+  <h2> Crea tu cuenta </h2>
+</div>
+
+<div class="container" fxLayoutAlign="center"> 
+
+  <form class="example-form" #userForm="ngForm" (ngSubmit)="addUser(userForm)">
+     
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Nombre" name="name" #name="ngModel" [(ngModel)]="userService.selectedUser.name" required>
+    </mat-form-field>
+  
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Apellido" name="lastName" #lastname="ngModel" [(ngModel)]="userService.selectedUser.lastName" required>
+    </mat-form-field>
+  
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Teléfono" name="phone" #phone="ngModel" [(ngModel)]="userService.selectedUser.phone" required>
+    </mat-form-field>
+  
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Email" name="email" #email="ngModel" [(ngModel)]="userService.selectedUser.email" required>
+    </mat-form-field>  
+  
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Confirmar Email" [(ngModel)]="coemail" [ngModelOptions]="{standalone: true}" required>
+    </mat-form-field> 
+  
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Contraseña" [type]="hide ? 'password' : 'text'" name="password" #password="ngModel" [(ngModel)]="userService.selectedUser.password" required>
+      <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </mat-form-field>
+  
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Confirmar Contraseña" [type]="hide2 ? 'password' : 'text'" [(ngModel)]="copassword" [ngModelOptions]="{standalone: true}"  required>
+      <mat-icon matSuffix (click)="hide2 = !hide2">{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </mat-form-field>
+  
+    <!-- <button mat-button (click)="resetForm(userForm)"> Limpiar </button> -->
+  
+    <button class="btnForm" mat-raised-button color="primary"> Registrarse </button>
+    
+  </form>
+
+</div>

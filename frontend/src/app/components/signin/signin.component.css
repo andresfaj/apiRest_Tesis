@@ -1,0 +1,19 @@
+.example-full-width {
+    width: 100%;
+}
+
+h2{
+    padding-bottom: 7px;
+}
+
+.btnForm{
+    justify-content: center;
+}
+
+.container{
+    width: 700px;
+}
+/* .container{
+    border: 12px solid black;
+} */
+
