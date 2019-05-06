@@ -10,8 +10,10 @@ import { AboutusComponent } from './components/aboutus/aboutus.component';
 import { ContactusComponent } from './components/contactus/contactus.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
-import { SigninComponent } from './components/signin/signin.component';
+import { SignupComponent } from './components/signup/signup.component';
+import { LoginComponent } from './components/login/login.component';
 import { DialogComponent, DialogContentExampleDialog } from './components/dialog/dialog.component';
+import { PublicationsComponent } from './components/publications/publications.component';
 //Rutas-navegacion
 import { RouterModule, Routes } from '@angular/router';
 //Animations de Angular Material 7
@@ -32,11 +34,13 @@ import { Pruebas2Component } from './components/pruebas2/pruebas2.component';
     ContactusComponent,
     FooterComponent,
     HomeComponent,
-    SigninComponent,
+    SignupComponent,
     PruebasComponent,
     Pruebas2Component,
     DialogComponent,
-    DialogContentExampleDialog
+    LoginComponent,
+    DialogContentExampleDialog,
+    PublicationsComponent
   ],
   imports: [ //Depedencias = imports
     BrowserModule,
@@ -47,6 +51,14 @@ import { Pruebas2Component } from './components/pruebas2/pruebas2.component';
     NgbModule,
     materialModule,
     RouterModule.forRoot([
+      {
+        path:'post',
+        component: PublicationsComponent
+      },
+      {
+        path:'login',
+        component: LoginComponent
+      },
       {
         path:'dialog',
         component: DialogComponent
@@ -60,8 +72,8 @@ import { Pruebas2Component } from './components/pruebas2/pruebas2.component';
         component: PruebasComponent
       },
       {
-        path: 'signin',
-        component: SigninComponent
+        path: 'signup',
+        component: SignupComponent
       },
       {
         path: 'contactus',

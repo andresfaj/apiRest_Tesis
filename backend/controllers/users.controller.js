@@ -23,6 +23,8 @@ userController.getUser = async (req, res) =>{
 //Funcion que crea/registra 1 usuario
 userController.createUser = async (req, res) =>{
     const user = new modelUser(req.body);
+    user.password = await user.encryptPassword(user.password);
+    console.log(user);
     await user.save();
     res.json({
         'status': 'User saved'

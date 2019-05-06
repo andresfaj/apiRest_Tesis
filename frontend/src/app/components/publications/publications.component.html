@@ -1,0 +1,16 @@
+<div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px">  
+  <mat-card *ngFor="let rstate of rStates" >
+    <mat-card-title> {{rstate.name}} </mat-card-title>
+    <mat-card-subtitle> {{rstate.neighborhood}} </mat-card-subtitle>
+    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Real state">
+    <mat-card-content>
+      <p>
+        {{rstate.description}}
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button color="primary">Details</button>
+      <button mat-button color="primary">Virtual Reality</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

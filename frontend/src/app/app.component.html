@@ -1,25 +1,22 @@
 <!-- https://stackblitz.com/edit/responsive-menu-angular-material-flex-layout?file=src/app/app.component.html -->
-<div style="height: 80vh;">
-    <mat-toolbar color="primary">
+<div class="containerX">
+    <mat-toolbar color="primary" class="toolbar">
         <mat-toolbar-row>
-            <!-- sidenav.toggle = menu hamburguesa / Es visible desde la resolución minima gt-sm = 960px -->
-            <!-- https://github.com/angular/flex-layout/wiki/Responsive-API  -->
             <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
-                <!-- Componente de angular material usando los iconos de Material Design, link:  -->
-                <!-- https://material.io/tools/icons/?style=baseline -->
-                <mat-icon>menu</mat-icon>  
+                <mat-icon>menu</mat-icon> <!--icono de material icons-->
             </button>        
-            <span>ALOZ HOMES </span>
+            <span>Aloz Homes </span>
             <span class="menu-spacer"></span>
             <div fxshow="true" fxHide.lt-md>
-                <button mat-button routerLink="">Inicio</button>
-                <button mat-button routerLink="/aboutus"> ¿Quiénes somos? </button>
-                <button mat-button routerLink="/contactus">Contáctanos</button>
-                <button mat-button [matMenuTriggerFor]="menu">Cuenta</button>
+                <button mat-button routerLink="">Home</button>
+                <button mat-button routerLink="/aboutus"> About us </button>
+                <button mat-button routerLink="/contactus"> Contact us</button>
+                <button mat-button routerLink="/post"> Publications </button>           
+                <button mat-button [matMenuTriggerFor]="menu">Account</button>
                 <mat-menu #menu="matMenu">
-                    <button mat-menu-item> Ingresa </button>
-                    <button mat-menu-item routerLink="/signin"> Crea tu cuenta </button>                    
-                </mat-menu>           
+                    <button mat-menu-item routerLink="/login"> Sign in </button>
+                    <button mat-menu-item routerLink="/signup"> Sign up </button>                    
+                </mat-menu>
             </div>    
         </mat-toolbar-row>
     </mat-toolbar>
@@ -29,27 +26,37 @@
             <mat-nav-list>
                 <mat-list-item>
                     <mat-icon mat-list-icon>home</mat-icon>
-                    <button mat-button routerLink="">Inicio</button>             
+                    <button mat-button routerLink="">Home</button> 
                 </mat-list-item>   
                 <mat-list-item>
                     <mat-icon mat-list-icon>info</mat-icon>
-                    <button mat-button routerLink="/aboutus">Quienes somos</button>              
+                    <button mat-button routerLink="/aboutus">About us</button>              
                 </mat-list-item>
                 <mat-list-item>
                     <mat-icon mat-list-icon>comment</mat-icon>
-                    <button mat-button routerLink="/contactus">Contáctanos</button>              
+                    <button mat-button routerLink="/contactus">Contact us</button>              
                 </mat-list-item>
                 <mat-list-item>
                     <mat-icon mat-list-icon>input</mat-icon>
-                    <button mat-button routerLink="/signin">Crea tu cuenta</button>              
+                    <button mat-button routerLink="/login">Sign in</button>          
+                </mat-list-item>   
+                <mat-list-item>
+                    <mat-icon mat-list-icon>person</mat-icon>
+                    <button mat-button routerLink="/signup">Sign up</button>              
                 </mat-list-item>                      
             </mat-nav-list>
         </mat-sidenav>
-        <mat-sidenav-content fxFlexFill>
+        <mat-sidenav-content>
             <router-outlet></router-outlet>
-        </mat-sidenav-content>
-    </mat-sidenav-container>
+        </mat-sidenav-content>        
+    </mat-sidenav-container>    
+</div>
+<div>
     <app-footer></app-footer>
 </div>
+
+
+
+
 
 

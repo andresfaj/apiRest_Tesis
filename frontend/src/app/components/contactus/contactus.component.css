@@ -1,9 +1,13 @@
+.container{
+    /* border: 2px solid blue; */
+    padding-block-start: 7rem;
+}
+
 .example-full-width {
     width: 100%;
 }
 
 .example-form{
+    width: 500px;
     margin: auto;
-    margin-top: 7rem;
-    display: inline-block;
 }

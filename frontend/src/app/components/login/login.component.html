@@ -1,0 +1,32 @@
+<div class="container" fxLayoutAlign="center">
+
+  <mat-card class="example-card">
+
+    <mat-card-title class="title" >
+      Aloz Homes Login  
+    </mat-card-title>
+
+    <!-- <mat-icon mat-card-image>home</mat-icon> -->
+    <mat-card-content>
+
+      <form class="example-form" action="">
+        <div >
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Email" [formControl]="email" required>
+            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>      
+        </div>
+        
+        <div >
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" required>
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </mat-form-field>
+        </div>
+        
+        <button mat-raised-button color="primary" class="example-full-width">Login</button>
+        
+      </form>
+    </mat-card-content>
+  </mat-card> 
+</div>

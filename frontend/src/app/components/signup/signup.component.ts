@@ -2,20 +2,22 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { User } from 'src/app/models/user';
 import { NgForm } from '@angular/forms';
-import { DialogComponent } from '../dialog/dialog.component'
+import { DialogComponent } from '../dialog/dialog.component';
+import {FormControl, Validators} from '@angular/forms';
 
 @Component({
-  selector: 'app-signin',
-  templateUrl: './signin.component.html',
-  styleUrls: ['./signin.component.css'],
+  selector: 'app-signup',
+  templateUrl: './signup.component.html',
+  styleUrls: ['./signup.component.css'],
   providers: [UserService, DialogComponent ]
 })
-export class SigninComponent implements OnInit {
+export class SignupComponent implements OnInit {
 
   hide = true;
   hide2 = true;
   coemail:string;
   copassword:string;
+  email = new FormControl('', [Validators.required, Validators.email]);
 
   constructor(private userService: UserService, private dialogRegisteredUser: DialogComponent) { }
 
@@ -38,6 +40,12 @@ export class SigninComponent implements OnInit {
       this.coemail = " ";
       this.copassword = " ";
     }
+  }
+
+  getErrorMessage() {
+    return this.email.hasError('required') ? 'Debe ingresar un valor' :
+        this.email.hasError('email') ? 'No es un correo valido' :
+            '';
   }
 
 }
