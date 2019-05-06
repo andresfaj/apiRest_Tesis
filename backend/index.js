@@ -8,7 +8,6 @@ cors = Importante para comunicar al servidor con el cliente
 */
 const express = require('express');
 const morgan = require('morgan');
-const app = express();
 const cors = require('cors');
 const {mongoose} = require('./database');
 const session = require('express-session');
