@@ -9,17 +9,17 @@
     <!-- <mat-icon mat-card-image>home</mat-icon> -->
     <mat-card-content>
 
-      <form class="example-form" action="">
+      <form class="example-form" #loginForm="ngForm" (ngSubmit)="login(loginForm.value)">
         <div >
           <mat-form-field class="example-full-width">
-            <input matInput placeholder="Email" [formControl]="email" required>
+            <input matInput placeholder="Enter your email" name="email" [formControl]="email" [(ngModel)]="value" required>
             <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
           </mat-form-field>      
         </div>
         
         <div >
           <mat-form-field class="example-full-width">
-            <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" required>
+            <input matInput placeholder="Password" name="password" ngModel [type]="hide ? 'password' : 'text'" required>
             <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </mat-form-field>
         </div>

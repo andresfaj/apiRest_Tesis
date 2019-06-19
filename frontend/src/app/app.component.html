@@ -14,8 +14,16 @@
                 <button mat-button routerLink="/post"> Publications </button>           
                 <button mat-button [matMenuTriggerFor]="menu">Account</button>
                 <mat-menu #menu="matMenu">
-                    <button mat-menu-item routerLink="/login"> Sign in </button>
-                    <button mat-menu-item routerLink="/signup"> Sign up </button>                    
+                    <div class="containe" *ngIf="token == null">
+                        <button mat-menu-item routerLink="/login"> Sign in </button>
+                    </div>
+                    <button mat-menu-item routerLink="/signup"> Sign up </button>
+                    <div class="containe" *ngIf="token != null">
+                        <button mat-menu-item routerLink="/profile"> Profile </button>
+                    </div>  
+                    <div class="containe" *ngIf="token != null">
+                        <button mat-menu-item routerLink="" (click)="logout()"> Sign off </button>
+                    </div>                    
                 </mat-menu>
             </div>    
         </mat-toolbar-row>
@@ -36,14 +44,22 @@
                     <mat-icon mat-list-icon>comment</mat-icon>
                     <button mat-button routerLink="/contactus">Contact us</button>              
                 </mat-list-item>
-                <mat-list-item>
+                <mat-list-item *ngIf="token == null">
                     <mat-icon mat-list-icon>input</mat-icon>
                     <button mat-button routerLink="/login">Sign in</button>          
                 </mat-list-item>   
                 <mat-list-item>
-                    <mat-icon mat-list-icon>person</mat-icon>
+                    <mat-icon mat-list-icon>add_box</mat-icon>
                     <button mat-button routerLink="/signup">Sign up</button>              
-                </mat-list-item>                      
+                </mat-list-item>
+                <mat-list-item *ngIf="token != null">
+                    <mat-icon mat-list-icon>account_box</mat-icon>
+                    <button mat-button routerLink="/profile">Profile</button>              
+                </mat-list-item>
+                <mat-list-item *ngIf="token != null">
+                    <mat-icon mat-list-icon>clear</mat-icon>
+                    <button mat-button routerLink="" (click)="logout()">Sign off</button>              
+                </mat-list-item>                            
             </mat-nav-list>
         </mat-sidenav>
         <mat-sidenav-content>

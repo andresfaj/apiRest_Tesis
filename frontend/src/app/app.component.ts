@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import {UserService} from '../app/services/user.service';
 
 //Decorador, soporta una serie de metadatos
 @Component({
@@ -6,6 +7,18 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'Virtual Homes';
+  token: any;
+  
+  constructor(private userService: UserService) {}
+
+  ngOnInit() {
+    this.token = this.userService.getToken();
+  }
+
+  logout() {
+    this.token = this.userService.logout();    
+  }
+  
 }  
