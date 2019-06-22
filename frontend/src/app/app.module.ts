@@ -18,11 +18,11 @@ import { AboutusComponent } from './components/aboutus/aboutus.component';
 import { ContactusComponent } from './components/contactus/contactus.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
-// import { SignupComponent } from './components/signup/signup.component';
+import { SignupComponent } from './components/signup/signup.component';
 import { LoginComponent } from './components/login/login.component';
 import { PublicationsComponent } from './components/publications/publications.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { DialogsComponent, DialogloginComponent } from './components/dialogs/dialogs.component';
+import { DialogsComponent, DialogloginComponent, DialogemptyloginComponent } from './components/dialogs/dialogs.component';
 
 
 @NgModule({
@@ -32,12 +32,13 @@ import { DialogsComponent, DialogloginComponent } from './components/dialogs/dia
     ContactusComponent,
     FooterComponent,
     HomeComponent,
-    // SignupComponent,
+    SignupComponent,
     LoginComponent,
     PublicationsComponent,
     ProfileComponent,
     DialogsComponent,
-    DialogloginComponent
+    DialogloginComponent,
+    DialogemptyloginComponent
   ],
   imports: [ //Depedencias = imports
     BrowserModule,
@@ -52,7 +53,7 @@ import { DialogsComponent, DialogloginComponent } from './components/dialogs/dia
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [DialogsComponent, DialogloginComponent]
+  entryComponents: [DialogsComponent, DialogloginComponent, DialogemptyloginComponent]
 })
 
 export class AppModule { }

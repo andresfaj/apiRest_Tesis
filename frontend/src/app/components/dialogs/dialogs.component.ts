@@ -13,6 +13,11 @@ export class DialogsComponent {
   openDialog() { 
     const dialogRef = this.dialog.open(DialogloginComponent);
   }
+
+  openDialogEmpty() {
+    const dialogRef = this.dialog.open(DialogemptyloginComponent);
+  }
+
 }
 
 @Component({
@@ -20,4 +25,10 @@ export class DialogsComponent {
   templateUrl: './dialoglogin.html'
 })
 export class DialogloginComponent {}
+
+@Component({
+  selector: 'app-dialogemptylogin',
+  templateUrl: './dialogemptylogin.html'
+})
+export class DialogemptyloginComponent {}
 

@@ -1,19 +1,24 @@
 <div class="container">
 
   <h2> Profile </h2>
-  <form>
+
+  <form [formGroup]="formProfile" class="example-form" (ngSubmit)="onSubmit(buttonType)">
     <mat-form-field>
-        <label> Nombre </label> <input matInput type="text" value="{{name}}" disabled>
+        <label> Nombre </label> <input matInput type="text" formControlName="name">
     </mat-form-field>
     <mat-form-field>
-        <label> Last Name: </label> <input matInput type="text" value="{{lastName}}" disabled>
+        <label> Last Name: </label> <input matInput type="text" formControlName="lastName">
     </mat-form-field>
     <mat-form-field>
-        <label> Number: </label> <input matInput type="tel" value="{{phone}}" disabled>
+        <label> Number: </label> <input matInput type="tel" formControlName="phone">
     </mat-form-field>
     <mat-form-field>
-        <label> Email: </label> <input matInput type="email" value="{{email}}" disabled>
+        <label> Email: </label> <input matInput type="email" formControlName="email">
     </mat-form-field>
+
+    <button mat-raised-button color="primary" id="button1" (click)="onSubmit('unlock')">Unlock</button>
+    <button mat-raised-button color="primary" id="button2" (click)="onSubmit('edit')">Edit</button>    
+
   </form> 
 
 </div>

@@ -8,11 +8,14 @@ h2{
 
 .btnForm{
     justify-content: center;
+    width: 100%;
 }
 
 .container{
-    width: 700px;
+    width: 500px;
+    margin: auto;
 }
+
 /* .container{
     border: 12px solid black;
 } */

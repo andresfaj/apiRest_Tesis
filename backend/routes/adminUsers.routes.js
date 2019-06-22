@@ -1,14 +1,17 @@
 const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
-const userController = require('../controllers/users.controller');
+const adminuserController = require('../controllers/adminUsers.controller');
 
 /*
 REST API: Enviar y recibir datos en formato json
 */
 
-router.post('/', userController.validateLogin);
-//router.post('/', userController.createUser);
+router.get('/:id', adminuserController.getUser);
+router.post('/', adminuserController.createUser);
+router.get('/', adminuserController.getUsers);
+router.put('/:id', adminuserController.updateUser);
+router.delete('/:id', adminuserController.deleteUser);
 
 router.use((req, res, next) => {
     const token = req.body.token || req.query.token || req.headers['x-access-token'];
@@ -32,9 +35,6 @@ router.use((req, res, next) => {
     }
 });
 
-router.get('/', userController.getUsers);
-router.get('/:id', userController.getUser);
-router.put('/:id', userController.updateUser);
-router.delete('/:id', userController.deleteUser);
+
 
 module.exports = router;
