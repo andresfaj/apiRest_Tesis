@@ -28,6 +28,7 @@ app.use('/api/users',require('./routes/adminUsers.routes'));
 app.use('',require('./routes/index.routes'));
 app.use('/session/user',require('./routes/sessionUsers.routes'));
 app.use('/rstate',require('./routes/publications.routes'));
+app.use('/rstate',require('./routes/publicationsUser.routes'));
 
 //Starting the server
 app.listen(app.get('port'), () => {

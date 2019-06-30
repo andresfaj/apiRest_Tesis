@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import {UserService} from '../../services/user.service';
 import {Router} from '@angular/router';
 import { DialogsComponent } from '../dialogs/dialogs.component';
+import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -12,25 +12,28 @@ import { DialogsComponent } from '../dialogs/dialogs.component';
 })
 export class LoginComponent implements OnInit {
   hide: boolean = true;
-  value: string;
   errorM: string;
+  formLogin: FormGroup;
 
-  constructor(private userService: UserService, private router: Router, private dialog: DialogsComponent) { }
+  constructor(private userService: UserService, private router: Router, private dialog: DialogsComponent, private fb: FormBuilder) { }
 
   ngOnInit() {
-    this.value ="";
+    this.formLogin = this.fb.group({
+      email: [null, Validators.compose([Validators.required,Validators.email])],
+      password: [null, Validators.required]
+    });
   }
 
-  login(loginForm: NgForm): void{
-    console.log("Datos introducidos:",loginForm.value)
-    if(loginForm.value.email == "" || loginForm.value.password == ""){
+  login(formLogin: FormGroup): void{
+    console.log("Datos introducidos:",formLogin.value);
+    if(formLogin.value.email == "" || formLogin.value.password == ""){
       console.log("")
       this.dialog.openDialogEmpty();      
     }else{
-      this.userService.validateLogin(loginForm.value).subscribe(res => {
+      this.userService.validateLogin(formLogin.value).subscribe(res => {
         if(res.dataUser){
           location.reload();
-          this.router.navigate(['/post']);    
+          this.router.navigate(['/allposts']);    
   
         }else{
           this.errorM = res.errorMessage;

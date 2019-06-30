@@ -9,21 +9,31 @@
     <!-- <mat-icon mat-card-image>home</mat-icon> -->
     <mat-card-content>
 
-      <form class="example-form" #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+      <form class="example-form" [formGroup]="formLogin" (ngSubmit)="login(formLogin)">
         <div>
           <mat-form-field class="example-full-width">
-            <input matInput placeholder="Enter your email" name="email" id="email" ngModel required>
+            <input matInput placeholder="Enter your email" formControlName="email" type="email" required>
+            <mat-error *ngIf="formLogin.controls['email'].invalid && (formLogin.controls['email'].dirty || formLogin.controls['email'].touched)">
+              <div *ngIf="formLogin.controls['email'].errors.required">
+                Mail is required        
+              </div>
+              <div *ngIf="formLogin.controls['email'].errors.email">
+                Wrong email format
+              </div>
+            </mat-error>  
           </mat-form-field>      
         </div>
         
         <div>
           <mat-form-field class="example-full-width">
-            <input matInput placeholder="Enter your password" name="password" ngModel [type]="hide ? 'password' : 'text'" required>
+            <input matInput placeholder="Enter your password" formControlName="password" type="password" [type]="hide ? 'password' : 'text'" required>
             <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            <mat-error *ngIf="formLogin.controls['password'].invalid && formLogin.controls['password'].touched"> The password is required            
+            </mat-error>
           </mat-form-field>
         </div>
         
-        <button mat-raised-button color="primary" class="example-full-width">Login</button>
+        <button mat-raised-button [disabled]="formLogin.invalid" type="submit" color="primary" class="example-full-width">Login</button>
         
       </form>
     </mat-card-content>

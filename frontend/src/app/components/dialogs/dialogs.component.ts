@@ -18,6 +18,18 @@ export class DialogsComponent {
     const dialogRef = this.dialog.open(DialogemptyloginComponent);
   }
 
+  openDialogSignup() {
+    const dialogRef = this.dialog.open(DialogsignupComponent);
+  }
+
+  openDialogProfile() {
+    const dialogRef = this.dialog.open(DialogprofileComponent);
+  }
+
+  openDialogPost() {
+    const dialogRef = this.dialog.open(DialogpostComponent);
+  }
+
 }
 
 @Component({
@@ -32,3 +44,20 @@ export class DialogloginComponent {}
 })
 export class DialogemptyloginComponent {}
 
+@Component({
+  selector: 'app-dialogsignup',
+  templateUrl: './dialogsignup.html'
+})
+export class DialogsignupComponent {}
+
+@Component({
+  selector: 'app-dialogprofile',
+  templateUrl: './dialogprofile.html'
+})
+export class DialogprofileComponent {}
+
+@Component({
+  selector: 'app-dialogpost',
+  templateUrl: './dialogpost.html'
+})
+export class DialogpostComponent {}

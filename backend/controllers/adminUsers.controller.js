@@ -39,7 +39,7 @@ adminuserController.updateUser = async (req, res) => {
         email: req.body.email,
         password: req.body.password
     }
-    console.log("DESDE EL BACKEND usuario recibido:",user);
+    // console.log("DESDE EL BACKEND usuario recibido:",user);
     const { id } = req.params;
     await modelUser.findByIdAndUpdate(id, {$set: user});
     res.json({status: 'User updated'});

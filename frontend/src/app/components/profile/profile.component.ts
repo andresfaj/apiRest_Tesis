@@ -3,12 +3,13 @@ import { UserService } from '../../services/user.service';
 import { NgForm, FormControl, FormBuilder } from '@angular/forms';
 import { FormGroup, Validators } from '@angular/forms';
 import {User} from '../../models/user';
+import { DialogsComponent } from '../dialogs/dialogs.component';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css'],
-  providers: [UserService]
+  providers: [UserService, DialogsComponent]
 })
 export class ProfileComponent implements OnInit {
 
@@ -16,7 +17,7 @@ export class ProfileComponent implements OnInit {
   informationUser: any;
   formProfile: FormGroup;
 
-  constructor(private userService: UserService, private fb: FormBuilder) {
+  constructor(private userService: UserService, private fb: FormBuilder, private dialog: DialogsComponent) {
     
   }
 
@@ -40,26 +41,40 @@ export class ProfileComponent implements OnInit {
   }
 
   edit(formProfile: FormGroup){
+    this.formProfile.controls['name'].enable();
+    this.formProfile.controls['lastName'].enable();
+    this.formProfile.controls['phone'].enable();
+    this.formProfile.controls['email'].enable();
+    // console.log("DATOS DEL PERFIL:",this.formProfile.value);
+  }
+
+  block(formProfile: FormGroup):void{
+    this.formProfile.controls['name'].disable();
+    this.formProfile.controls['lastName'].disable();
+    this.formProfile.controls['phone'].disable();
+    this.formProfile.controls['email'].disable();
+
+  }
+
+  save(formProfile: FormGroup){
     this.dataUser.name = formProfile.value.name;
     this.dataUser.lastName = formProfile.value.lastName;
     this.dataUser.phone = formProfile.value.phone;
     this.dataUser.email = formProfile.value.email;
     console.log("DATOS A CAMBIAR:", this.dataUser);
     this.userService.updateUser(this.dataUser).subscribe(res => {
-      console.log("Respuesta:",res);
+      // console.log("Respuesta:",res);
+      this.dialog.openDialogProfile();
+      this.block(this.formProfile);
     })
   }
 
   onSubmit(buttonType):void{
-    if(buttonType==="unlock"){
-      this.formProfile.controls['name'].enable();
-      this.formProfile.controls['lastName'].enable();
-      this.formProfile.controls['phone'].enable();
-      this.formProfile.controls['email'].enable();
-      console.log("DATOS DEL PERFIL:",this.formProfile.value); 
+    if(buttonType==="edit"){
+       this.edit(this.formProfile);
 
-    }else if(buttonType==="edit"){      
-      this.edit(this.formProfile);
+    }else if(buttonType==="save"){      
+      this.save(this.formProfile);
     }
   }
 }

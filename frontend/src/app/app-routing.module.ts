@@ -7,16 +7,20 @@ import { SignupComponent } from './components/signup/signup.component';
 import { ContactusComponent } from './components/contactus/contactus.component';
 import { AboutusComponent } from './components/aboutus/aboutus.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { UserpublicationsComponent } from './components/userpublications/userpublications.component';
+import { PostComponent } from './components/post/post.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent},
-  { path:'post', component: PublicationsComponent },
+  { path: '', component: HomeComponent },
+  { path:'allposts', component: PublicationsComponent },
   { path:'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'contactus', component: ContactusComponent },
   { path: 'aboutus', component: AboutusComponent },
-  { path: 'profile', component: ProfileComponent},
-  { path: '**', component: HomeComponent}
+  { path: 'profile', component: ProfileComponent },
+  { path: 'myposts', component: UserpublicationsComponent },
+  { path: 'post', component: PostComponent },
+  { path: '**', component: HomeComponent }
 ];
 
 @NgModule({

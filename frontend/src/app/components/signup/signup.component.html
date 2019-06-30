@@ -1,5 +1,5 @@
 <div class="container2" fxLayoutAlign="center">
-  <h2> Crea tu cuenta </h2>
+  <h2> Creat your account </h2>
 </div>
 
 <div class="container" fxLayoutAlign="center"> 
@@ -7,45 +7,80 @@
   <form class="example-form" [formGroup]="formSignup" (ngSubmit)="addUser(formSignup)">
      
     <mat-form-field class="example-full-width">
-      <input matInput placeholder="Name" formControlName="name" required>
+      <input matInput placeholder="Name" formControlName="name" type="text" required>
       <mat-error *ngIf="!formSignup.controls['name'].valid && formSignup.controls['name'].touched"> The name is required  </mat-error>
     </mat-form-field>
   
     <mat-form-field class="example-full-width">
-      <input matInput placeholder="Lastname" formControlName="lastName" required>
+      <input matInput placeholder="Lastname" formControlName="lastName" type="text" required>
       <mat-error *ngIf="!formSignup.controls['lastName'].valid && formSignup.controls['lastName'].touched"> The Lastname is required  </mat-error>
     </mat-form-field>
   
     <mat-form-field class="example-full-width">
-      <input matInput placeholder="Phone" formControlName="phone" required>
+      <input matInput placeholder="Phone" formControlName="phone" type="number" required>
       <mat-error *ngIf="!formSignup.controls['phone'].valid && formSignup.controls['phone'].touched"> The phone is required  </mat-error>
     </mat-form-field>
   
     <mat-form-field class="example-full-width">
       <input matInput placeholder="E-mail" formControlName="email" type="email" required>
-      <mat-error *ngIf="!formSignup.controls['email'].valid && formSignup.controls['email'].touched"> The email is required  </mat-error>  
-    </mat-form-field>  
+      <mat-error *ngIf="formSignup.controls['email'].invalid && (formSignup.controls['email'].dirty || formSignup.controls['email'].touched)">
+        <div *ngIf="formSignup.controls['email'].errors.required">
+          Mail is required        
+        </div>
+        <div *ngIf="formSignup.controls['email'].errors.email">
+          Wrong email format
+        </div>
+      </mat-error>  
+    </mat-form-field>
   
     <mat-form-field class="example-full-width">
       <input matInput placeholder="Confirm e-mail" formControlName="coemail" type="email" required>
-      <mat-error *ngIf="!formSignup.controls['coemail'].valid && formSignup.controls['coemail'].touched"> Mail confirmation is requiered  </mat-error>
+      <mat-error *ngIf="formSignup.controls['coemail'].invalid && (formSignup.controls['coemail'].dirty || formSignup.controls['coemail'].touched)">
+        <div *ngIf="formSignup.controls['coemail'].errors.required">
+          Confirmation mail is required        
+        </div>
+        <div *ngIf="formSignup.controls['coemail'].errors.email">
+          Wrong email format
+        </div>
+      </mat-error>
     </mat-form-field> 
   
     <mat-form-field class="example-full-width">
-      <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" formControlName="password" required>
+      <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" formControlName="password" type="password" required>
       <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-      <mat-error *ngIf="!formSignup.controls['password'].valid && formSignup.controls['password'].touched"> The password is required  </mat-error>
+      <mat-error *ngIf="formSignup.controls['password'].invalid && (formSignup.controls['password'].dirty || formSignup.controls['password'].touched)">
+        <div *ngIf="formSignup.controls['password'].errors.required">
+          The password is required        
+        </div>
+        <div *ngIf="formSignup.controls['password'].errors.minlength">
+          Password must be at least 6 characters
+        </div>
+      </mat-error>
     </mat-form-field>
   
     <mat-form-field class="example-full-width">
-      <input matInput placeholder="Confirm password" [type]="hide2 ? 'password' : 'text'" formControlName="copassword" required>
+      <input matInput placeholder="Confirm password" [type]="hide2 ? 'password' : 'text'" formControlName="copassword" type="password" required>
       <mat-icon matSuffix (click)="hide2 = !hide2">{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
-      <mat-error *ngIf="!formSignup.controls['copassword'].valid && formSignup.controls['copassword'].touched"> Password confirmation is required  </mat-error>
+      <mat-error *ngIf="formSignup.controls['copassword'].invalid && (formSignup.controls['copassword'].dirty || formSignup.controls['copassword'].touched)">
+        <div *ngIf="formSignup.controls['copassword'].errors.required">
+          Password confirmation is required        
+        </div>
+        <div *ngIf="formSignup.controls['copassword'].errors.minlength">
+          Password must be at least 6 characters
+        </div>
+      </mat-error>
     </mat-form-field>
+
+    <mat-list>
+      <div class="alert alert-danger" *ngIf="formSignup.value.password != formSignup.value.copassword"> Passwords do not match </div>
   
-    <button class="btnForm" mat-raised-button [disabled]="!formSignup.valid || formSignup.value.password != formSignup.value.copassword" type="submit" color="primary"> Sign up </button>
+      <mat-error class="alert alert-danger" *ngIf="formSignup.value.email != formSignup.value.coemail"> 
+        The emails do not match </mat-error>
+    </mat-list>
+  
+    <button class="btnForm" mat-raised-button [disabled]="!formSignup.valid || formSignup.value.password != formSignup.value.copassword || formSignup.value.email != formSignup.value.coemail" type="submit" color="primary"> Sign up </button>
     <!-- {{formSignup.value | json}} -->
-    
+    <!-- <p>Form status: {{ formSignup.status | json }}</p> -->    
   </form>
 
 </div>

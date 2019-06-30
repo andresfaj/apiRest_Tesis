@@ -1,0 +1,42 @@
+.container2{
+    /* border: 2px solid black; */
+    padding-block-start: 7rem;
+}
+
+.container{
+    /* border: 2px solid black; */
+    min-height: 100%;
+}
+
+.container3{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.example-card{    
+    /* border: 2px solid red; */
+    width: 500px;
+    margin: auto;
+    text-align: center;
+    /* width: 100%; */
+}
+
+.example-full-width{
+    width: 100%;
+}
+
+.mat-card{
+    margin-top: 10px;
+    width: 300px;
+    text-align: center;
+}
+
+#flotante{
+    /* border: 2px solid red; */
+    float: right;
+}
+
+/* .mat-mini-fab{
+    position: absolute;    
+} */

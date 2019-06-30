@@ -1,0 +1,12 @@
+.example-full-width {
+    width: 100%;
+}
+
+h2{
+    padding-bottom: 7px;
+}
+
+.container{
+    width: 500px;
+    margin: auto;
+}

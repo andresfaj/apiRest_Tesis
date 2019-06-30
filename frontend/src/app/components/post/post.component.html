@@ -1,0 +1,39 @@
+<div class="container2" fxLayoutAlign="center">
+  <h2> Create a post </h2>
+</div>
+
+<div class="container" fxLayoutAlign="center">
+
+  <form class="example-form" [formGroup]="formPost" (ngSubmit)="addPost(formPost)">
+
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Name of the publication" formControlName="name" type="text" required>
+    </mat-form-field>
+  
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Neighborhood" formControlName="neighborhood" type="text" required>
+    </mat-form-field>
+  
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Address" formControlName="address" type="text" required>
+    </mat-form-field>
+  
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Bathrooms" formControlName="bathrooms" type="number" required>
+    </mat-form-field>    
+    
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Bedrooms" formControlName="bedrooms" type="number" required>
+    </mat-form-field>
+    
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Description" formControlName="description" type="text" required>
+    </mat-form-field>      
+
+    <button class="example-full-width" mat-raised-button type="submit" color="primary" [disabled]="formPost.invalid"> Create a post </button>
+    <!-- {{formPost.value | json}}
+    <p>Form status: {{ formPost.status | json }}</p>     -->
+  </form>
+
+</div>
+  

@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
-import { User } from 'src/app/models/user';
-import { NgForm } from '@angular/forms';
-import {FormGroup, FormBuilder, FormControl, Validators} from '@angular/forms';
+import {FormGroup, FormBuilder, Validators} from '@angular/forms';
+import { DialogsComponent } from '../dialogs/dialogs.component';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css'],
-  providers: [UserService]
+  providers: [UserService, DialogsComponent]
 })
 export class SignupComponent implements OnInit {
 
@@ -17,15 +17,15 @@ export class SignupComponent implements OnInit {
   formSignup: FormGroup;
   dataUser: any;
 
-  constructor(private userService: UserService, private fb: FormBuilder) { }
+  constructor(private userService: UserService, private fb: FormBuilder,  private dialog: DialogsComponent, private router: Router) { }
 
   ngOnInit() {
     this.formSignup = this.fb.group({
         name: [null, Validators.required],
         lastName: [null, Validators.required],
-        phone: [null, Validators.required],
-        email: [null, Validators.email],
-        coemail: [null, Validators.email],
+        phone: [null, Validators.compose([Validators.required, Validators.pattern('[0-9]*')])],
+        email: [null, Validators.compose([Validators.required, Validators.email])],
+        coemail: [null, Validators.compose([Validators.required, Validators.email])],
         password: [null, Validators.compose([Validators.required, Validators.minLength(6)])],
         copassword: [null, Validators.compose([Validators.required, Validators.minLength(6)])]
         // terminos: [null, Validators.compose([Validators.required, Validators.requiredTrue])]
@@ -43,7 +43,8 @@ export class SignupComponent implements OnInit {
     console.log("Valores:",this.dataUser);
     this.userService.createUser(this.dataUser)
       .subscribe(res => {
-        console.log("res de creacion de usuario:", res);
+        this.dialog.openDialogSignup();
+        this.router.navigate(['/login']);    
       });
   }
 

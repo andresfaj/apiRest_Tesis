@@ -1,0 +1,44 @@
+<!-- <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px"> -->
+
+<div class="container">
+  
+  <div class="container2" *ngIf="flag!=true">
+    <mat-card class="example-card">
+      <mat-card-title class="title">
+          There are still no posts {{name}}. Create One
+      </mat-card-title>
+  
+      <mat-card-content>
+        <button mat-raised-button type="submit" color="primary" routerLink="/post" class="example-full-width">Create one</button>
+      </mat-card-content>
+  
+    </mat-card>
+
+  </div>
+
+  <div class="container3" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px" *ngIf="flag!=false">
+    <mat-card *ngFor="let rstate of rStates" >
+      <mat-card-title> {{rstate.name}} </mat-card-title>
+      <mat-card-subtitle> {{rstate.neighborhood}} </mat-card-subtitle>
+      <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Real state">
+      <mat-card-content>
+        <p>
+          {{rstate.description}}
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button color="primary">Details</button>
+        <button mat-button color="primary">Virtual Reality</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+  <div id="flotante">
+      <button mat-fab color="primary" routerLink="/post">
+        <mat-icon>add</mat-icon>
+      </button>
+  </div>
+
+</div>
+
+
