@@ -6,15 +6,22 @@
 
   <form class="example-form" [formGroup]="formSignup" (ngSubmit)="addUser(formSignup)">
      
-    <mat-form-field class="example-full-width">
-      <input matInput placeholder="Name" formControlName="name" type="text" required>
-      <mat-error *ngIf="!formSignup.controls['name'].valid && formSignup.controls['name'].touched"> The name is required  </mat-error>
-    </mat-form-field>
-  
-    <mat-form-field class="example-full-width">
-      <input matInput placeholder="Lastname" formControlName="lastName" type="text" required>
-      <mat-error *ngIf="!formSignup.controls['lastName'].valid && formSignup.controls['lastName'].touched"> The Lastname is required  </mat-error>
-    </mat-form-field>
+    <table class="example-full-width" cellspacing="0">
+      <tr>
+        <td>
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Name" formControlName="name" type="text" required>
+            <mat-error *ngIf="!formSignup.controls['name'].valid && formSignup.controls['name'].touched"> The name is required  </mat-error>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Lastname" formControlName="lastName" type="text" required>
+            <mat-error *ngIf="!formSignup.controls['lastName'].valid && formSignup.controls['lastName'].touched"> The Lastname is required  </mat-error>
+          </mat-form-field>
+        </td>    
+      </tr>
+    </table>
   
     <mat-form-field class="example-full-width">
       <input matInput placeholder="Phone" formControlName="phone" type="number" required>
@@ -43,33 +50,40 @@
           Wrong email format
         </div>
       </mat-error>
-    </mat-form-field> 
-  
-    <mat-form-field class="example-full-width">
-      <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" formControlName="password" type="password" required>
-      <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-      <mat-error *ngIf="formSignup.controls['password'].invalid && (formSignup.controls['password'].dirty || formSignup.controls['password'].touched)">
-        <div *ngIf="formSignup.controls['password'].errors.required">
-          The password is required        
-        </div>
-        <div *ngIf="formSignup.controls['password'].errors.minlength">
-          Password must be at least 6 characters
-        </div>
-      </mat-error>
     </mat-form-field>
-  
-    <mat-form-field class="example-full-width">
-      <input matInput placeholder="Confirm password" [type]="hide2 ? 'password' : 'text'" formControlName="copassword" type="password" required>
-      <mat-icon matSuffix (click)="hide2 = !hide2">{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
-      <mat-error *ngIf="formSignup.controls['copassword'].invalid && (formSignup.controls['copassword'].dirty || formSignup.controls['copassword'].touched)">
-        <div *ngIf="formSignup.controls['copassword'].errors.required">
-          Password confirmation is required        
-        </div>
-        <div *ngIf="formSignup.controls['copassword'].errors.minlength">
-          Password must be at least 6 characters
-        </div>
-      </mat-error>
-    </mat-form-field>
+
+    <table class="example-full-width" cellspacing="0">
+      <tr>
+        <td>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" formControlName="password" type="password" required>
+              <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              <mat-error *ngIf="formSignup.controls['password'].invalid && (formSignup.controls['password'].dirty || formSignup.controls['password'].touched)">
+                <div *ngIf="formSignup.controls['password'].errors.required">
+                  The password is required        
+                </div>
+                <div *ngIf="formSignup.controls['password'].errors.minlength">
+                  Password must be at least 6 characters
+                </div>
+              </mat-error>
+            </mat-form-field>
+        </td>
+        <td>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Confirm password" [type]="hide2 ? 'password' : 'text'" formControlName="copassword" type="password" required>
+              <mat-icon matSuffix (click)="hide2 = !hide2">{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
+              <mat-error *ngIf="formSignup.controls['copassword'].invalid && (formSignup.controls['copassword'].dirty || formSignup.controls['copassword'].touched)">
+                <div *ngIf="formSignup.controls['copassword'].errors.required">
+                  Password confirmation is required        
+                </div>
+                <div *ngIf="formSignup.controls['copassword'].errors.minlength">
+                  Password must be at least 6 characters
+                </div>
+              </mat-error>
+            </mat-form-field>
+        </td>
+      </tr>
+    </table>
 
     <mat-list>
       <div class="alert alert-danger" *ngIf="formSignup.value.password != formSignup.value.copassword"> Passwords do not match </div>

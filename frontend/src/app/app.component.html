@@ -1,7 +1,7 @@
 <!-- https://stackblitz.com/edit/responsive-menu-angular-material-flex-layout?file=src/app/app.component.html -->
 <div class="containerX">
     <mat-toolbar color="primary" class="toolbar">
-        <mat-toolbar-row>
+        <mat-toolbar-row class="firsttoolbar">
             <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
                 <mat-icon>menu</mat-icon> <!--icono de material icons-->
             </button>        
@@ -12,7 +12,10 @@
                 <button mat-button routerLink="/aboutus"> About us </button>
                 <button mat-button routerLink="/contactus"> Contact us</button>
                 <button mat-button routerLink="/allposts"> Publications </button>           
-                <button mat-button [matMenuTriggerFor]="menu">Account</button>
+                <button mat-button [matMenuTriggerFor]="menu">
+                    <div *ngIf="token == null; else elseBlock">{{account}}</div>
+                    <ng-template #elseBlock> {{accountTwo}} </ng-template>
+                </button>
                 <mat-menu #menu="matMenu">
                     <div class="containe" *ngIf="token == null">
                         <button mat-menu-item routerLink="/login"> Sign in </button>

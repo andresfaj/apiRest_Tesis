@@ -29,7 +29,6 @@ export class DialogsComponent {
   openDialogPost() {
     const dialogRef = this.dialog.open(DialogpostComponent);
   }
-
 }
 
 @Component({
@@ -61,3 +60,21 @@ export class DialogprofileComponent {}
   templateUrl: './dialogpost.html'
 })
 export class DialogpostComponent {}
+
+@Component({
+  selector: 'app-dialogdeletepost',
+  templateUrl: './dialogdeletepost.html'
+})
+export class DialogdeletepostComponent {}
+
+@Component({
+  selector: 'app-dialogdeletepostsucess',
+  templateUrl: './dialogdeletepostsucess.html'
+})
+export class DialogdeletepostsucessComponent {}
+
+@Component({
+  selector: 'app-dialogupdatepost',
+  templateUrl: './dialogupdatepost.html'
+})
+export class DialogupdatepostComponent {}

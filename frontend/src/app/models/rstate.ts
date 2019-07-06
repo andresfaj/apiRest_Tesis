@@ -8,8 +8,9 @@ export class RealState {
     bedrooms: number;
     description: string;
     user: string;
+    disabled: boolean;
 
-    constructor(_id = '', name = '', neighborhood = '', address = '', bathrooms = 0, bedrooms = 0, description = '', user= ''){
+    constructor(_id = '', name = '', neighborhood = '', address = '', bathrooms = 0, bedrooms = 0, description = '', user= '', disabled = true){
         this._id = _id;
         this.name = name;
         this.neighborhood = neighborhood;
@@ -18,5 +19,6 @@ export class RealState {
         this.bedrooms = bedrooms;
         this.description = description;
         this.user = user;
+        this.disabled = disabled;
     }
 }

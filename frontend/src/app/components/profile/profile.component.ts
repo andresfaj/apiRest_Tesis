@@ -63,9 +63,9 @@ export class ProfileComponent implements OnInit {
     this.dataUser.email = formProfile.value.email;
     console.log("DATOS A CAMBIAR:", this.dataUser);
     this.userService.updateUser(this.dataUser).subscribe(res => {
-      // console.log("Respuesta:",res);
       this.dialog.openDialogProfile();
       this.block(this.formProfile);
+      location.reload();
     })
   }
 

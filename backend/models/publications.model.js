@@ -9,6 +9,7 @@ const publicationSchema = new Schema({
     bedrooms: {type: Number, required: true},
     description: {type: String, required: true},
     user: {type: String},
+    disabled: {type: Boolean, default: true},
     date: {type: Date, default: Date.now }
 });
 

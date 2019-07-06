@@ -1,25 +1,31 @@
-.container2{
-    /* border: 2px solid black; */
-    padding-block-start: 7rem;
+/* .container3 > * {
+    box-sizing: border-box;
 }
 
-.container{
-    /* border: 2px solid black; */
-    min-height: 100%;
-}
+.container3 >*:not(:last-child){
+    margin-right: 32px;
+} */
 
 .container3{
-    display: flex;
+    /* display: flex; */
     flex-wrap: wrap;
     justify-content: flex-start;
 }
 
+.container2{
+    padding-block-start: 7rem;
+}
+
+.container{
+    margin-top: 10px;
+    min-height: 100%;
+}
+
+
 .example-card{    
-    /* border: 2px solid red; */
     width: 500px;
     margin: auto;
     text-align: center;
-    /* width: 100%; */
 }
 
 .example-full-width{
@@ -37,6 +43,26 @@
     float: right;
 }
 
-/* .mat-mini-fab{
-    position: absolute;    
-} */
+#buscador{
+    width: 450px;
+}
+
+.titulos{
+    padding-right: 1rem;
+}
+
+.inputNeighborhood{
+    width: 160px;
+}
+
+.inputAddress{
+    width: 190px;
+}
+
+.inputBathrooms{
+    width: 40px;
+}
+
+.inputBedrooms{
+    width: 40px;
+}

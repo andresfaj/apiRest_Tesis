@@ -1,20 +1,33 @@
-.container{
-    /* border: 2px solid red; */
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-}
-
-.container > * {
+.container3 > * {
     box-sizing: border-box;
 }
 
-.container >*:not(:last-child){
+.container3 >*:not(:last-child){
     margin-right: 32px;
+}
+
+.container3{
+    /* display: flex; */
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    /* margin: auto; */
+}
+
+.container2{
+    margin-top: 10px;
+}
+
+.container{
+    margin-top: 10px;
+    min-height: 100%;
 }
 
 .mat-card{
     margin-top: 10px;
     width: 300px;
     text-align: center;
+}
+
+#buscador{
+    width: 450px;
 }

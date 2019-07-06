@@ -26,7 +26,15 @@ export class RstateService {
   }
 
   getRstatesUser(user: string){
-    return this.http.get(this.URL_API_USER+`/${user}`)
+    return this.http.get(this.URL_API_USER+`/${user}`);
   }
 
+  updateRstate(rstate: RealState){
+    return this.http.put(this.URL_API + `/${rstate._id}`, {name: rstate.name, neighborhood: rstate.neighborhood, address: rstate.address, bathrooms: rstate.bathrooms, bedrooms: rstate.bedrooms, description: rstate.description, user: rstate.user });
+  }
+
+  deleteRstate(_id: string){
+    return this.http.delete(this.URL_API + `/${_id}`);
+
+  }
 }
