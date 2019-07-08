@@ -1,25 +1,27 @@
-<ngb-carousel *ngIf="images">
+<!-- <ngb-carousel *ngIf="images"> -->
+  <ngb-carousel>
     <ng-template ngbSlide>
-      <img [src]="images[0]" alt="Random first slide">
+      <img src="../../../assets/images/navigate-360.png" alt="360 degree images
+      ">
       <div class="carousel-caption">
-        <h3>First slide label</h3>
-        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+        <h3>360 degree images</h3>
+        <!-- <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p> -->
       </div>
     </ng-template>
     <ng-template ngbSlide>
-      <img [src]="images[1]" alt="Random second slide">
+      <img id="img2" src="../../../assets/images/navigate-360-2.jpg" alt="Random second slide">
       <div class="carousel-caption">
-        <h3>Second slide label</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <h3>360 degree images</h3>
+        <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p> -->
       </div>
     </ng-template>
-    <ng-template ngbSlide>
-      <img [src]="images[2]" alt="Random third slide">
+    <!-- <ng-template ngbSlide>
+      <img [src]="" alt="Random third slide">
       <div class="carousel-caption">
         <h3>Third slide label</h3>
         <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
       </div>
-    </ng-template>
+    </ng-template> -->
 </ngb-carousel>
 
 <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">

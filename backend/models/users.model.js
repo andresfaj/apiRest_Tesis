@@ -18,8 +18,8 @@ userSchema.methods.encryptPassword = async (password) => {
 };
 
 //metodo para comparar la contraseña de signin con la de la DB
-userSchema.methods.matchPassword = async function (password) {
-    return await bcrypt.compare(password, this.password);
+userSchema.methods.matchPassword = async function (password, hash) {
+    return await bcrypt.compare(password, hash);
 }
 
 module.exports = mongoose.model('Users', userSchema);//Modelo de dato de mongoose, los datos de userSchema se guardan en la tabla 'Users' 

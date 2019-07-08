@@ -4,30 +4,30 @@
 
 <div class="container" fxLayoutAlign="center">
 
-  <form class="example-form" [formGroup]="formPost" (ngSubmit)="addPost(formPost)">
+  <form class="example-form" [formGroup]="formPost" #formDirective="ngForm" (ngSubmit)="addPost(formPost, formDirective)">
 
     <mat-form-field class="example-full-width">
-      <input matInput placeholder="Name of the publication" formControlName="name" type="text" required>
+      <input matInput placeholder="Name of the publication" formControlName="name" type="text" >
     </mat-form-field>
   
     <mat-form-field class="example-full-width">
-      <input matInput placeholder="Neighborhood" formControlName="neighborhood" type="text" required>
+      <input matInput placeholder="Neighborhood" formControlName="neighborhood" type="text" >
     </mat-form-field>
   
     <mat-form-field class="example-full-width">
-      <input matInput placeholder="Address" formControlName="address" type="text" required>
+      <input matInput placeholder="Address" formControlName="address" type="text" >
     </mat-form-field>
   
     <mat-form-field class="example-full-width">
-      <input matInput placeholder="Bathrooms" formControlName="bathrooms" type="number" required>
+      <input matInput placeholder="Bathrooms" formControlName="bathrooms" type="number" >
     </mat-form-field>    
     
     <mat-form-field class="example-full-width">
-      <input matInput placeholder="Bedrooms" formControlName="bedrooms" type="number" required>
+      <input matInput placeholder="Bedrooms" formControlName="bedrooms" type="number" >
     </mat-form-field>
     
     <mat-form-field class="example-full-width">
-      <input matInput placeholder="Description" formControlName="description" type="text" required>
+      <input matInput placeholder="Description" formControlName="description" type="text" >
       <textarea matInput placeholder="Description" formControlName="description" readonly>
 
       </textarea>

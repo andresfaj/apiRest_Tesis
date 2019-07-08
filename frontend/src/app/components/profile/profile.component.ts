@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { NgForm, FormControl, FormBuilder } from '@angular/forms';
 import { FormGroup, Validators } from '@angular/forms';
-import {User} from '../../models/user';
-import { DialogsComponent } from '../dialogs/dialogs.component';
+import { MatDialog } from '@angular/material';
+import { DialogprofileComponent } from '../dialogs/dialogs.component';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css'],
-  providers: [UserService, DialogsComponent]
+  providers: [UserService]
 })
 export class ProfileComponent implements OnInit {
 
@@ -17,7 +17,7 @@ export class ProfileComponent implements OnInit {
   informationUser: any;
   formProfile: FormGroup;
 
-  constructor(private userService: UserService, private fb: FormBuilder, private dialog: DialogsComponent) {
+  constructor(private userService: UserService, private fb: FormBuilder, private dialog: MatDialog) {
     
   }
 
@@ -38,6 +38,18 @@ export class ProfileComponent implements OnInit {
         this.formProfile.controls['email'].setValue(this.dataUser.email);
       }
     )    
+  }
+
+  dialogSave(){
+    let dialogRef = this.dialog.open(DialogprofileComponent);
+
+    dialogRef.afterClosed().subscribe(
+      res => {
+        if(res == "true"){
+          location.reload();
+        }
+      }
+    )
   }
 
   edit(formProfile: FormGroup){
@@ -63,9 +75,9 @@ export class ProfileComponent implements OnInit {
     this.dataUser.email = formProfile.value.email;
     console.log("DATOS A CAMBIAR:", this.dataUser);
     this.userService.updateUser(this.dataUser).subscribe(res => {
-      this.dialog.openDialogProfile();
       this.block(this.formProfile);
-      location.reload();
+      this.dialogSave();
+
     })
   }
 

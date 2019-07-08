@@ -21,13 +21,19 @@ adminuserController.getUser = async (req, res) => {
 
 //Funcion que crea/registra 1 usuario
 adminuserController.createUser = async (req, res) => {
-    const user = new modelUser(req.body);
-    // user.password = await user.encryptPassword(user.password);
-    console.log(user);
-    await user.save();
-    res.json({
-        'status': 'User saved'
-    });
+    var existingMail = await modelUser.findOne({email: req.body.email});
+    if(existingMail == null){
+        const user = new modelUser(req.body);
+        user.password = await user.encryptPassword(user.password);
+        await user.save();
+        res.json({
+            'status': 'usersaved'
+        });
+    }else{
+        res.json({
+            'status': 'userused'
+        });        
+    }
 };
 
 //Funcion que actualiza 1 usuario

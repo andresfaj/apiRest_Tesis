@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormGroup, FormBuilder, Validators} from '@angular/forms';
+import {FormGroup, FormBuilder, Validators, FormGroupDirective} from '@angular/forms';
 import { UserService } from '../../services/user.service';
 import { RstateService } from '../../services/rstate/rstate.service';
 import { DialogsComponent } from '../dialogs/dialogs.component'; 
@@ -30,7 +30,7 @@ export class PostComponent implements OnInit {
     });
   }
 
-  addPost(formPost: FormGroup):void{
+  addPost(formPost: FormGroup, formDirective: FormGroupDirective): void{
     this.dataPost = {
       name: this.formPost.value.name,
       neighborhood: this.formPost.value.neighborhood,
@@ -40,11 +40,12 @@ export class PostComponent implements OnInit {
       description: this.formPost.value.description,
       user: this.informationUser
     }
-
+    
     this.rState.createRstate(this.dataPost).subscribe(
       res => {
         this.dialog.openDialogPost();
-        this.formPost.reset();
+        formDirective.resetForm();
+        this.formPost.reset();   
       }
     )
 

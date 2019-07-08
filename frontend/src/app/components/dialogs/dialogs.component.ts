@@ -18,14 +18,6 @@ export class DialogsComponent {
     const dialogRef = this.dialog.open(DialogemptyloginComponent);
   }
 
-  openDialogSignup() {
-    const dialogRef = this.dialog.open(DialogsignupComponent);
-  }
-
-  openDialogProfile() {
-    const dialogRef = this.dialog.open(DialogprofileComponent);
-  }
-
   openDialogPost() {
     const dialogRef = this.dialog.open(DialogpostComponent);
   }
@@ -78,3 +70,9 @@ export class DialogdeletepostsucessComponent {}
   templateUrl: './dialogupdatepost.html'
 })
 export class DialogupdatepostComponent {}
+
+@Component({
+  selector: 'app-dialogexistinguser',
+  templateUrl: './dialogexistinguser.html'
+})
+export class DialogexistinguserComponent {}

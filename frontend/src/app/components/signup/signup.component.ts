@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import {FormGroup, FormBuilder, Validators} from '@angular/forms';
-import { DialogsComponent } from '../dialogs/dialogs.component';
 import {Router} from '@angular/router';
+import { MatDialog } from '@angular/material';
+import { DialogexistinguserComponent, DialogsignupComponent } from '../dialogs/dialogs.component';
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css'],
-  providers: [UserService, DialogsComponent]
+  providers: [UserService]
 })
 export class SignupComponent implements OnInit {
 
@@ -16,8 +17,9 @@ export class SignupComponent implements OnInit {
   hide2 = true;
   formSignup: FormGroup;
   dataUser: any;
+  controlUser: any;
 
-  constructor(private userService: UserService, private fb: FormBuilder,  private dialog: DialogsComponent, private router: Router) { }
+  constructor(private userService: UserService, private fb: FormBuilder,  private dialog: MatDialog, private router: Router) { }
 
   ngOnInit() {
     this.formSignup = this.fb.group({
@@ -32,6 +34,31 @@ export class SignupComponent implements OnInit {
     });
   }
 
+  dialogExistinguser(){
+    let dialogRef = this.dialog.open(DialogexistinguserComponent);
+
+    dialogRef.afterClosed().subscribe(
+      res => {
+        if(res == "true"){
+          this.formSignup.controls['email'].reset();
+          this.formSignup.controls['coemail'].reset();
+        }
+      }
+    )
+  }
+
+  dialogSignup(){
+    let dialogRef = this.dialog.open(DialogsignupComponent);
+
+    dialogRef.afterClosed().subscribe(
+      res => {
+        if(res == "true"){
+          this.router.navigate(['/login']);
+        }
+      }
+    )
+  }
+
   addUser(form: FormGroup){
     this.dataUser = {
       name: form.value.name,
@@ -40,11 +67,14 @@ export class SignupComponent implements OnInit {
       email: form.value.email,
       password: form.value.password
     }
-    console.log("Valores:",this.dataUser);
     this.userService.createUser(this.dataUser)
       .subscribe(res => {
-        this.dialog.openDialogSignup();
-        this.router.navigate(['/login']);    
+        this.controlUser = res;
+        if(this.controlUser.status == "userused"){
+          this.dialogExistinguser();
+        }else{
+           this.dialogSignup();
+        }
       });
   }
 

@@ -22,7 +22,7 @@ import { SignupComponent } from './components/signup/signup.component';
 import { LoginComponent } from './components/login/login.component';
 import { PublicationsComponent } from './components/publications/publications.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { DialogsComponent, DialogloginComponent, DialogemptyloginComponent, DialogsignupComponent, DialogprofileComponent, DialogpostComponent, DialogdeletepostComponent, DialogdeletepostsucessComponent, DialogupdatepostComponent } from './components/dialogs/dialogs.component';
+import { DialogsComponent, DialogloginComponent, DialogemptyloginComponent, DialogsignupComponent, DialogprofileComponent, DialogpostComponent, DialogdeletepostComponent, DialogdeletepostsucessComponent, DialogupdatepostComponent, DialogexistinguserComponent } from './components/dialogs/dialogs.component';
 import { UserpublicationsComponent } from './components/userpublications/userpublications.component';
 import { PostComponent } from './components/post/post.component';
 import { FilterpublicationsPipe } from './pipes/filterpublications.pipe';
@@ -49,7 +49,8 @@ import { FilterpublicationsPipe } from './pipes/filterpublications.pipe';
     FilterpublicationsPipe,
     DialogdeletepostComponent,
     DialogdeletepostsucessComponent,
-    DialogupdatepostComponent
+    DialogupdatepostComponent,
+    DialogexistinguserComponent
   ],
   imports: [ //Depedencias = imports
     BrowserModule,
@@ -64,7 +65,7 @@ import { FilterpublicationsPipe } from './pipes/filterpublications.pipe';
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [DialogsComponent, DialogloginComponent, DialogemptyloginComponent, DialogsignupComponent, DialogprofileComponent, DialogpostComponent, DialogdeletepostComponent, DialogdeletepostsucessComponent, DialogupdatepostComponent]
+  entryComponents: [DialogsComponent, DialogloginComponent, DialogemptyloginComponent, DialogsignupComponent, DialogprofileComponent, DialogpostComponent, DialogdeletepostComponent, DialogdeletepostsucessComponent, DialogupdatepostComponent, DialogexistinguserComponent]
 })
 
 export class AppModule { }

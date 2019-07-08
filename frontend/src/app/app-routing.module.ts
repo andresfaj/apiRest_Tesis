@@ -9,6 +9,7 @@ import { AboutusComponent } from './components/aboutus/aboutus.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { UserpublicationsComponent } from './components/userpublications/userpublications.component';
 import { PostComponent } from './components/post/post.component';
+import { AuthGuard } from './guards/auhtGuard/auth.guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -17,8 +18,8 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'contactus', component: ContactusComponent },
   { path: 'aboutus', component: AboutusComponent },
-  { path: 'profile', component: ProfileComponent },
-  { path: 'myposts', component: UserpublicationsComponent },
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+  { path: 'myposts', component: UserpublicationsComponent, canActivate: [AuthGuard] },
   { path: 'post', component: PostComponent },
   { path: '**', component: HomeComponent }
 ];

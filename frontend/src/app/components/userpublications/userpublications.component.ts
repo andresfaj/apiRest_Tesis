@@ -93,8 +93,6 @@ export class UserpublicationsComponent implements OnInit {
     )
   }
 
-
-
   savePost(formPost: NgForm){
     var rstateUpdate = new RealState();
     rstateUpdate._id = formPost.value.id;
