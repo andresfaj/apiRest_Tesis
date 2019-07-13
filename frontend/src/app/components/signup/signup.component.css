@@ -2,8 +2,10 @@
     width: 100%;
 }
 
-h2{
-    padding-bottom: 7px;
+#title{
+    margin: 15px;
+    font-family: sans-serif;
+    font-size: 35px;
 }
 
 .btnForm{
@@ -17,8 +19,7 @@ h2{
 }
 
 .container3{
-    min-height: 100%;
-    padding-block-start: 5rem;    
+    min-height: 100%;  
 }
 
 /* .container{

@@ -6,6 +6,12 @@
     display: block;
 }
 
+#title{
+    margin: 15px;
+    font-family: sans-serif;
+    font-size: 35px;
+}
+
 .container{
     width: 500px;
     margin: auto;

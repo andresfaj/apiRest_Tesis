@@ -1,8 +1,25 @@
 import { Component, OnInit } from '@angular/core';
-import {FormGroup, FormBuilder, Validators, FormGroupDirective} from '@angular/forms';
+import {FormGroup, FormBuilder, Validators, FormGroupDirective, NgForm} from '@angular/forms';
 import { UserService } from '../../services/user.service';
 import { RstateService } from '../../services/rstate/rstate.service';
-import { DialogsComponent } from '../dialogs/dialogs.component'; 
+import { DialogsComponent } from '../dialogs/dialogs.component';
+import { Observable, empty } from 'rxjs';
+import { startWith, map } from 'rxjs/operators';
+export interface multipleOptions{
+  value: number;
+  viewValue: string;
+}
+
+export interface DepartmentGroup{
+  letter: string;
+  names: string[];
+}
+
+export const _filter = (opt: string[], value: string): string[] => {
+  const filterValue = value.toLowerCase();
+
+  return opt.filter(item => item.toLowerCase().indexOf(filterValue) === 0);
+};
 
 @Component({
   selector: 'app-post',
@@ -11,44 +28,249 @@ import { DialogsComponent } from '../dialogs/dialogs.component';
   providers: [UserService, RstateService, DialogsComponent]
 })
 export class PostComponent implements OnInit {
+  
+  constructor(private fb: FormBuilder, private userService: UserService, private rState: RstateService, private dialog: DialogsComponent) { }
 
   formPost: FormGroup;
-  dataPost: any;
   informationUser: any;
+  selectedFile = null;
+  imageUrl: string = "/assets/images/houseico.png";
+  labelPosition: string = 'before';
+  tipoInmueble: any = [
+    {value: 'Apartment'},
+    {value: 'Home'},
+    {value: 'Estate'}
+  ]
 
-  constructor(private fb: FormBuilder, private userService: UserService, private rState: RstateService, private dialog: DialogsComponent) { }
+  antiquitys: multipleOptions[] = [
+    {value: 1, viewValue:'New'},
+    {value: 2, viewValue: 'About construction plans'},
+    {value: 3, viewValue: 'Between 0 and 5 years'},
+    {value: 4, viewValue: 'Between 5 and 10 years'},
+    {value: 5, viewValue: 'Between 10 and 20 years'},
+    {value: 6, viewValue: 'More than 20 years'}
+  ]
+
+  bedrooms: multipleOptions[] = [
+    {value: 1, viewValue:'One' },
+    {value: 2, viewValue:'Two' },
+    {value: 3, viewValue:'Three' },
+    {value: 4, viewValue:'Four' },
+    {value: 5, viewValue:'Five or more' }
+  ]
+
+  citys: any[] = [ ]
+
+  departments: DepartmentGroup[] = [
+    {letter: 'A', names:['Antioquia','Arauca','Atlántico']},
+    {letter: 'B', names:['Bolívar','Boyacá']},
+    {letter: 'C', names:['Caldas','Caquetá','Casanare','Cauca','Cesar','Chocó','Córdoba','Cundinamarca']},
+    {letter: 'G', names:['Guainía','Guaviare']},
+    {letter: 'H', names:['Huila']},
+    {letter: 'L', names:['La Guajira']},
+    {letter: 'M', names:['Magdalena','Meta']},
+    {letter: 'N', names:['Nariño','Norte de Santander']},
+    {letter: 'P', names:['Putumayo']},
+    {letter: 'Q', names:['Quindío']},
+    {letter: 'S', names:['San Andrés y Providencia','Santander','Sucre']},
+    {letter: 'T', names:['Tolima']},
+    {letter: 'V', names:['Valle del Cauca','Vaupés','Vichada']}
+
+  ];
+
+  departmentsOptions: Observable<DepartmentGroup[]>;
 
   ngOnInit() {
     this.informationUser = this.userService.getInformation();
     this.formPost = this.fb.group({
-      name: [null, Validators.required],
+      typeProperty: ['', Validators.required],
+      typeOffer: ['sale', Validators.required],
+      price: [null, Validators.required],
+      negotiable: [false],
+      incluAdmin: [false],
+      adminValue: [null],
+      department: [null, Validators.required],
+      city: [null, Validators.required],
       neighborhood: [null, Validators.required],
       address: [null, Validators.required],
+      area: [null, Validators.required],
+      antiquity: [null, Validators.required],
+      rooms: [null, Validators.required],
       bathrooms: [null, Validators.required],
-      bedrooms: [null, Validators.required],
-      description: [null, Validators.required]
+      apartmentFloor: [null],
+      parking: [null, Validators.required],
+      description: [null, Validators.required],
+      interior: this.fb.group({
+        aircondi: [false],
+        jacuzzi: [false],
+        fwood: [false],
+        cfloor: [false],
+        ikitchen: [false],
+        akitchen: [false],
+      }),
+      exterior: this.fb.group({
+        pool: [false],
+        ccondominium: [false],
+        pvisitors: [false]
+      }),
+      careas: this.fb.group({
+        cliving: [false],
+        fcourt: [false],
+        bcourt: [false],
+        tcourt: [false],
+        greenery: [false],
+        chareas: [false]
+      }),
+      sector: this.fb.group({
+        schoolnear: [false],
+        unear: [false],
+        smarkets: [false],
+        parks: [false],
+        malls: [false],
+        ptransport: [false],
+        czone: [false]
+      }),
+      user: [this.informationUser],
+      disabled: [true]
     });
+    this.departmentsOptions = this.formPost.get('department')!.valueChanges
+    .pipe(
+      startWith(''),
+      map(value => this._filterGroup(value))
+    );
+  }
+
+  private _filterGroup(value: string): DepartmentGroup[] {
+    if (value) {
+      return this.departments
+        .map(group => ({letter: group.letter, names: _filter(group.names, value)}))
+        .filter(group => group.names.length > 0);
+    }
+
+    return this.departments;
+  }
+
+  onFileSelected(event){
+    this.selectedFile = event.target.files[0];
   }
 
   addPost(formPost: FormGroup, formDirective: FormGroupDirective): void{
-    this.dataPost = {
-      name: this.formPost.value.name,
-      neighborhood: this.formPost.value.neighborhood,
-      address: this.formPost.value.address,
-      bathrooms: this.formPost.value.bathrooms,
-      bedrooms: this.formPost.value.bedrooms,
-      description: this.formPost.value.description,
-      user: this.informationUser
-    }
     
-    this.rState.createRstate(this.dataPost).subscribe(
+    this.rState.createRstate(formPost.value).subscribe(
       res => {
         this.dialog.openDialogPost();
         formDirective.resetForm();
-        this.formPost.reset();   
+        this.formPost.reset();
+        this.formPost.patchValue({typeOffer:'sale'});   
       }
     )
+  }
 
+  changeValiadminvalue(){
+    const precioAdmin = this.formPost.get('adminValue');
+
+    this.formPost.get('typeOffer').valueChanges.subscribe(
+      typeOffer => {
+        if(typeOffer == "lease"){
+          precioAdmin.setValidators([Validators.required]);
+        }else if(typeOffer == 'sale'){
+          precioAdmin.setValidators(null);
+        }
+        precioAdmin.updateValueAndValidity();
+      }
+    )
+  }
+
+  changeValiadminvalue2(){
+    const precioAdmin = this.formPost.get('adminValue');
+
+    this.formPost.get('incluAdmin').valueChanges.subscribe(
+      incluAdmin => {
+        if(incluAdmin === true){
+          precioAdmin.setValidators(null);
+        }else{
+          precioAdmin.setValidators([Validators.required]);
+        }
+
+        precioAdmin.updateValueAndValidity();
+      }
+    )
+  }
+
+  changeProperty(){
+
+  }
+
+  onChangeDepartment(){
+    this.formPost.get('department').valueChanges.subscribe(
+      citySelected => {
+        if(citySelected == "Valle del Cauca"){
+          this.citys = [{value: 'Cali'},{value: 'Buenaventura'},{value: 'Jamundí'},{ value: 'Palmira'},{value: 'Tuluá'},{value: 'Yumbo'}];
+        }else if (citySelected == "Antioquia"){
+          this.citys = [{value: 'Medellín'}];
+        }else if (citySelected == "Arauca"){
+          this.citys = [{value: 'Arauca'}];
+        }else if (citySelected == "Atlántico"){
+          this.citys = [{value: 'Barranquilla'}];
+        }else if (citySelected == "Bolívar"){
+          this.citys = [{value: 'Cartagena de Indías'}];
+        }else if (citySelected == "Boyacá"){
+          this.citys = [{value: 'Tunja'}];
+        }else if (citySelected == "Caldas"){
+          this.citys = [{value: 'Manizales'}];
+        }else if (citySelected == "Caquetá"){
+          this.citys = [{value: 'Florencia'}];
+        }else if (citySelected == "Casanare"){
+          this.citys = [{value: 'Yopal'}];
+        }else if (citySelected == "Cauca"){
+          this.citys = [{value: 'Popayán'}];
+        }else if (citySelected == "Cesar"){
+          this.citys = [{value: 'Valledupar'}];
+        }else if (citySelected == "Chocó"){
+          this.citys = [{value: 'Quibdó'}];
+        }else if (citySelected == "Córdoba"){
+          this.citys = [{value: 'Montería'}];
+        }else if (citySelected == "Cundinamarca"){
+          this.citys = [{value: 'Bogotá'}];
+        }else if (citySelected == "Guainía"){
+          this.citys = [{value: 'Inírida'}];
+        }else if (citySelected == "Guaviare"){
+          this.citys = [{value: 'San José del Guaviare'}];
+        }else if (citySelected == "Huila"){
+          this.citys = [{value: 'Neiva'}];
+        }else if (citySelected == "La Guajira"){
+          this.citys = [{value: 'Riohacha'}];
+        }else if (citySelected == "Magdalena"){
+          this.citys = [{value: 'Santa Marta'}];
+        }else if (citySelected == "Meta"){
+          this.citys = [{value: 'Villavicencio'}];
+        }else if (citySelected == "Nariño"){
+          this.citys = [{value: 'Pasto'}];
+        }else if (citySelected == "Norte de Santander"){
+          this.citys = [{value: 'San José de Cúcuta'}];
+        }else if (citySelected == "Putumayo"){
+          this.citys = [{value: 'Mocoa'}];
+        }else if (citySelected == "Quindío"){
+          this.citys = [{value: 'Armenia'}];
+        }else if (citySelected == "Risaralda"){
+          this.citys = [{value: 'Pereira'}];
+        }else if (citySelected == "San Andrés y Providencia"){
+          this.citys = [{value: 'San Andrés'}];
+        }else if (citySelected == "Santander"){
+          this.citys = [{value: 'Bucaramanga'}];
+        }else if (citySelected == "Sucre"){
+          this.citys = [{value: 'Sincelejo'}];
+        }else if (citySelected == "Tolima"){
+          this.citys = [{value: 'Ibagué'}];
+        }else if (citySelected == "Vaupés"){
+          this.citys = [{value: 'Mitú'}];
+        }else if (citySelected == "Vichada"){
+          this.citys = [{value: 'Puerto Carreño'}];
+        }else if(citySelected == ""){
+          this.citys = [];
+        }
+      }
+    )
   }
 
 }

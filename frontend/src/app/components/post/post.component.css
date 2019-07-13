@@ -6,7 +6,54 @@ h2{
     padding-bottom: 7px;
 }
 
-.container{
-    width: 500px;
+#title{
+    margin: 15px;
+    font-family: sans-serif;
+    font-size: 35px;
+}
+
+.subtitulos{
+    font-family: sans-serif;
+    font-size: 28px;
+}
+
+/* .container{
+    width: 680px;
     margin: auto;
+    border: 2px solid red;
+} */
+
+.section1{
+    display: block;
+    margin : auto;
+    /* border: 1px solid red; */
+}
+
+.carrusel{
+    width: 450px;
+    height: 400px;
+}
+
+.example-form{
+    width: 800px;
+    margin: auto;
+}
+
+.example-radio-button {
+    margin: 5px;
+}
+
+.hide {
+    display: inline-block;
+    width: 100%;
+}
+
+.section4{
+    margin: 10px;
+}
+
+.subtitulos2{
+    margin-left: 15px;
+    font-family: sans-serif;
+    font-size: 20px;    
 }

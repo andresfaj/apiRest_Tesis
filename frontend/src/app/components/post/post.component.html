@@ -1,40 +1,273 @@
 <div class="container2" fxLayoutAlign="center">
-  <h2> Create a post </h2>
+  <h2 id="title"> Create a post </h2>
 </div>
 
-<div class="container" fxLayoutAlign="center">
+<div class="container" fxLayoutAlign="center" >
+
 
   <form class="example-form" [formGroup]="formPost" #formDirective="ngForm" (ngSubmit)="addPost(formPost, formDirective)">
 
-    <mat-form-field class="example-full-width">
-      <input matInput placeholder="Name of the publication" formControlName="name" type="text" >
-    </mat-form-field>
-  
-    <mat-form-field class="example-full-width">
-      <input matInput placeholder="Neighborhood" formControlName="neighborhood" type="text" >
-    </mat-form-field>
-  
-    <mat-form-field class="example-full-width">
-      <input matInput placeholder="Address" formControlName="address" type="text" >
-    </mat-form-field>
-  
-    <mat-form-field class="example-full-width">
-      <input matInput placeholder="Bathrooms" formControlName="bathrooms" type="number" >
-    </mat-form-field>    
-    
-    <mat-form-field class="example-full-width">
-      <input matInput placeholder="Bedrooms" formControlName="bedrooms" type="number" >
-    </mat-form-field>
-    
-    <mat-form-field class="example-full-width">
-      <input matInput placeholder="Description" formControlName="description" type="text" >
-      <textarea matInput placeholder="Description" formControlName="description" readonly>
+  <!-- <form #formPost="ngForm" (ngSubmit)="adding(formPost)"> -->
 
-      </textarea>
-    </mat-form-field>      
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px">
+      <div class="section1" >
+        <h3>Select an image</h3>
+        <img class="carrusel" [src]="imageUrl">
+        <input placeholder="Select an image" type="file" (change)="onFileSelected($event)">
+          <!-- <button type="button" (click)="onUpload()" ></button> -->
+      </div>     
+  
+      <div class="section2">
+        <h2 class="subtitulos">Financial features</h2>
+        <mat-form-field class="example-full-width">
+          <mat-label> Type of property </mat-label>
+          <mat-select formControlName="typeProperty" required>
+            <mat-option *ngFor="let inmueble of tipoInmueble" [value]="inmueble.value" >
+              {{inmueble.value}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
 
-    <button class="example-full-width" mat-raised-button type="submit" color="primary" [disabled]="formPost.invalid"> Create a post </button>
-    <!-- {{formPost.value | json}}
+        <mat-label> Type of offer * </mat-label><br>
+        <mat-radio-group aria-label="Select an option" formControlName="typeOffer" (click)="changeValiadminvalue()" required>
+            <mat-radio-button class="example-radio-button" value=sale color="primary">On sale</mat-radio-button>
+            <mat-radio-button class="example-radio-button" value=lease color="primary">On lease</mat-radio-button>
+        </mat-radio-group>
+
+        <mat-form-field class="example-full-width">
+          <mat-icon matPrefix>attach_money</mat-icon>
+          <input currencyMask  matInput min="0" placeholder="{{formPost.value.typeOffer}} value" formControlName="price" [options]="{prefix: '$ ', thousands: '.', allowNegative: false, precision: 0 }"  required>
+        </mat-form-field>
+
+        <div *ngIf="formPost.controls.typeOffer.value == 'sale'; else selectlease">
+          <mat-checkbox  formControlName="negotiable" [labelPosition]="labelPosition" color="primary">Negotiable:</mat-checkbox>
+        </div>
+
+        <ng-template #selectlease>
+            <mat-checkbox (click)="changeValiadminvalue2()" formControlName="incluAdmin" [labelPosition]="labelPosition" color="primary">Includes Administration:</mat-checkbox>
+            
+            <mat-form-field [hidden]= "formPost.controls.incluAdmin.value == true" class="example-full-width">
+              <mat-icon matPrefix>attach_money</mat-icon>
+              <input currencyMask matInput  min="0" type="text" formControlName="adminValue" placeholder="Administration value" [options]="{prefix: '$ ', thousands: '.', allowNegative: false, precision: 0 }">
+            </mat-form-field>
+        </ng-template>
+
+        <h2 class="subtitulos">Location features</h2>
+
+        <mat-form-field class="example-full-width">
+          <input type="text" matInput placeholder="Select a department" (click)="onChangeDepartment($event.target.value)" formControlName="department" required [matAutocomplete]="autoGroup">
+            <mat-autocomplete #autoGroup="matAutocomplete">
+              <mat-optgroup *ngFor="let group of departmentsOptions | async" [label]="group.letter">
+                <mat-option *ngFor="let name of group.names" [value]="name">
+                  {{name}}
+                </mat-option>
+              </mat-optgroup>
+            </mat-autocomplete>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label> Select a city </mat-label>
+          <mat-select formControlName="city" required>
+            <mat-option *ngFor="let city of citys" [value]="city.value" >
+              {{city.value}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput type="text" placeholder="Neighborhood" formControlName="neighborhood" required>
+        </mat-form-field>
+        
+        <mat-form-field class="example-full-width">
+          <input matInput type="text" placeholder="Address" formControlName="address" required>
+        </mat-form-field>
+
+      </div>
+
+    </div>
+
+    <h2 class="subtitulos">Property features</h2>
+
+    <div class="section3"
+        fxLayout="row wrap"
+        fxLayoutAlign="space-around center"
+        fxLayoutGap="10px">
+      <div fxFlex="25" fxFlex.xs="0" >
+        <mat-form-field >
+          <input matInput type="number" min="0" placeholder="Area M²" formControlName="area" required>
+        </mat-form-field>
+      </div>
+      <div fxFlex="25" fxFlex.xs="0">
+        <mat-form-field class="example-full-width">
+          <mat-label> Antiquity </mat-label>
+          <mat-select formControlName="antiquity" required>
+            <mat-option *ngFor="let anti of antiquitys" [value]="anti.value" >
+              {{anti.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div fxFlex="25" fxFlex.xs="0">
+        <mat-form-field class="example-full-width">
+          <mat-label> Number of rooms </mat-label>
+          <mat-select formControlName="rooms" required>
+            <mat-option *ngFor="let bed of bedrooms" [value]="bed.value" >
+              {{bed.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div fxFlex="25" fxFlex.xs="0">
+        <mat-form-field class="example-full-width">
+          <mat-label> Number of bathrooms </mat-label>
+          <mat-select formControlName="bathrooms" required>
+            <mat-option *ngFor="let bed of bedrooms" [value]="bed.value" >
+              {{bed.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div fxFlex="25" fxFlex.xs="0" *ngIf="formPost.controls.typeProperty.value == 'Apartment'">
+        <mat-form-field >
+          <input matInput type="number" min="0" max="20" placeholder="Apartment floor" formControlName="apartmentFloor" required>
+        </mat-form-field>
+      </div>
+      <div fxFlex="25" fxFlex.xs="0">
+        <mat-form-field class="example-full-width">
+          <mat-label> Number of parking lots </mat-label>
+          <mat-select formControlName="parking" required>
+            <mat-option *ngFor="let bed of bedrooms" [value]="bed.value" >
+              {{bed.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div fxFlex="90" fxFlex.xs="0">
+        <mat-form-field class="example-full-width">
+          <textarea matInput placeholder="Enter a description" formControlName="description" required>    
+          </textarea>
+        </mat-form-field>  
+      </div>
+
+    </div>
+
+    <h2 class="subtitulos" style="margin-bottom: 25px;">Detailed features</h2>
+
+    <div>
+
+      <h2 class="subtitulos2"> Interior: </h2>
+
+      <div fxLayout="row wrap" fxLayoutAlign="space-around center">        
+        <fieldset formGroupName="interior" >
+          <mat-checkbox  formControlName="aircondi" [labelPosition]="labelPosition" color="primary">Air conditioner</mat-checkbox>
+        </fieldset>
+        <fieldset formGroupName="interior">
+          <mat-checkbox  formControlName="jacuzzi" [labelPosition]="labelPosition" color="primary">Jacuzzi</mat-checkbox>
+        </fieldset>
+        <fieldset formGroupName="interior">
+          <mat-checkbox  formControlName="fwood" [labelPosition]="labelPosition" color="primary">Floor wood</mat-checkbox>
+        </fieldset>
+      </div>
+
+      <div fxLayout="row wrap" fxLayoutAlign="space-around center">
+        <fieldset formGroupName="interior">
+          <mat-checkbox  formControlName="cfloor" [labelPosition]="labelPosition" color="primary"> Ceramic floor</mat-checkbox>
+        </fieldset>
+        <fieldset formGroupName="interior">
+          <mat-checkbox  formControlName="ikitchen" [labelPosition]="labelPosition" color="primary">Integral Kitchen</mat-checkbox>
+        </fieldset>
+        <fieldset formGroupName="interior">
+          <mat-checkbox  formControlName="akitchen" [labelPosition]="labelPosition" color="primary">American Kitchen</mat-checkbox>
+        </fieldset>
+      </div>
+
+      <mat-divider></mat-divider>
+      
+      <h2 class="subtitulos2"> Exterior: </h2>
+      
+      <div fxLayout="row wrap" fxLayoutAlign="space-around center">
+        
+        <fieldset formGroupName="exterior">
+          <mat-checkbox  formControlName="pool" [labelPosition]="labelPosition" color="primary">Swimming pool</mat-checkbox>
+        </fieldset>
+        <fieldset formGroupName="exterior">
+          <mat-checkbox  formControlName="ccondominium" [labelPosition]="labelPosition" color="primary">Closed condominium</mat-checkbox>  
+        </fieldset>
+        <fieldset formGroupName="exterior">
+          <mat-checkbox  formControlName="pvisitors" [labelPosition]="labelPosition" color="primary">Parking lot visitors</mat-checkbox>
+        </fieldset>
+      </div>
+
+      <mat-divider></mat-divider>
+
+      <h2 class="subtitulos2"> Common areas: </h2>
+
+      <div fxLayout="row wrap" fxLayoutAlign="space-around center">    
+        <fieldset formGroupName="careas">
+          <mat-checkbox  formControlName="cliving" [labelPosition]="labelPosition" color="primary">Social salon</mat-checkbox>
+        </fieldset>
+        <fieldset formGroupName="careas">
+          <mat-checkbox  formControlName="fcourt" [labelPosition]="labelPosition" color="primary">Football court</mat-checkbox>  
+        </fieldset>
+        <fieldset formGroupName="careas">
+          <mat-checkbox  formControlName="bcourt" [labelPosition]="labelPosition" color="primary">Basketball court</mat-checkbox>
+        </fieldset>
+      </div>
+
+      <div fxLayout="row wrap" fxLayoutAlign="space-around center">
+        <fieldset formGroupName="careas">
+          <mat-checkbox  formControlName="tcourt" [labelPosition]="labelPosition" color="primary">Tennis court</mat-checkbox>
+        </fieldset>
+        <fieldset formGroupName="careas">
+          <mat-checkbox  formControlName="greenery" [labelPosition]="labelPosition" color="primary">Green areas</mat-checkbox>
+        </fieldset>
+        <fieldset formGroupName="careas">
+          <mat-checkbox  formControlName="chareas" [labelPosition]="labelPosition" color="primary">Children's areas</mat-checkbox>
+        </fieldset>
+      </div>
+
+      <mat-divider></mat-divider>
+
+      <h2 class="subtitulos2"> Sector: </h2>
+
+      <div fxLayout="row wrap" fxLayoutAlign="space-around center">
+        <fieldset formGroupName="sector">
+          <mat-checkbox  formControlName="schoolnear" [labelPosition]="labelPosition" color="primary">Schools near</mat-checkbox>
+        </fieldset>
+        <fieldset formGroupName="sector">
+          <mat-checkbox  formControlName="unear" [labelPosition]="labelPosition" color="primary">Universities near</mat-checkbox> 
+        </fieldset>
+        <fieldset formGroupName="sector">
+          <mat-checkbox  formControlName="smarkets" [labelPosition]="labelPosition" color="primary">Supermarkets</mat-checkbox>
+        </fieldset>
+      </div>
+
+      <div fxLayout="row wrap" fxLayoutAlign="space-around center">
+        <fieldset formGroupName="sector">
+          <mat-checkbox  formControlName="parks" [labelPosition]="labelPosition" color="primary">Parks</mat-checkbox>
+        </fieldset>
+        <fieldset formGroupName="sector">
+          <mat-checkbox  formControlName="malls" [labelPosition]="labelPosition" color="primary">Malls</mat-checkbox>
+        </fieldset>
+        <fieldset formGroupName="sector">
+          <mat-checkbox  formControlName="ptransport" [labelPosition]="labelPosition" color="primary">Public transport</mat-checkbox>  
+        </fieldset>
+      </div>
+
+      <div fxLayout="row wrap" fxLayoutAlign="space-around center">
+        <fieldset formGroupName="sector">
+          <mat-checkbox  formControlName="czone" [labelPosition]="labelPosition" color="primary">Commercial zone</mat-checkbox>
+        </fieldset>
+      </div>
+
+    </div>
+
+    <div class="section5">
+      <button class="example-full-width" mat-raised-button type="submit" color="primary" [disabled]="formPost.invalid"> Create a post </button>
+    </div>
+<!-- 
+    {{formPost.value | json}}
     <p>Form status: {{ formPost.status | json }}</p>     -->
   </form>
 

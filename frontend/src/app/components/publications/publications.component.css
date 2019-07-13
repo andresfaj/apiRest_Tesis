@@ -9,8 +9,15 @@
 .container3{
     /* display: flex; */
     flex-wrap: wrap;
-    justify-content: flex-start;
-    /* margin: auto; */
+    justify-content: flex-start;    
+}
+
+table {
+    width: 100%;
+}
+
+.containerTable{
+    margin: 15px;
 }
 
 .container4{
@@ -30,8 +37,13 @@
     margin-top: 10px;
     width: 300px;
     text-align: center;
+    font-family: sans-serif;
 }
 
 #buscador{
     width: 450px;
+}
+
+.full-width{
+    width: 100%;
 }

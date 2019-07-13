@@ -1,6 +1,7 @@
 .container{
     /* border: 2px solid blue; */
-    padding-block-start: 7rem;    
+    padding-block-start: 7rem;
+    min-height: 100%;    
 }
 
 .example-card{    

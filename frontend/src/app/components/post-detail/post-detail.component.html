@@ -1,0 +1,307 @@
+<div class="container">
+
+  <h1 id="title"> {{restate?.typeProperty}}  for {{restate?.typeOffer}} in {{restate?.city}} </h1>
+
+  <div fxLayout="row" fxLayout.xs="column">
+
+    <div>
+      <ngb-carousel style="width:450px;">
+        <ng-template ngbSlide>
+          <img [src]="images[0]" class="carrusel" alt="Random third slide">
+          <div class="carousel-caption">
+            <h3>Third slide label</h3>
+            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+          </div>
+        </ng-template>
+        <ng-template ngbSlide>
+          <img [src]="images[1]" class="carrusel" alt="Random third slide">
+          <div class="carousel-caption">
+            <h3>Third slide label</h3>
+            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+          </div>
+        </ng-template>
+        <ng-template ngbSlide>
+          <img [src]="images[2]" class="carrusel" alt="Random third slide">
+          <div class="carousel-caption">
+            <h3>Third slide label</h3>
+            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+          </div>
+        </ng-template>
+      </ngb-carousel>
+    </div>
+
+    <div>
+      <h2 class="subtitulos"> Financial features </h2>
+      <mat-list>
+        <mat-list-item>
+          <mat-icon mat-list-icon>attach_money</mat-icon>
+          <h4 matLine> Price: {{restate?.price | currency:'COP'}} </h4>
+        </mat-list-item>
+        <mat-list-item *ngIf="restate?.negotiable == true && restate?.typeOffer == 'sale'">
+          <mat-icon mat-list-icon>check_circle</mat-icon>
+          <h4 matLine> The price is negotiable  </h4>
+        </mat-list-item>
+        <mat-list-item *ngIf="restate?.negotiable == false && restate?.typeOffer == 'sale'">
+          <mat-icon mat-list-icon>monetization_on</mat-icon>
+          <h4 matLine> The price is fixed </h4>
+        </mat-list-item>
+        <mat-list-item *ngIf="restate?.incluAdmin == true && restate?.typeOffer == 'lease'">
+          <mat-icon mat-list-icon>check_circle</mat-icon>
+          <h4 matLine> The price includes the administration </h4>
+        </mat-list-item>
+        <mat-list-item *ngIf="restate?.incluAdmin == false && restate?.typeOffer == 'lease'">
+          <mat-icon mat-list-icon>local_atm</mat-icon>
+          <h4 matLine> Value of the administration: {{restate?.adminValue | currency:'COP'}} </h4>
+        </mat-list-item>
+      </mat-list>
+      <h2 class="subtitulos"> Location features </h2>
+      <mat-list>
+        <mat-list-item>
+          <mat-icon mat-list-icon>terrain</mat-icon>
+          <h4 matLine> Department: {{restate?.department}} </h4>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon mat-list-icon>location_city</mat-icon>
+          <h4 matLine> City: {{restate?.city}} </h4>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon mat-list-icon>place</mat-icon>
+          <h4 matLine> Neighborhood: {{restate?.neighborhood}} </h4>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon mat-list-icon>my_location</mat-icon>
+          <h4 matLine> Address: {{restate?.address}} </h4>
+        </mat-list-item>
+      </mat-list>
+    </div>
+
+  </div>    
+
+  <div >
+    <h2 class="subtitulos"> Property features </h2>
+    <mat-list fxLayout="row" fxLayout.xs="column" >
+      <mat-list-item>
+        <mat-icon mat-list-icon>tab_unselected</mat-icon>
+        <h4 mat-line> Area: </h4>
+        <p matLine> {{restate?.area}} M² </p>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon mat-list-icon>domain</mat-icon>
+        <h4 mat-line> Property status: </h4>
+        <p matLine *ngIf="restate?.antiquity == 1"> ¡The property is NEW! </p>
+        <p matLine *ngIf="restate?.antiquity == 2"> The property is under construction </p>
+        <p matLine *ngIf="restate?.antiquity == 3"> The property is between 0 and 5 years old </p>
+        <p matLine *ngIf="restate?.antiquity == 4"> The property is between 5 and 10 years old </p>
+        <p matLine *ngIf="restate?.antiquity == 5"> The property 10 between 0 and 15 years old </p>
+        <p matLine *ngIf="restate?.antiquity == 6"> The property is more than 20 years old </p>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon mat-list-icon>hotel</mat-icon>
+        <h4 mat-line> Rooms: </h4>
+        <p matLine *ngIf="restate?.rooms == 1"> 1 </p>
+        <p matLine *ngIf="restate?.rooms == 2"> 2 </p>
+        <p matLine *ngIf="restate?.rooms == 3"> 3 </p>
+        <p matLine *ngIf="restate?.rooms == 4"> 4 </p>
+        <p matLine *ngIf="restate?.rooms == 5"> 5+ </p>
+      </mat-list-item>
+    </mat-list>
+    <mat-list fxLayout="row" fxLayout.xs="column" >
+      <mat-list-item>
+        <mat-icon mat-list-icon>airline_seat_legroom_reduced</mat-icon>
+        <h4 mat-line> Bathrooms: </h4>
+        <p matLine *ngIf="restate?.bathrooms == 1"> 1 </p>
+        <p matLine *ngIf="restate?.bathrooms == 2"> 2 </p>
+        <p matLine *ngIf="restate?.bathrooms == 3"> 3 </p>
+        <p matLine *ngIf="restate?.bathrooms == 4"> 4 </p>
+        <p matLine *ngIf="restate?.bathrooms == 5"> 5+ </p>
+      </mat-list-item>
+      <mat-list-item *ngIf="restate?.typeProperty == 'Apartment'">
+        <mat-icon mat-list-icon>domain</mat-icon>
+        <h4 mat-line> Apartment floor number: </h4>
+        <p matLine *ngIf="restate?.apartmentFloor == 1"> 1 </p>
+        <p matLine *ngIf="restate?.apartmentFloor == 2"> 2 </p>
+        <p matLine *ngIf="restate?.apartmentFloor == 3"> 3 </p>
+        <p matLine *ngIf="restate?.apartmentFloor == 4"> 4 </p>
+        <p matLine *ngIf="restate?.apartmentFloor == 5"> 5+ </p>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon mat-list-icon>local_parking</mat-icon>
+        <h4 mat-line> Number of Parking: </h4>
+        <p matLine *ngIf="restate?.parking == 1"> 1 </p>
+        <p matLine *ngIf="restate?.parking == 2"> 2 </p>
+        <p matLine *ngIf="restate?.parking == 3"> 3 </p>
+        <p matLine *ngIf="restate?.parking == 4"> 4 </p>
+        <p matLine *ngIf="restate?.parking == 5"> 5+ </p>
+      </mat-list-item>
+    </mat-list>
+
+    <mat-list>
+      <mat-list-item>
+        <mat-icon mat-list-icon>notes</mat-icon>
+        <h4 matLine>Description:</h4>
+        <p matLine> {{restate?.description}} </p>
+      </mat-list-item>
+    </mat-list>
+
+  </div>
+
+  <div>
+    <h2 class="subtitulos" *ngIf="restate?.interior.aircondi == true || restate?.interior.akitchen == true || restate?.interior.cfloor == true || restate?.interior.fwood == true || restate?.interior.ikitchen == true || restate?.interior.jacuzzi == true || restate?.exterior.pool == true || restate?.exterior.ccondominium == true || restate?.exterior.pvisitors == true || restate?.careas.cliving == true || restate?.careas.fcourt == true || restate?.careas.bcourt == true || restate?.careas.tcourt == true || restate?.careas.greenery == true || restate?.careas.chareas == true || restate?.sector.schoolnear == true || restate?.sector.unear == true || restate?.sector.smarkets == true || restate?.sector.parks == true || restate?.sector.malls == true || restate?.sector.ptransport == true || restate?.sector.czone == true">Detailed features</h2>
+
+    <div *ngIf="restate?.interior.aircondi == true || restate?.interior.akitchen == true || restate?.interior.cfloor == true || restate?.interior.fwood == true || restate?.interior.ikitchen == true || restate?.interior.jacuzzi == true">
+
+      <h2 class="subtitulos2">Interior:</h2>
+  
+      <mat-list fxLayout="row" fxLayout.xs="column">
+        <mat-list-item *ngIf="restate?.interior.aircondi == true">
+          <mat-icon mat-list-icon>
+            <img class="icons" src="assets/images/aircondi.png">
+          </mat-icon>
+          <h4 matLine> It has air conditioning </h4>
+        </mat-list-item>
+        <mat-list-item *ngIf="restate?.interior.akitchen == true">
+          <mat-icon mat-list-icon>
+            <img class="icons" src="assets/images/akitchen.png">
+          </mat-icon>
+          <h4 matLine> It has a kitchenette </h4>
+        </mat-list-item>
+        <mat-list-item *ngIf="restate?.interior.cfloor == true">
+          <mat-icon mat-list-icon>
+            <img class="icons" src="assets/images/fwood.png">
+          </mat-icon>
+          <h4 matLine> It has a ceramic floor </h4>
+        </mat-list-item>
+        <mat-list-item *ngIf="restate?.interior.fwood == true">
+          <mat-icon mat-list-icon>
+            <img class="icons" src="assets/images/cfloor.png">
+          </mat-icon>
+          <h4 matLine> It has a wooden floor </h4>
+        </mat-list-item>
+        <mat-list-item *ngIf="restate?.interior.ikitchen == true">
+          <mat-icon mat-list-icon>
+            <img class="icons" src="assets/images/ikitchen.png">
+          </mat-icon>
+          <h4 matLine> It has a whole kitchen </h4>
+        </mat-list-item>
+        <mat-list-item *ngIf="restate?.interior.jacuzzi == true">
+          <mat-icon mat-list-icon>hot_tub</mat-icon>
+          <h4 matLine> It has a jacuzzi </h4>
+        </mat-list-item>
+      </mat-list>
+
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div *ngIf="restate?.exterior.pool == true || restate?.exterior.ccondominium == true || restate?.exterior.pvisitors == true">
+      <h2 class="subtitulos2">Exterior:</h2>
+  
+      <mat-list fxLayout="row" fxLayout.xs="column">
+        <mat-list-item *ngIf="restate?.exterior.pool == true">
+          <mat-icon mat-list-icon>pool</mat-icon>
+          <h4 matLine> It has a swimming pool </h4>
+        </mat-list-item>
+        <mat-list-item *ngIf="restate?.exterior.ccondominium == true">
+          <mat-icon mat-list-icon>
+            <img class="icons" src="assets/images/ccondominium.png">
+          </mat-icon>
+          <h4 matLine> The property is in a gated condominium </h4>
+        </mat-list-item>
+        <mat-list-item *ngIf="restate?.exterior.pvisitors == true">
+          <mat-icon mat-list-icon>local_parking</mat-icon>
+          <h4 matLine> It has a parking lot for visitors </h4>
+        </mat-list-item>
+      </mat-list>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div *ngIf="restate?.careas.cliving == true || restate?.careas.fcourt == true || restate?.careas.bcourt == true || restate?.careas.tcourt == true || restate?.careas.greenery == true || restate?.careas.chareas == true">
+
+      <h2 class="subtitulos2">Common areas:</h2>
+  
+      <mat-list fxLayout="row" fxLayout.xs="column">
+        <mat-list-item *ngIf="restate?.careas.cliving == true">
+          <mat-icon mat-list-icon>people</mat-icon>
+          <h4 matLine> It has a social salon </h4>
+        </mat-list-item>
+        <mat-list-item *ngIf="restate?.careas.fcourt == true">
+          <mat-icon mat-list-icon>
+            <img class="icons" src="assets/images/fcourt.png">
+          </mat-icon>
+          <h4 matLine> It has a football court </h4>
+        </mat-list-item>
+        <mat-list-item *ngIf="restate?.careas.bcourt == true">
+          <mat-icon mat-list-icon>
+            <img class="icons" src="assets/images/bcourt.png">
+          </mat-icon>
+          <h4 matLine> It has a basketball court </h4>
+        </mat-list-item>
+        <mat-list-item *ngIf="restate?.careas.tcourt == true">
+          <mat-icon mat-list-icon>
+            <img class="icons" src="assets/images/tcourt.png">
+          </mat-icon>
+          <h4 matLine> It has a tennis court </h4>
+        </mat-list-item>
+        <mat-list-item *ngIf="restate?.careas.greenery == true">
+          <mat-icon mat-list-icon>
+            <img class="icons" src="assets/images/greenery.png">
+          </mat-icon>
+          <h4 matLine> It has green areas </h4>
+        </mat-list-item>
+        <mat-list-item *ngIf="restate?.careas.chareas == true">
+          <mat-icon mat-list-icon>child_friendly</mat-icon>
+          <h4 matLine> It has a children's area </h4>
+        </mat-list-item>
+      </mat-list>
+
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div *ngIf="restate?.sector.schoolnear == true || restate?.sector.unear == true || restate?.sector.smarkets == true || restate?.sector.parks == true || restate?.sector.malls == true || restate?.sector.ptransport == true || restate?.sector.czone == true">
+
+      <h2 class="subtitulos2">Sector:</h2>
+  
+      <mat-list fxLayout="row" fxLayout.xs="column">
+        <mat-list-item *ngIf="restate?.sector.schoolnear == true">
+          <mat-icon mat-list-icon>school</mat-icon>
+          <h4 matLine> It has schools nearby </h4>
+        </mat-list-item>
+        <mat-list-item *ngIf="restate?.sector.unear == true">
+          <mat-icon mat-list-icon>
+            <img class="icons" src="assets/images/unear.png">
+          </mat-icon>
+          <h4 matLine> It has universities nearby </h4>
+        </mat-list-item>
+        <mat-list-item *ngIf="restate?.sector.smarkets">
+          <mat-icon mat-list-icon>
+            <img class="icons" src="assets/images/smarkets.png">
+          </mat-icon>
+          <h4 matLine> It has supermarkets nearby </h4>
+        </mat-list-item>
+        <mat-list-item *ngIf="restate?.sector.parks == true">
+          <mat-icon mat-list-icon>
+            <img class="icons" src="assets/images/parks.png">
+          </mat-icon>
+          <h4 matLine> It has parks nearby </h4>
+        </mat-list-item>
+        <mat-list-item *ngIf="restate?.sector.malls == true">
+          <mat-icon mat-list-icon>local_convenience_store</mat-icon>
+          <h4 matLine> It has shopping centers nearby </h4>
+        </mat-list-item>
+        <mat-list-item *ngIf="restate?.sector.ptransport == true">
+          <mat-icon mat-list-icon>directions_bus</mat-icon>
+          <h4 matLine> It has public transport nearby </h4>
+        </mat-list-item>
+        <mat-list-item *ngIf="restate?.sector.czone == true">
+          <mat-icon mat-list-icon>restaurant</mat-icon>
+          <h4 matLine> It has a shopping area </h4>
+        </mat-list-item>
+      </mat-list>
+
+    </div>    
+
+  </div>
+
+</div>

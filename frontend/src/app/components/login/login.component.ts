@@ -25,7 +25,6 @@ export class LoginComponent implements OnInit {
   }
 
   login(formLogin: FormGroup): void{
-    console.log("Datos introducidos:",formLogin.value);
     if(formLogin.value.email == "" || formLogin.value.password == ""){
       console.log("")
       this.dialog.openDialogEmpty();      

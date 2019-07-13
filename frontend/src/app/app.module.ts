@@ -26,6 +26,9 @@ import { DialogsComponent, DialogloginComponent, DialogemptyloginComponent, Dial
 import { UserpublicationsComponent } from './components/userpublications/userpublications.component';
 import { PostComponent } from './components/post/post.component';
 import { FilterpublicationsPipe } from './pipes/filterpublications.pipe';
+import { NgxCurrencyModule } from "ngx-currency";
+import { PostDetailComponent } from './components/post-detail/post-detail.component';
+import { EditPostComponent } from './components/edit-post/edit-post.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +53,9 @@ import { FilterpublicationsPipe } from './pipes/filterpublications.pipe';
     DialogdeletepostComponent,
     DialogdeletepostsucessComponent,
     DialogupdatepostComponent,
-    DialogexistinguserComponent
+    DialogexistinguserComponent,
+    PostDetailComponent,
+    EditPostComponent
   ],
   imports: [ //Depedencias = imports
     BrowserModule,
@@ -61,7 +66,8 @@ import { FilterpublicationsPipe } from './pipes/filterpublications.pipe';
     NgbModule,
     materialModule,
     FlexLayoutModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgxCurrencyModule
   ],
   providers: [],
   bootstrap: [AppComponent],

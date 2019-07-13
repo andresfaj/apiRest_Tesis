@@ -21,6 +21,10 @@ export class RstateService {
     return this.http.get(this.URL_API);
   }
 
+  getRstate(_id: string){
+    return this.http.get(this.URL_API+ `/${_id}`);
+  }
+
   createRstate(rstate: RealState){
     return this.http.post(this.URL_API, rstate);
   }
@@ -29,9 +33,9 @@ export class RstateService {
     return this.http.get(this.URL_API_USER+`/${user}`);
   }
 
-  updateRstate(rstate: RealState){
-    return this.http.put(this.URL_API + `/${rstate._id}`, {name: rstate.name, neighborhood: rstate.neighborhood, address: rstate.address, bathrooms: rstate.bathrooms, bedrooms: rstate.bedrooms, description: rstate.description, user: rstate.user });
-  }
+  // updateRstate(rstate: RealState){
+  //   return this.http.put(this.URL_API + `/${rstate._id}`, {name: rstate.name, neighborhood: rstate.neighborhood, address: rstate.address, bathrooms: rstate.bathrooms, bedrooms: rstate.bedrooms, description: rstate.description, user: rstate.user });
+  // }
 
   deleteRstate(_id: string){
     return this.http.delete(this.URL_API + `/${_id}`);

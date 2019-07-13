@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from '../app/services/user.service';
+import { MatIconRegistry } from "@angular/material/icon";
+import { DomSanitizer } from "@angular/platform-browser";
 
 //Decorador, soporta una serie de metadatos
 @Component({
@@ -16,7 +18,12 @@ export class AppComponent implements OnInit {
   dataUser: any;
 
   
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer) {
+    this.matIconRegistry.addSvgIcon(
+      "vr_cardboard",
+      this.domSanitizer.bypassSecurityTrustResourceUrl("assets/images/vr-glasses.svg")
+    );
+  }
 
   ngOnInit() {
     this.token = this.userService.getToken();
