@@ -18,9 +18,6 @@ export class DialogsComponent {
     const dialogRef = this.dialog.open(DialogemptyloginComponent);
   }
 
-  openDialogPost() {
-    const dialogRef = this.dialog.open(DialogpostComponent);
-  }
 }
 
 @Component({

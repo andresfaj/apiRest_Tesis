@@ -2,9 +2,10 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { RstateService } from '../../services/rstate/rstate.service';
 import { RealState } from '../../models/rstate';
-import { NgForm } from '@angular/forms';
-import { MatDialog, MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import { MatDialog, MatSort} from '@angular/material';
 import { DialogdeletepostComponent, DialogdeletepostsucessComponent, DialogupdatepostComponent } from '../dialogs/dialogs.component';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatTableDataSource} from '@angular/material/table';
 
 @Component({
   selector: 'app-userpublications',
@@ -24,7 +25,7 @@ export class UserpublicationsComponent implements OnInit {
   dataSource: MatTableDataSource<RealState>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
+  // @ViewChild(MatSort) sort: MatSort;
 
   constructor(private userService: UserService, private rState: RstateService, public dialog: MatDialog) { }
 
@@ -34,11 +35,12 @@ export class UserpublicationsComponent implements OnInit {
       res => {
         this.r = res;
         this.rStates = this.r;
+
         if(this.rStates.length > 0){
           this.flag = true;
           this.dataSource = new MatTableDataSource<RealState>(this.rStates);
-          this.dataSource.sort = this.sort;
           this.dataSource.paginator = this.paginator;
+          // this.dataSource.sort = this.sort;
         }
       }
     )
@@ -86,6 +88,9 @@ export class UserpublicationsComponent implements OnInit {
 
   applyFilterTable(filterValue: string){
     this.dataSource.filter = filterValue.trim().toLowerCase();
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 
 }

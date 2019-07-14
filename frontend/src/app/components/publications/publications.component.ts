@@ -41,6 +41,7 @@ export class PublicationsComponent implements OnInit {
         this.dataSource = new MatTableDataSource<RealState>(this.rStates);
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
+        console.log(this.dataSource);
         
       }
     );    
@@ -49,6 +50,9 @@ export class PublicationsComponent implements OnInit {
   applyFilterTable(filterValue: string){
 
     this.dataSource.filter = filterValue.trim().toLowerCase();
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
 
   }
 

@@ -171,6 +171,9 @@
           </mat-icon>
           <h4 matLine> It has a ceramic floor </h4>
         </mat-list-item>
+      </mat-list>
+
+      <mat-list fxLayout="row" fxLayout.xs="column">
         <mat-list-item *ngIf="restate?.interior.fwood == true">
           <mat-icon mat-list-icon>
             <img class="icons" src="assets/images/cfloor.png">
@@ -188,7 +191,6 @@
           <h4 matLine> It has a jacuzzi </h4>
         </mat-list-item>
       </mat-list>
-
     </div>
 
     <mat-divider></mat-divider>
@@ -237,6 +239,8 @@
           </mat-icon>
           <h4 matLine> It has a basketball court </h4>
         </mat-list-item>
+      </mat-list>
+      <mat-list fxLayout="row" fxLayout.xs="column">
         <mat-list-item *ngIf="restate?.careas.tcourt == true">
           <mat-icon mat-list-icon>
             <img class="icons" src="assets/images/tcourt.png">
@@ -254,7 +258,6 @@
           <h4 matLine> It has a children's area </h4>
         </mat-list-item>
       </mat-list>
-
     </div>
 
     <mat-divider></mat-divider>
@@ -280,6 +283,9 @@
           </mat-icon>
           <h4 matLine> It has supermarkets nearby </h4>
         </mat-list-item>
+      </mat-list>
+
+      <mat-list fxLayout="row" fxLayout.xs="column">
         <mat-list-item *ngIf="restate?.sector.parks == true">
           <mat-icon mat-list-icon>
             <img class="icons" src="assets/images/parks.png">
@@ -294,6 +300,9 @@
           <mat-icon mat-list-icon>directions_bus</mat-icon>
           <h4 matLine> It has public transport nearby </h4>
         </mat-list-item>
+      </mat-list>
+
+      <mat-list fxLayout="row" fxLayout.xs="column">
         <mat-list-item *ngIf="restate?.sector.czone == true">
           <mat-icon mat-list-icon>restaurant</mat-icon>
           <h4 matLine> It has a shopping area </h4>

@@ -25,7 +25,7 @@
       </table>
     
       <mat-form-field class="example-full-width">
-        <input matInput placeholder="Phone" formControlName="phone" type="number" required>
+        <input matInput placeholder="Phone" formControlName="phone" type="number" min="0" minlength="7" maxlength="10" required>
         <mat-error *ngIf="!formSignup.controls['phone'].valid && formSignup.controls['phone'].touched"> The phone is required  </mat-error>
       </mat-form-field>
     

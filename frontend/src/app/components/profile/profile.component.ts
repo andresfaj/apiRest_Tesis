@@ -57,7 +57,6 @@ export class ProfileComponent implements OnInit {
     this.formProfile.controls['lastName'].enable();
     this.formProfile.controls['phone'].enable();
     this.formProfile.controls['email'].enable();
-    // console.log("DATOS DEL PERFIL:",this.formProfile.value);
   }
 
   block(formProfile: FormGroup):void{
@@ -73,7 +72,6 @@ export class ProfileComponent implements OnInit {
     this.dataUser.lastName = formProfile.value.lastName;
     this.dataUser.phone = formProfile.value.phone;
     this.dataUser.email = formProfile.value.email;
-    console.log("DATOS A CAMBIAR:", this.dataUser);
     this.userService.updateUser(this.dataUser).subscribe(res => {
       this.block(this.formProfile);
       this.dialogSave();

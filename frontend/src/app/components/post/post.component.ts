@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormBuilder, Validators, FormGroupDirective, NgForm} from '@angular/forms';
 import { UserService } from '../../services/user.service';
 import { RstateService } from '../../services/rstate/rstate.service';
-import { DialogsComponent } from '../dialogs/dialogs.component';
 import { Observable, empty } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
 import { Departmentgroup } from 'src/app/interfaces/departmentgroup';
 import { Multipleoptions } from 'src/app/interfaces/multipleoptions';
+import { MatDialog } from '@angular/material';
+import { Router } from '@angular/router';
+import { DialogpostComponent } from '../dialogs/dialogs.component';
 
 export const _filter = (opt: string[], value: string): string[] => {
   const filterValue = value.toLowerCase();
@@ -18,11 +20,11 @@ export const _filter = (opt: string[], value: string): string[] => {
   selector: 'app-post',
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.css'],
-  providers: [UserService, RstateService, DialogsComponent]
+  providers: [UserService, RstateService]
 })
 export class PostComponent implements OnInit {
   
-  constructor(private fb: FormBuilder, private userService: UserService, private rState: RstateService, private dialog: DialogsComponent) { }
+  constructor(private fb: FormBuilder, private userService: UserService, private rState: RstateService, private dialog: MatDialog, private router: Router) { }
 
   formPost: FormGroup;
   informationUser: any;
@@ -133,6 +135,24 @@ export class PostComponent implements OnInit {
     );
   }
 
+  dialogPost(formDirective: FormGroupDirective){
+    let dialogRef = this.dialog.open(DialogpostComponent);
+
+    dialogRef.afterClosed().subscribe(
+      res => {
+        if(res == "true"){
+          formDirective.resetForm();
+          this.formPost.reset();
+          this.formPost.patchValue({typeOffer:'sale'});  
+          
+        }else{
+          this.router.navigate(['/myposts']);
+        }
+      }
+    )
+       
+  }
+
   private _filterGroup(value: string): Departmentgroup[] {
     if (value) {
       return this.departments
@@ -151,10 +171,7 @@ export class PostComponent implements OnInit {
     
     this.rState.createRstate(formPost.value).subscribe(
       res => {
-        this.dialog.openDialogPost();
-        formDirective.resetForm();
-        this.formPost.reset();
-        this.formPost.patchValue({typeOffer:'sale'});   
+        this.dialogPost(formDirective);
       }
     )
   }
@@ -188,10 +205,6 @@ export class PostComponent implements OnInit {
         precioAdmin.updateValueAndValidity();
       }
     )
-  }
-
-  changeProperty(){
-
   }
 
   onChangeDepartment(){
