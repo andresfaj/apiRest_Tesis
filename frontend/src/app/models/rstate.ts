@@ -38,7 +38,6 @@ export class RealState {
         tcourt: boolean;
         greenery: boolean;
         chareas: boolean;
-
     };
     sector: {
         schoolnear: boolean;

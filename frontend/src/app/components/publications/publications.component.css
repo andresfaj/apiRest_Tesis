@@ -35,15 +35,16 @@ table {
 
 .mat-card{
     margin-top: 10px;
+    margin-bottom: 10px;
     width: 300px;
     text-align: center;
     font-family: sans-serif;
 }
 
-#buscador{
-    width: 450px;
+.filterWidth{
+    width: 450px;;
 }
 
-.full-width{
-    width: 100%;
+.filterAlign{
+    text-align: center;
 }

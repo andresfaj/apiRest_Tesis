@@ -5,15 +5,8 @@ import { RstateService } from '../../services/rstate/rstate.service';
 import { DialogsComponent } from '../dialogs/dialogs.component';
 import { Observable, empty } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
-export interface multipleOptions{
-  value: number;
-  viewValue: string;
-}
-
-export interface DepartmentGroup{
-  letter: string;
-  names: string[];
-}
+import { Departmentgroup } from 'src/app/interfaces/departmentgroup';
+import { Multipleoptions } from 'src/app/interfaces/multipleoptions';
 
 export const _filter = (opt: string[], value: string): string[] => {
   const filterValue = value.toLowerCase();
@@ -42,7 +35,7 @@ export class PostComponent implements OnInit {
     {value: 'Estate'}
   ]
 
-  antiquitys: multipleOptions[] = [
+  antiquitys: Multipleoptions[] = [
     {value: 1, viewValue:'New'},
     {value: 2, viewValue: 'About construction plans'},
     {value: 3, viewValue: 'Between 0 and 5 years'},
@@ -51,7 +44,7 @@ export class PostComponent implements OnInit {
     {value: 6, viewValue: 'More than 20 years'}
   ]
 
-  bedrooms: multipleOptions[] = [
+  bedrooms: Multipleoptions[] = [
     {value: 1, viewValue:'One' },
     {value: 2, viewValue:'Two' },
     {value: 3, viewValue:'Three' },
@@ -61,7 +54,7 @@ export class PostComponent implements OnInit {
 
   citys: any[] = [ ]
 
-  departments: DepartmentGroup[] = [
+  departments: Departmentgroup[] = [
     {letter: 'A', names:['Antioquia','Arauca','Atlántico']},
     {letter: 'B', names:['Bolívar','Boyacá']},
     {letter: 'C', names:['Caldas','Caquetá','Casanare','Cauca','Cesar','Chocó','Córdoba','Cundinamarca']},
@@ -78,7 +71,7 @@ export class PostComponent implements OnInit {
 
   ];
 
-  departmentsOptions: Observable<DepartmentGroup[]>;
+  departmentsOptions: Observable<Departmentgroup[]>;
 
   ngOnInit() {
     this.informationUser = this.userService.getInformation();
@@ -140,7 +133,7 @@ export class PostComponent implements OnInit {
     );
   }
 
-  private _filterGroup(value: string): DepartmentGroup[] {
+  private _filterGroup(value: string): Departmentgroup[] {
     if (value) {
       return this.departments
         .map(group => ({letter: group.letter, names: _filter(group.names, value)}))

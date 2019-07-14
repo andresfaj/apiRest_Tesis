@@ -12,20 +12,20 @@
     </mat-card>
   </div> -->
 
-
-
   <mat-tab-group mat-align-tabs="center" >
 
     <mat-tab>
       <ng-template mat-tab-label>
         <mat-icon>view_module</mat-icon>
       </ng-template>
-      <div class="container2" fxLayoutAlign="center">
-        <input id="buscador" placeholder="Search by name" type="text" name="filterPost" [(ngModel)]="filterPost">
+      <div fxLayoutAlign="center">
+        <mat-form-field class="filterWidth">
+          <input matInput placeholder="Filters by property type" type="text" name="filterPost" [(ngModel)]="filterPost">
+        </mat-form-field>
       </div>
 
       <div class="container3" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px">
-        <mat-card *ngFor="let rstate of rStates" >
+        <mat-card *ngFor="let rstate of rStates | filterpublications: filterPost" >
           <mat-card-title *ngIf="rstate.typeOffer == 'sale'"> {{rstate.typeProperty}} for {{rstate.typeOffer | uppercase}} in</mat-card-title>
           <mat-card-title *ngIf="rstate.typeOffer == 'lease'"> {{rstate.typeProperty}} for {{rstate.typeOffer | uppercase}} in </mat-card-title>
           <h5> {{rstate.city}} </h5>
@@ -50,10 +50,12 @@
         <mat-icon>view_list</mat-icon>
       </ng-template>
 
-      <div class="mat-elevation-z8">
-        <mat-form-field class="full-width">
-          <input matInput (keyup)="applyFilterTable($event.target.value)" placeholder="Filter">
-        </mat-form-field>
+      <div class="mat-elevation-z8" style="margin: 15px;">
+        <div class="filterAlign">
+          <mat-form-field class="filterWidth" >
+            <input matInput (keyup)="applyFilterTable($event.target.value)" placeholder="Filter by any item in the table">
+          </mat-form-field>
+        </div>
             
         <table mat-table [dataSource]="dataSource" matSort>
           <ng-container matColumnDef="typeProperty">

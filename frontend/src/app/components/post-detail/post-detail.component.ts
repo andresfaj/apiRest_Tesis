@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
 import { RstateService } from '../../services/rstate/rstate.service';
 import { RealState } from 'src/app/models/rstate';
 
@@ -31,7 +30,6 @@ export class PostDetailComponent implements OnInit {
       post => {
         this.restate = new RealState();        
         this.restate = post;
-        console.log(this.restate);
       }
     )
   }
