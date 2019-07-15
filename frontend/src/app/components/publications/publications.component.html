@@ -29,7 +29,7 @@
           <mat-card-title *ngIf="rstate.typeOffer == 'sale'"> {{rstate.typeProperty}} for {{rstate.typeOffer | uppercase}} in</mat-card-title>
           <mat-card-title *ngIf="rstate.typeOffer == 'lease'"> {{rstate.typeProperty}} for {{rstate.typeOffer | uppercase}} in </mat-card-title>
           <h5> {{rstate.city}} </h5>
-          <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Real state">
+          <img class="imagenes2d" mat-card-image src="http://localhost:8000{{rstate?.path}}" alt="Real state">
           <mat-card-content>
             <h4>{{rstate.price | currency:'COP'}}</h4>
           </mat-card-content>

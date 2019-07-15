@@ -12,9 +12,18 @@
     <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px">
       <div class="section1" >
         <h3>Select an image</h3>
-        <img class="carrusel" [src]="imageUrl">
-        <input placeholder="Select an image" name="image" type="file" accept="image/jpeg, image/png" (change)="onFileSelected($event)">
-        <button type="submit" mat-raised-button type="submit" color="primary" (click)="onUpload()"> Upload </button>
+        <mat-tab-group mat-align-tabs="center">
+          <mat-tab label="In 2D">
+            <img class="carrusel" [src]="imageUrl">
+            <input placeholder="Select an image" name="image" type="file" accept="image/jpeg, image/png" (change)="onFileSelected($event)">
+
+          </mat-tab>
+          <mat-tab label="In 360">
+            <img class="carrusel" [src]="imageUrl2">
+
+          </mat-tab>
+        </mat-tab-group>
+
       </div>     
   
       <div class="section2">

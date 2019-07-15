@@ -80,7 +80,7 @@
     <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
   </div> -->
 
-  <div class="mat-elevation-z8" style="margin: 15px;">
+  <div class="mat-elevation-z8" style="margin: 15px;" *ngIf="flag==true">
     <div fxLayout="row wrap" fxLayoutAlign="space-around center" >
       <button mat-raised-button color="primary" routerLink="/newpost">Create a post</button>
   

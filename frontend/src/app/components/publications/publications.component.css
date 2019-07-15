@@ -48,3 +48,8 @@ table {
 .filterAlign{
     text-align: center;
 }
+
+.imagenes2d{
+    width: 200px;
+    height: 200px;
+}

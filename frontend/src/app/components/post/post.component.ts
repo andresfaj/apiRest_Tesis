@@ -29,6 +29,7 @@ export class PostComponent implements OnInit {
   formPost: FormGroup;
   informationUser: any;
   imageUrl: string = "/assets/images/houseico.png";
+  imageUrl2: string = "/assets/images/360.png";
   labelPosition: string = 'before';
   selectedFile: File = null;
   fd = new FormData();
@@ -181,15 +182,7 @@ export class PostComponent implements OnInit {
     }
 
     return this.departments;
-  }
-
-  // onUpload(){
-  //   this.rState.createRstate(this.fd).subscribe(
-  //     res => {
-  //       console.log(res);
-  //     }
-  //   )
-  // }
+  } 
 
   addPost(formPost: FormGroup, formDirective: FormGroupDirective): void{
 

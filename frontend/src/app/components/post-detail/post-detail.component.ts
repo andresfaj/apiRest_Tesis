@@ -13,6 +13,7 @@ export class PostDetailComponent implements OnInit {
 
   images = [1, 2, 3].map(() => `https://picsum.photos/1500/500?random&t=${Math.random()}`);
   restate: any;
+  imageUrl="localhost:8000";
 
   constructor(
     private route: ActivatedRoute,

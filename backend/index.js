@@ -8,6 +8,7 @@ cors = Importante para comunicar al servidor con el cliente
 Servicios para guardar archivos pesados en un servidor: (Hosting de archivos estaticos)
     -amazon s3
     -cloudinary
+uuid = identificador unico universal
 */
 const express = require('express');
 const morgan = require('morgan');
@@ -15,12 +16,15 @@ const cors = require('cors');
 const {mongoose} = require('./database');
 const multer  = require('multer');
 const path = require('path');
+const uuid = require('uuid/v4');
+
 
 const storage = multer.diskStorage({
     destination: path.join(__dirname, 'public/images'),
     //En esta ponemos el mismo nombre a la imagen que se obtiene del frontend
+    //extname = extrae la ext de la imagen
     filename: (req, file, cb) => { 
-        cb(null, file.originalname);
+        cb(null, uuid() + path.extname(file.originalname));
     }
 });
 

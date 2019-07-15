@@ -16,8 +16,9 @@ publicationsController.getPublication = async (req, res) => {
 
 publicationsController.postPublication = async (req, res) => {
     const publication = new modelPublications();
+    publication.originalname = req.file.originalname;
     publication.filename = req.file.filename;
-    publication.path = '/images/'+ req.file.originalname;
+    publication.path = '/images/'+ req.file.filename;
     publication.mimetype = req.file.mimetype;
     publication.size = req.file.size;
     publication.typeProperty = req.body.typeProperty;
