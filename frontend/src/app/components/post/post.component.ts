@@ -28,9 +28,10 @@ export class PostComponent implements OnInit {
 
   formPost: FormGroup;
   informationUser: any;
-  selectedFile = null;
   imageUrl: string = "/assets/images/houseico.png";
   labelPosition: string = 'before';
+  selectedFile: File = null;
+  fd = new FormData();
   tipoInmueble: any = [
     {value: 'Apartment'},
     {value: 'Home'},
@@ -135,6 +136,25 @@ export class PostComponent implements OnInit {
     );
   }
 
+  onFileSelected(event){
+
+    if(event.target.files.length > 0){
+      this.selectedFile = <File>event.target.files[0];
+      this.fd.append('image', this.selectedFile, this.selectedFile.name);
+      console.log("form data:", this.fd);
+      // this.formPost.get('image').setValue(this.fd);
+
+      var reader = new FileReader();
+      reader.onload = (event:any) => {
+        this.imageUrl = event.target.result;
+      }
+      reader.readAsDataURL(this.selectedFile);
+
+      console.log(this.selectedFile);
+    }
+
+  }
+
   dialogPost(formDirective: FormGroupDirective){
     let dialogRef = this.dialog.open(DialogpostComponent);
 
@@ -163,14 +183,21 @@ export class PostComponent implements OnInit {
     return this.departments;
   }
 
-  onFileSelected(event){
-    this.selectedFile = event.target.files[0];
-  }
+  // onUpload(){
+  //   this.rState.createRstate(this.fd).subscribe(
+  //     res => {
+  //       console.log(res);
+  //     }
+  //   )
+  // }
 
   addPost(formPost: FormGroup, formDirective: FormGroupDirective): void{
+
+    console.log(formPost.value);
     
-    this.rState.createRstate(formPost.value).subscribe(
+    this.rState.createRstate(this.fd, formPost.value).subscribe(
       res => {
+        console.log(res);
         this.dialogPost(formDirective);
       }
     )

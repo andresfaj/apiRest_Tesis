@@ -5,7 +5,7 @@
 <div class="container" fxLayoutAlign="center" >
 
 
-  <form class="example-form" [formGroup]="formPost" #formDirective="ngForm" (ngSubmit)="addPost(formPost, formDirective)">
+  <form class="example-form" [formGroup]="formPost" #formDirective="ngForm" (ngSubmit)="addPost(formPost, formDirective)" enctype="multipart/form-data">
 
   <!-- <form #formPost="ngForm" (ngSubmit)="adding(formPost)"> -->
 
@@ -13,8 +13,8 @@
       <div class="section1" >
         <h3>Select an image</h3>
         <img class="carrusel" [src]="imageUrl">
-        <input placeholder="Select an image" type="file" (change)="onFileSelected($event)">
-          <!-- <button type="button" (click)="onUpload()" ></button> -->
+        <input placeholder="Select an image" name="image" type="file" accept="image/jpeg, image/png" (change)="onFileSelected($event)">
+        <button type="submit" mat-raised-button type="submit" color="primary" (click)="onUpload()"> Upload </button>
       </div>     
   
       <div class="section2">

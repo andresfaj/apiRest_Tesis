@@ -2,6 +2,10 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const publicationSchema = new Schema({
+    filename: {type: String, required:true},
+    path: {type: String, required:true},
+    mimetype: {type: String},
+    size: {type: Number},
     typeProperty: {type: String, required: true},
     typeOffer: {type: String, required: true},
     price: {type: Number, required: true},
