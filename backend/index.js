@@ -52,7 +52,7 @@ app.use(multer({
         }
         cb("Error: El archivo debe ser una imagen valida");
     }
-}).single('image'));
+}).fields([{name: 'image', maxCount:1 }, {name:'image2', maxCount:1}]));
 
 //Routes
 app.use('/api/users',require('./routes/adminUsers.routes'));

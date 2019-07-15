@@ -16,15 +16,24 @@ publicationsController.getPublication = async (req, res) => {
 
 publicationsController.postPublication = async (req, res) => {
     const publication = new modelPublications();
-    publication.originalname = req.file.originalname;
-    publication.filename = req.file.filename;
-    publication.path = '/images/'+ req.file.filename;
-    publication.mimetype = req.file.mimetype;
-    publication.size = req.file.size;
+    publication.originalnamevr = req.files['image2'][0].originalname;
+    publication.filenamevr = req.files['image2'][0].filename;
+    publication.pathvr = '/images/'+ req.files['image2'][0].filename;
+    publication.mimetypevr = req.files['image2'][0].mimetype;
+    publication.sizevr = req.files['image2'][0].size;
+    publication.originalname = req.files['image'][0].originalname;
+    publication.filename = req.files['image'][0].filename;
+    publication.path = '/images/'+ req.files['image'][0].filename;
+    publication.mimetype = req.files['image'][0].mimetype;
+    publication.size = req.files['image'][0].size;
     publication.typeProperty = req.body.typeProperty;
     publication.typeOffer = req.body.typeOffer;
     publication.price = parseInt(req.body.price);
-    publication.negotiable = JSON.parse(req.body.negotiable);
+    if(req.body.negotiable == 'true'){
+        publication.negotiable = true;
+    }else{
+        publication.negotiable = false;
+    }
     if(req.body.incluAdmin == 'true' && req.body.typeOffer == 'lease'){
         publication.incluAdmin = true;
         publication.adminValue = 0;        
@@ -50,32 +59,121 @@ publicationsController.postPublication = async (req, res) => {
     }
     publication.parking = parseInt(req.body.parking);
     publication.description = req.body.description;
-    publication.interior.aircondi = JSON.parse( req.body.aircondi);
-    publication.interior.jacuzzi = JSON.parse(req.body.jacuzzi);
-    publication.interior.fwood = JSON.parse(req.body.fwood);
-    publication.interior.cfloor = JSON.parse(req.body.cfloor);
-    publication.interior.ikitchen = JSON.parse(req.body.ikitchen);
-    publication.interior.akitchen = JSON.parse(req.body.akitchen);
-    publication.exterior.pool = JSON.parse(req.body.pool);
-    publication.exterior.ccondominium = JSON.parse(req.body.ccondominium);
-    publication.exterior.pvisitors = JSON.parse(req.body.pvisitors);
-    publication.careas.cliving = JSON.parse(req.body.cliving);
-    publication.careas.fcourt = JSON.parse(req.body.fcourt);
-    publication.careas.bcourt = JSON.parse(req.body.bcourt);
-    publication.careas.tcourt = JSON.parse(req.body.tcourt);
-    publication.careas.greenery = JSON.parse(req.body.greenery);
-    publication.careas.chareas = JSON.parse(req.body.chareas);
-    publication.sector.schoolnear = JSON.parse(req.body.schoolnear);
-    publication.sector.unear = JSON.parse(req.body.unear);
-    publication.sector.smarkets = JSON.parse(req.body.smarkets);
-    publication.sector.parks = JSON.parse(req.body.parks);
-    publication.sector.malls = JSON.parse(req.body.malls);
-    publication.sector.ptransport = JSON.parse(req.body.ptransport);
-    publication.sector.czone = JSON.parse(req.body.czone);
+    if(req.body.aircondi == 'true'){
+        publication.interior.aircondi = true;
+    }else{
+        publication.interior.aircondi = false;
+    }
+    if(req.body.jacuzzi == 'true'){
+        publication.interior.jacuzzi = true;
+    }else{
+        publication.interior.jacuzzi = false;
+    }
+    if(req.body.fwood == 'true'){
+        publication.interior.fwood = true;
+    }else{
+        publication.interior.fwood = false;
+    }
+    if(req.body.cfloor == 'true'){
+        publication.interior.cfloor = true;
+    }else{
+        publication.interior.cfloor = false;
+    }
+    if(req.body.ikitchen == 'true'){
+        publication.interior.ikitchen = true;
+    }else{
+        publication.interior.ikitchen = false;
+    }
+    if(req.body.akitchen == 'true'){
+        publication.interior.akitchen = true;
+    }else{
+        publication.interior.akitchen = false;
+    }
+    if(req.body.pool == 'true'){
+        publication.exterior.pool = true;
+    }else{
+        publication.exterior.pool = false;
+    }
+    if(req.body.ccondominium == 'true'){
+        publication.exterior.ccondominium = true;
+    }else{
+        publication.exterior.ccondominium = false;
+    }
+    if(req.body.pvisitors == 'true'){
+        publication.exterior.pvisitors = true;
+    }else{
+        publication.exterior.pvisitors = false;
+    }
+    if(req.body.cliving == 'true'){
+        publication.careas.cliving = true;
+    }else{
+        publication.careas.cliving = false;
+    }
+    if(req.body.fcourt == 'true'){
+        publication.careas.fcourt = true;
+    }else{
+        publication.careas.fcourt = false;
+    }
+    if(req.body.bcourt == 'true'){
+        publication.careas.bcourt = true;
+    }else{
+        publication.careas.bcourt = false;
+    }
+    if(req.body.tcourt == 'true'){
+        publication.careas.tcourt = true;
+    }else{
+        publication.careas.tcourt = false;
+    }
+    if(req.body.greenery == 'true'){
+        publication.careas.greenery = true;
+    }else{
+        publication.careas.greenery = false;
+    }
+    if(req.body.chareas == 'true'){
+        publication.careas.chareas = true;
+    }else{
+        publication.careas.chareas = false;
+    }
+    if(req.body.schoolnear == 'true'){
+        publication.careas.schoolnear = true;
+    }else{
+        publication.careas.schoolnear = false;
+    }
+    if(req.body.unear == 'true'){
+        publication.careas.unear = true;
+    }else{
+        publication.careas.unear = false;
+    }
+    if(req.body.smarkets == 'true'){
+        publication.careas.smarkets = true;
+    }else{
+        publication.careas.smarkets = false;
+    }
+    if(req.body.parks == 'true'){
+        publication.careas.parks = true;
+    }else{
+        publication.careas.parks = false;
+    }
+    if(req.body.malls == 'true'){
+        publication.careas.malls = true;
+    }else{
+        publication.careas.malls = false;
+    }
+    if(req.body.ptransport == 'true'){
+        publication.careas.ptransport = true;
+    }else{
+        publication.careas.ptransport = false;
+    }
+    if(req.body.czone == 'true'){
+        publication.careas.czone = true;
+    }else{
+        publication.careas.czone = false;
+    }
     publication.user = req.body.user;
     publication.disabled = true;
     console.log(publication);
     await publication.save();
+    // console.log(req.body);
     res.json({
         status: "publication saved"
     });
@@ -132,6 +230,7 @@ publicationsController.updatePublication = async (req, res) => {
         },
         user: req.body.user
     }
+
     const { id } = req.params;
     await modelPublications.findByIdAndUpdate(id, {$set: publication});
     res.json({status: 'Publication updated'});

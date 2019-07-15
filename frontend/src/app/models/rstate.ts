@@ -1,6 +1,11 @@
 export class RealState {
 
     _id: string;
+    // originalname: string;
+    // filename: string;
+    // path: string;
+    // mimetype: string;
+    // size: string;
     typeProperty: string;
     typeOffer: string;
     price: number;

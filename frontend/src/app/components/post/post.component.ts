@@ -32,6 +32,7 @@ export class PostComponent implements OnInit {
   imageUrl2: string = "/assets/images/360.png";
   labelPosition: string = 'before';
   selectedFile: File = null;
+  selectedFile2: File = null;
   fd = new FormData();
   tipoInmueble: any = [
     {value: 'Apartment'},
@@ -142,7 +143,7 @@ export class PostComponent implements OnInit {
     if(event.target.files.length > 0){
       this.selectedFile = <File>event.target.files[0];
       this.fd.append('image', this.selectedFile, this.selectedFile.name);
-      console.log("form data:", this.fd);
+      // console.log("form data:", this.fd);
       // this.formPost.get('image').setValue(this.fd);
 
       var reader = new FileReader();
@@ -151,7 +152,26 @@ export class PostComponent implements OnInit {
       }
       reader.readAsDataURL(this.selectedFile);
 
-      console.log(this.selectedFile);
+      // console.log(this.selectedFile);
+    }
+
+  }
+
+  onFileSelected2(event){
+
+    if(event.target.files.length > 0){
+      this.selectedFile2 = <File>event.target.files[0];
+      this.fd.append('image2', this.selectedFile2, this.selectedFile2.name);
+      // console.log("form data:", this.fd);
+      // this.formPost.get('image').setValue(this.fd);
+
+      var reader = new FileReader();
+      reader.onload = (event:any) => {
+        this.imageUrl2 = event.target.result;
+      }
+      reader.readAsDataURL(this.selectedFile2);
+
+      // console.log(this.selectedFile2);
     }
 
   }

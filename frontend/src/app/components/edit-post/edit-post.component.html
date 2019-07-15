@@ -6,7 +6,7 @@
 
     <div fxLayout="row" fxLayout.xs="column">
 
-      <div>
+      <!-- <div>
         <ngb-carousel style="width:450px;">
           <ng-template ngbSlide>
             <img [src]="images[0]" class="carrusel" alt="Random third slide">
@@ -30,6 +30,10 @@
             </div>
           </ng-template>
         </ngb-carousel>
+      </div> -->
+      <div class="carrusel">
+        <img class="carrusel" [src]="imageUrl">
+        <input placeholder="Select an image" name="image" type="file" accept="image/jpeg, image/png" (change)="onFileSelected($event)">
       </div>
   
       <div>

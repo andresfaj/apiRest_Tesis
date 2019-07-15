@@ -19,6 +19,9 @@ export class EditPostComponent implements OnInit {
   images = [1, 2, 3].map(() => `https://picsum.photos/1500/500?random&t=${Math.random()}`);
   labelPosition: string = 'before';
   formEditpost: NgForm;
+  imageUrl: string;
+  selectedFile: File = null;
+  fd = new FormData();
 
   tipoInmueble: any = [
     {value: 'Apartment'},
@@ -57,6 +60,26 @@ export class EditPostComponent implements OnInit {
   ngOnInit() {
     this.getidPost();
     this.citys.sort();
+    
+  }
+
+  onFileSelected(event){
+
+    if(event.target.files.length > 0){
+      this.selectedFile = <File>event.target.files[0];
+      this.fd.append('image', this.selectedFile, this.selectedFile.name);
+      // console.log("form data:", this.fd);
+      // this.formPost.get('image').setValue(this.fd);
+
+      var reader = new FileReader();
+      reader.onload = (event:any) => {
+        this.imageUrl = event.target.result;
+      }
+      reader.readAsDataURL(this.selectedFile);
+
+      // console.log(this.selectedFile);
+    }
+
   }
 
   getidPost(): void{
@@ -65,7 +88,7 @@ export class EditPostComponent implements OnInit {
       post => {
         this.restate = new RealState();    
         this.restate = post; 
-        console.log(this.restate);
+        this.imageUrl = "http://localhost:8000"+this.restate.path;
       }
     )
   }
