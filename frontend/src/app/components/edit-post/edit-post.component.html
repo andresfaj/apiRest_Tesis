@@ -5,39 +5,23 @@
   <form #formEditpost = "ngForm" (ngSubmit)="savePost(formEditpost)">
 
     <div fxLayout="row" fxLayout.xs="column">
-
-      <!-- <div>
-        <ngb-carousel style="width:450px;">
-          <ng-template ngbSlide>
-            <img [src]="images[0]" class="carrusel" alt="Random third slide">
-            <div class="carousel-caption">
-              <h3>Third slide label</h3>
-              <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-            </div>
-          </ng-template>
-          <ng-template ngbSlide>
-            <img [src]="images[1]" class="carrusel" alt="Random third slide">
-            <div class="carousel-caption">
-              <h3>Third slide label</h3>
-              <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-            </div>
-          </ng-template>
-          <ng-template ngbSlide>
-            <img [src]="images[2]" class="carrusel" alt="Random third slide">
-            <div class="carousel-caption">
-              <h3>Third slide label</h3>
-              <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-            </div>
-          </ng-template>
-        </ngb-carousel>
-      </div> -->
+      
       <div class="carrusel">
-        <img class="carrusel" [src]="imageUrl">
-        <input placeholder="Select an image" name="image" type="file" accept="image/jpeg, image/png" (change)="onFileSelected($event)">
+        <mat-tab-group mat-align-tabs="center">
+          <mat-tab label="In 2D">
+            <img class="carrusel" [src]="imageUrl">
+            <input placeholder="Select an image" name="image" type="file" accept="image/jpeg, image/png" (change)="onFileSelected($event)">
+          </mat-tab>
+          <mat-tab label="In 360">
+            <img class="carrusel" [src]="imageUrl">
+            <input placeholder="Select an image" name="image2" type="file" accept="image/jpeg, image/png" (change)="onFileSelected2($event)">
+  
+          </mat-tab>
+        </mat-tab-group>        
       </div>
   
       <div>
-        <h2 class="mat-h2 subtitulos"> Financial features </h2>
+        <h2 class="mat-h2 subtitulosEspecial subtitulos"> Financial features </h2>
         <mat-list>
           <mat-list-item [hidden]="true">
             <mat-form-field class="example-full-width">

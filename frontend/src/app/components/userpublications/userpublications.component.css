@@ -13,7 +13,8 @@
 }
 
 .container2{
-    padding-block-start: 7rem;
+    /* padding-block-start: 7rem; */
+    margin-top: 10px;
 }
 
 .container{
@@ -40,6 +41,7 @@
 #flotante{
     /* border: 2px solid red; */
     float: right;
+    margin-bottom: 10px;
 }
 
 #buscador{

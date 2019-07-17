@@ -28,8 +28,8 @@ export class PostComponent implements OnInit {
 
   formPost: FormGroup;
   informationUser: any;
-  imageUrl: string = "/assets/images/houseico.png";
-  imageUrl2: string = "/assets/images/360.png";
+  imageUrl: string = "/assets/images/housecreate.png";
+  imageUrl2: string = "/assets/images/360-degrees.png";
   labelPosition: string = 'before';
   selectedFile: File = null;
   selectedFile2: File = null;

@@ -1,8 +1,9 @@
 .container{
     /* border: 2px solid blue; */
-    padding-block-start: 7rem;
+    /* padding-block-start: 7rem; */
     min-height: 100%;
     margin-bottom: 10px;    
+    margin-top: 10px;
 }
 
 .example-card{    
