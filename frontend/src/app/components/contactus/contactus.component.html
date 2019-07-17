@@ -1,23 +1,23 @@
 <div class="container" fxLayoutAlign="center">
-  <h2 id="title"> Contact us </h2>
+  <h1 class="mat-h1 title2"> Contact us </h1>
 </div>
 
-<div class="container" fxLayoutAlign="center">
+<div class="container mat-body" fxLayoutAlign="center">
 
-  <form class="example-form">
+  <form #formContact="ngForm" class="example-form" (ngSubmit)="sendMessage(formContact)">
       <mat-form-field class="example-full-width">
-        <input matInput placeholder="Nombre">
+        <input matInput placeholder="Name" name="name" ngModel required>
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
-        <input matInput placeholder="Email">
+        <input matInput placeholder="Email" name="email" ngModel required>
       </mat-form-field>
     
       <mat-form-field class="example-full-width">
-        <textarea matInput placeholder="Comentario"></textarea>
+        <textarea matInput placeholder="Comment" name="comment" ngModel required></textarea>
       </mat-form-field>
 
-      <button mat-raised-button color="primary" class="example-full-width">Enviar</button>
+      <button type="submit" [disabled]="formContact.invalid" mat-raised-button color="primary" class="example-full-width">Send</button>
   </form>  
 
 </div>

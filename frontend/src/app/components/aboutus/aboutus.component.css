@@ -3,8 +3,7 @@
 }
 
 .container{
-  padding-block-start: 7rem;
-  height:100%;
   min-height:100%;/*for mozilla*/
-  /* position:relative; */
+  margin-top: 25px;
+  margin-bottom: 25px;
 }

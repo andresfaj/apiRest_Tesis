@@ -6,25 +6,23 @@ h2{
     padding-bottom: 7px;
 }
 
-#title{
+.title{
     margin: 15px;
-    font-family: sans-serif;
-    font-size: 35px;
+    /* font-family: sans-serif;
+    font-size: 35px; */
 }
 
-.subtitulos{
-    font-family: sans-serif;
-    font-size: 28px;
+
+.container{
+    margin-bottom: 10px;
 }
 
-/* .container{
-    width: 680px;
-    margin: auto;
-    border: 2px solid red;
-} */
+.container2{
+    margin-bottom: 10px;
+}
 
 .section1{
-    display: block;
+    /* display: block; */
     margin : auto;
     /* border: 1px solid red; */
 }
@@ -54,6 +52,6 @@ h2{
 
 .subtitulos2{
     margin-left: 15px;
-    font-family: sans-serif;
-    font-size: 20px;    
+    /* font-family: sans-serif;
+    font-size: 20px;     */
 }

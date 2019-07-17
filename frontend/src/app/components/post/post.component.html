@@ -1,5 +1,5 @@
 <div class="container2" fxLayoutAlign="center">
-  <h2 id="title"> Create a post </h2>
+  <h2 class="mat-h1 title"> Create a post </h2>
 </div>
 
 <div class="container" fxLayoutAlign="center" >
@@ -9,9 +9,9 @@
 
   <!-- <form #formPost="ngForm" (ngSubmit)="adding(formPost)"> -->
 
-    <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px">
+    <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap="10px">
       <div class="section1" >
-        <h3>Select an image</h3>
+        <h2 class="mat-h2">Select an image</h2>
         <mat-tab-group mat-align-tabs="center">
           <mat-tab label="In 2D">
             <img class="carrusel" [src]="imageUrl">
@@ -28,7 +28,7 @@
       </div>     
   
       <div class="section2">
-        <h2 class="subtitulos">Financial features</h2>
+        <h2 class="mat-h2">Financial features</h2>
         <mat-form-field class="example-full-width">
           <mat-label> Type of property </mat-label>
           <mat-select formControlName="typeProperty" required>
@@ -62,7 +62,7 @@
             </mat-form-field>
         </ng-template>
 
-        <h2 class="subtitulos">Location features</h2>
+        <h2 class="mat-h2">Location features</h2>
 
         <mat-form-field class="example-full-width">
           <input type="text" matInput placeholder="Select a department" (click)="onChangeDepartment($event.target.value)" formControlName="department" required [matAutocomplete]="autoGroup">
@@ -96,7 +96,7 @@
 
     </div>
 
-    <h2 class="subtitulos">Property features</h2>
+    <h2 class="mat-h2">Property features</h2>
 
     <div class="section3"
         fxLayout="row wrap"
@@ -162,11 +162,11 @@
 
     </div>
 
-    <h2 class="subtitulos" style="margin-bottom: 25px;">Detailed features</h2>
+    <h2 class="mat-h2" style="margin-bottom: 25px;">Detailed features</h2>
 
     <div>
 
-      <h2 class="subtitulos2"> Interior: </h2>
+      <h3 class="mat-h3 subtitulos2"> Interior: </h3>
 
       <div fxLayout="row wrap" fxLayoutAlign="space-around center">        
         <fieldset formGroupName="interior" >
@@ -194,7 +194,7 @@
 
       <mat-divider></mat-divider>
       
-      <h2 class="subtitulos2"> Exterior: </h2>
+      <h3 class="mat-h3 subtitulos2"> Exterior: </h3>
       
       <div fxLayout="row wrap" fxLayoutAlign="space-around center">
         
@@ -211,7 +211,7 @@
 
       <mat-divider></mat-divider>
 
-      <h2 class="subtitulos2"> Common areas: </h2>
+      <h3 class="mat-h3 subtitulos2"> Common areas: </h3>
 
       <div fxLayout="row wrap" fxLayoutAlign="space-around center">    
         <fieldset formGroupName="careas">
@@ -239,7 +239,7 @@
 
       <mat-divider></mat-divider>
 
-      <h2 class="subtitulos2"> Sector: </h2>
+      <h3 class="mat-h3 subtitulos2"> Sector: </h3>
 
       <div fxLayout="row wrap" fxLayoutAlign="space-around center">
         <fieldset formGroupName="sector">

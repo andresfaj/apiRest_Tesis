@@ -1,14 +1,32 @@
-img{
-    /* height: 956px; */
-    max-width: 100%;
+.carrusel{
+    width: 100%;
+    height:400px;
+}
+
+.carrusel2{
+    width: 361px;
+    height:300px;
 }
 
 .mat-card{
     margin-top: 10px;
     margin-bottom: 10px;
-    width: 400px;
-    text-align: center;
+    width: 361px;
+    /* text-align: center; */
     font-family: sans-serif;
+}
+
+.container{
+    flex-wrap: wrap;
+    justify-content: flex-start;    
+}
+
+.container > * {
+    box-sizing: border-box;
+}
+
+.container >*:not(:last-child){
+    margin-right: 32px;
 }
 
 

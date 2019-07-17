@@ -7,7 +7,7 @@
                 <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
                     <mat-icon>menu</mat-icon> <!--icono de material icons-->
                 </button>        
-                <span>Aloz Homes </span>
+                <span class="mat-h2">Aloz Homes </span>
                 <span class="menu-spacer"></span>
                 <div fxshow="true" fxHide.lt-md>
                     <button mat-button routerLink="">Home</button>
@@ -49,7 +49,7 @@
                         <button mat-button routerLink="/aboutus">About us</button>              
                     </mat-list-item>
                     <mat-list-item>
-                        <mat-icon mat-list-icon>comment</mat-icon>
+                        <mat-icon mat-list-icon>contact_mail</mat-icon>
                         <button mat-button routerLink="/contactus">Contact us</button>              
                     </mat-list-item>
                     <mat-list-item>
@@ -61,7 +61,7 @@
                         <button mat-button routerLink="/login">Sign in</button>          
                     </mat-list-item>   
                     <mat-list-item>
-                        <mat-icon mat-list-icon>add_box</mat-icon>
+                        <mat-icon mat-list-icon>person_add</mat-icon>
                         <button mat-button routerLink="/signup">Sign up</button>              
                     </mat-list-item>
                     <mat-list-item *ngIf="token != null">

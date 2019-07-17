@@ -1,6 +1,6 @@
 <div class="container" *ngIf="restate" >
 
-  <h1 id="title"> Edit post </h1>
+  <h1 class="mat-h1 title2"> Edit post  </h1>
 
   <form #formEditpost = "ngForm" (ngSubmit)="savePost(formEditpost)">
 
@@ -37,7 +37,7 @@
       </div>
   
       <div>
-        <h2 class="subtitulos"> Financial features </h2>
+        <h2 class="mat-h2 subtitulos"> Financial features </h2>
         <mat-list>
           <mat-list-item [hidden]="true">
             <mat-form-field class="example-full-width">
@@ -46,7 +46,7 @@
           </mat-list-item>
 
           <mat-list-item>
-            <mat-label class="subtitulos2"> Type of property: </mat-label>
+            <mat-label class="mat-h3 subtitulos2"> Type of property: </mat-label>
             <mat-form-field class="editInputs">
               <mat-select name="typeProperty" [(ngModel)]="restate.typeProperty" required>
                 <mat-option *ngFor="let inmueble of tipoInmueble" [value]="inmueble.value" >
@@ -57,7 +57,7 @@
           </mat-list-item>
 
           <mat-list-item>
-            <mat-label class="subtitulos2"> Type offer: </mat-label>
+            <mat-label class="mat-h3 subtitulos2"> Type offer: </mat-label>
             <mat-radio-group name="typeOffer" [(ngModel)]="restate.typeOffer" required>
               <mat-radio-button class="editRadios" value=sale color="primary"> On sale
               </mat-radio-button>
@@ -67,35 +67,35 @@
           </mat-list-item>
 
           <mat-list-item>
-           <mat-label class="subtitulos2"> Price: </mat-label> 
+           <mat-label class="mat-h3 subtitulos2"> Price: </mat-label> 
             <mat-form-field class="editInputs">
               <input currencyMask matInput name="price" [(ngModel)]="restate.price" [options]="{prefix: '$ ', thousands: '.', allowNegative: false, precision: 0 }" required>
             </mat-form-field>
           </mat-list-item>
 
           <mat-list-item *ngIf="formEditpost.value.typeOffer == 'sale'">
-            <mat-checkbox class="subtitulos2" name="negotiable" [labelPosition]="labelPosition" color="primary"
+            <mat-checkbox class="mat-h3 subtitulos2" name="negotiable" [labelPosition]="labelPosition" color="primary"
             [(ngModel)]="restate.negotiable"> Negotiable:
             </mat-checkbox>
           </mat-list-item>
 
           <mat-list-item *ngIf="formEditpost.value.typeOffer == 'lease'">
-            <mat-checkbox class="subtitulos2" name="incluAdmin" [labelPosition]="labelPosition" color="primary"
+            <mat-checkbox class="mat-h3 subtitulos2" name="incluAdmin" [labelPosition]="labelPosition" color="primary"
             [(ngModel)]="restate.incluAdmin"> Includes administration:
             </mat-checkbox>
           </mat-list-item>
 
           <mat-list-item *ngIf="formEditpost.value.incluAdmin == false">
-            <mat-label class="subtitulos2"> Administration value: </mat-label>
+            <mat-label class="mat-h3 subtitulos2"> Administration value: </mat-label>
             <mat-form-field>
               <input currencyMask matInput  name="adminValue" [(ngModel)]="restate.adminValue" [options]="{prefix: '$ ', thousands: '.', allowNegative: false, precision: 0 }">
             </mat-form-field>
           </mat-list-item>
         </mat-list>
-        <h2 class="subtitulos"> Location features </h2>
+        <h2 class="mat-h2 subtitulos"> Location features </h2>
         <mat-list>
           <mat-list-item>
-            <mat-label class="subtitulos2"> Department: </mat-label>
+            <mat-label class="mat-h3 subtitulos2"> Department: </mat-label>
             <mat-form-field class="editInputs">
               <mat-select [(ngModel)]="restate.department" name="department"
               required>
@@ -107,7 +107,7 @@
           </mat-list-item>
 
           <mat-list-item>
-            <mat-label class="subtitulos2"> City: </mat-label>
+            <mat-label class="mat-h3 subtitulos2"> City: </mat-label>
             <mat-form-field class="editInputs">
               <mat-select [(ngModel)]="restate.city" name="city" required>
                 <mat-option *ngFor="let cit of citys" [value]="cit" >
@@ -118,14 +118,14 @@
           </mat-list-item>
 
           <mat-list-item>
-            <mat-label class="subtitulos2"> Neighborhood: </mat-label> 
+            <mat-label class="mat-h3 subtitulos2"> Neighborhood: </mat-label> 
             <mat-form-field class="editInputs">
               <input matInput type="text" name="neighborhood" [(ngModel)]="restate.neighborhood" required>
             </mat-form-field>            
           </mat-list-item>
 
           <mat-list-item>
-            <mat-label class="subtitulos2"> Address: </mat-label> 
+            <mat-label class="mat-h3 subtitulos2"> Address: </mat-label> 
             <mat-form-field class="editInputs">
               <input matInput type="text" name="address" [(ngModel)]="restate.address" required>
             </mat-form-field>            
@@ -137,18 +137,18 @@
   
     </div>
 
-    <h2 class="subtitulos">Property features</h2>
+    <h2 class="mat-h2 subtitulos">Property features</h2>
     <div>
       <mat-list fxLayout="row" fxLayout.xs="column">
         <mat-list-item>
-          <mat-label class="subtitulos2"> Area M²: </mat-label> 
+          <mat-label class="mat-h3 subtitulos2"> Area M²: </mat-label> 
           <mat-form-field  >
             <input matInput type="number" min="0" name="area" [(ngModel)]="restate.area" required>
           </mat-form-field>           
         </mat-list-item>
 
         <mat-list-item>
-          <mat-label class="subtitulos2"> Antiquity: </mat-label>
+          <mat-label class="mat-h3 subtitulos2"> Antiquity: </mat-label>
           <mat-form-field class="editInputs">
             <mat-select name="antiquity" [(ngModel)]="restate.antiquity" required>
               <mat-option *ngFor="let anti of antiquitys" [value]="anti.value" >
@@ -159,7 +159,7 @@
         </mat-list-item>
 
         <mat-list-item>
-          <mat-label class="subtitulos2"> Number of rooms: </mat-label>
+          <mat-label class="mat-h3 subtitulos2"> Number of rooms: </mat-label>
           <mat-form-field >
             <mat-select name="rooms" [(ngModel)]="restate.rooms" required>
               <mat-option *ngFor="let bed of bedrooms" [value]="bed.value" >
@@ -174,7 +174,7 @@
       <mat-list fxLayout="row" fxLayout.xs="column" style="margin-top:10px;">
         
         <mat-list-item>
-          <mat-label class="subtitulos2"> Number of bathrooms: </mat-label>
+          <mat-label class="mat-h3 subtitulos2"> Number of bathrooms: </mat-label>
           <mat-form-field>
             <mat-select name="bathrooms" [(ngModel)]="restate.bathrooms" required>
               <mat-option *ngFor="let bed of bedrooms" [value]="bed.value" >
@@ -185,13 +185,13 @@
 
         </mat-list-item>
         <mat-list-item *ngIf="formEditpost.value.typeProperty == 'Apartment'">
-          <mat-label class="subtitulos2"> Apartment floor: </mat-label>
+          <mat-label class="mat-h3 subtitulos2"> Apartment floor: </mat-label>
           <mat-form-field >
             <input matInput type="number" min="0" max="20" name="apartmentFloor" [(ngModel)]="restate.apartmentFloor" required>
           </mat-form-field>                
         </mat-list-item>
         <mat-list-item>
-          <mat-label class="subtitulos2"> Number of parking lots: </mat-label>
+          <mat-label class="mat-h3 subtitulos2"> Number of parking lots: </mat-label>
           <mat-form-field>
             <mat-select name="parking" [(ngModel)]="restate.parking" required>
               <mat-option *ngFor="let bed of bedrooms" [value]="bed.value" >
@@ -203,7 +203,7 @@
       </mat-list>
 
       <div class="container" style="margin-left:3px;">
-        <mat-label class="subtitulos2"> Description: </mat-label>
+        <mat-label class="mat-h3 subtitulos2"> Description: </mat-label>
         <mat-form-field style="width:100%; margin-left:12px;">
           <textarea matInput name="description" [(ngModel)]="restate.description" required>    
           </textarea>
@@ -212,10 +212,10 @@
       </div>
 
 
-      <h2 class="subtitulos" style="margin-top: 15px;" 
+      <h2 class="mat-h2 subtitulos" style="margin-top: 15px;" 
       >Detailed features</h2>
 
-      <h2 class="subtitulos3">Interior:</h2>
+      <h2 class="mat-h3 subtitulos3">Interior:</h2>
 
       <mat-list fxLayout="row" fxLayout.xs="column">
         <mat-list-item>
@@ -248,7 +248,7 @@
 
       <mat-divider></mat-divider>
 
-      <h2 class="subtitulos3">Exterior:</h2>
+      <h2 class="mat-h3 subtitulos3">Exterior:</h2>
       <mat-list fxLayout="row" fxLayout.xs="column">
         <mat-list-item>
           <mat-checkbox name="exterior.pool" [(ngModel)]="restate.exterior.pool"
@@ -266,7 +266,7 @@
 
       <mat-divider></mat-divider>
 
-      <h2 class="subtitulos3">Common areas:</h2>
+      <h2 class="mat-h3 subtitulos3">Common areas:</h2>
       <mat-list fxLayout="row" fxLayout.xs="column">
         <mat-list-item>
           <mat-checkbox name="careas.cliving" [(ngModel)]="restate.careas.cliving"
@@ -298,7 +298,7 @@
 
       <mat-divider></mat-divider>
 
-      <h2 class="subtitulos3">Sector:</h2>
+      <h2 class="mat-h3 subtitulos3">Sector:</h2>
       <mat-list fxLayout="row" fxLayout.xs="column">
         <mat-list-item>
           <mat-checkbox name="sector.schoolnear" [(ngModel)]="restate.sector.schoolnear"

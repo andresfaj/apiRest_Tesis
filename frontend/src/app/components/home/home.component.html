@@ -1,19 +1,18 @@
 <!-- <ngb-carousel *ngIf="images"> -->
-<div>
-
+  
   <ngb-carousel>
     <ng-template ngbSlide>
-      <img src="../../../assets/images/navigate-360.png" alt="360 degree images
+      <img class="carrusel" src="assets/images/home/navigate-360-1.jpg" alt="360 degree images
       ">
       <div class="carousel-caption">
-        <h3>360 degree images</h3>
+        <h3 class="mat-h3">360 degree images</h3>
         <!-- <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p> -->
       </div>
     </ng-template>
     <ng-template ngbSlide>
-      <img id="img2" src="../../../assets/images/navigate-360-2.jpg" alt="Random second slide">
+      <img class="carrusel" src="assets/images/home/navigate-360-3.jpg" alt="Random second slide">
       <div class="carousel-caption">
-        <h3>360 degree images</h3>
+        <h3 class="mat-h3">360 degree images</h3>
         <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p> -->
       </div>
     </ng-template>
@@ -25,15 +24,16 @@
       </div>
     </ng-template> -->
   </ngb-carousel>
-
-  <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+  
+<div >
+  <div class="container" fxLayout="row" fxLayout.sm="column" fxLayoutGap="10px" fxLayoutAlign="center">
 
     <mat-card class="example-card">
-      <mat-card-header>
-        <mat-card-title> Navega en 360 </mat-card-title>
+      <mat-card-header fxLayoutAlign="center">
+        <mat-card-title class="mat-h2"> Sails in 360 </mat-card-title>
       </mat-card-header>
-      <img mat-card-image src="https://realityreload.com/media/cache/small/custom/domain_1/image_files/sitemgr_photo_280.jpg">
-      <mat-card-content>
+      <img class="carrusel2" mat-card-image src="assets/images/home/sails.jpg" alt="Sails in 360">
+      <mat-card-content class="mat-body">
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis, molestias quasi maiores rerum consequuntur pariatur optio totam tempore tenetur cumque ex harum unde dolores necessitatibus nobis ipsum aperiam assumenda accusantium.
         </p>
@@ -41,11 +41,11 @@
     </mat-card>
 
     <mat-card class="example-card">
-      <mat-card-header>
-        <mat-card-title> Despliega objetos 3D </mat-card-title>
+      <mat-card-header fxLayoutAlign="center">
+        <mat-card-title class="mat-h2"> Deploy 3D objects </mat-card-title>
       </mat-card-header>
-      <img mat-card-image src="https://www.easterngraphics.com/pcon/en/wp-content/uploads/2010/09/Actiu.png">
-      <mat-card-content>
+      <img class="carrusel2" mat-card-image src="assets/images/home/deploy3d.png" alt="Deploy 3D objects">
+      <mat-card-content class="mat-body">
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis, molestias quasi maiores rerum consequuntur pariatur optio totam tempore tenetur cumque ex harum unde dolores necessitatibus nobis ipsum aperiam assumenda accusantium.
         </p>
@@ -53,11 +53,11 @@
     </mat-card>
 
     <mat-card class="example-card">
-      <mat-card-header>
-        <mat-card-title> Asegura tú decisión </mat-card-title>
+      <mat-card-header fxLayoutAlign="center">
+        <mat-card-title class="mat-h2"> Secure your decision </mat-card-title>
       </mat-card-header>
-      <img mat-card-image src="http://elempresario.mx/sites/default/files/imagecache/nota_completa/shutterstock_131772284.jpg" alt="Photo of a Shiba Inu">
-      <mat-card-content>
+      <img class="carrusel2" mat-card-image src="assets/images/home/choice.png" alt="Secure your decision">
+      <mat-card-content class="mat-body">
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis, molestias quasi maiores rerum consequuntur pariatur optio totam tempore tenetur cumque ex harum unde dolores necessitatibus nobis ipsum aperiam assumenda accusantium.
         </p>

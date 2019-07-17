@@ -1,7 +1,5 @@
-#title{
+.title2{
     margin: 15px;
-    font-family: sans-serif;
-    font-size: 35px;
 }
 
 .example-full-width {
@@ -11,4 +9,8 @@
 .example-form{
     width: 500px;
     margin: auto;
+}
+
+.container{
+    margin-bottom: 10px;
 }
