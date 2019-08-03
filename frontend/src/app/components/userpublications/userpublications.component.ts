@@ -25,7 +25,7 @@ export class UserpublicationsComponent implements OnInit {
   dataSource: MatTableDataSource<RealState>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  // @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatSort) sort: MatSort;
 
   constructor(private userService: UserService, private rState: RstateService, public dialog: MatDialog) { }
 

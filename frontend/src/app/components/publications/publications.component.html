@@ -37,9 +37,12 @@
             <button routerLink="/postdetail/{{rstate._id}}" matTooltip="More detailed info" mat-button>
               <mat-icon>launch</mat-icon>
             </button>
-            <button matTooltip="Tour in 360 degrees" mat-button [disabled]="isAuthenticated">
+            <a matTooltip="360 degree view" href="http://localhost/aframe/loadObject/" target="_blank">
+              <img style="width: 40px; height:40px;" src="assets/images/vr2.png"> 
+            </a>
+            <!-- <button matTooltip="Tour in 360 degrees" mat-button [disabled]="isAuthenticated">
               <img style="width: 40px; height:40px;" src="assets/images/vr2.png">  
-            </button>
+            </button> -->
           </mat-card-actions>
         </mat-card>
       </div> 
@@ -94,9 +97,9 @@
               <button [routerLink]="['/postdetail', rstate._id]" matTooltip="More detailed info" mat-button>
                 <mat-icon>launch</mat-icon>
               </button>
-              <button matTooltip="Tour in 360 degrees" mat-button [disabled]="isAuthenticated">
-                <img style="width: 35px; height:35px;" src="assets/images/vr2.png">  
-              </button>                                
+              <a matTooltip="360 degree view" href="http://localhost/aframe/loadObject/" target="_blank">
+                <img style="width: 40px; height:40px;" src="assets/images/vr2.png"> 
+              </a>                         
             </td>
           </ng-container>
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
