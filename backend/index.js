@@ -18,16 +18,12 @@ const multer  = require('multer');
 const path = require('path');
 const uuid = require('uuid/v4');
 
-var contador = 1;
-
-
 const storage = multer.diskStorage({
     destination: path.join(__dirname, 'public/images'),
     //En esta ponemos el mismo nombre a la imagen que se obtiene del frontend
     //extname = extrae la ext de la imagen
     filename: (req, file, cb) => { 
-        cb(null, contador + path.extname(file.originalname));
-        contador = contador + 1;
+        cb(null, uuid() + path.extname(file.originalname));
     }
 });
 

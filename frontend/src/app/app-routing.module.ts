@@ -26,7 +26,7 @@ const routes: Routes = [
   { path: 'newpost', component: PostComponent, canActivate: [AuthGuard] },
   { path: 'postdetail/:id', component: PostDetailComponent },
   { path: 'editpost/:id', component: EditPostComponent, canActivate: [AuthGuard]},
-  { path: '360view', component: Aframe360Component, canActivate: [AuthGuard]},
+  { path: '360view/:id', component: Aframe360Component, canActivate: [AuthGuard]},
   { path: '**', component: HomeComponent }
 ];
 

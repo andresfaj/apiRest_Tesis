@@ -1,4 +1,4 @@
-/* .intro-overlay {
+.intro-overlay {
     z-index: 1;
     position: absolute;
     top: 80px;
@@ -28,33 +28,10 @@
     background: rgba(0, 0, 0, 0.2) url(/assets/images/hamburger-white.png) center no-repeat;
     background-size: 40px 40px;
 }
-
 .menuAframe{
-    position: fixed;
+    width: 400px;
 }
 
-.allbuttons{
-    display: block;
+.botonesAframe{
+    margin-top: 10px;
 }
-  
-.componenteObjetos{
-    display: inline-block;
-    flex-wrap: wrap;
-    text-align: center;
-}
-#homeButtons p { display: inline-block; }
-#homeButtons2 p { display: inline-block; }
-  
-.homeButtons{
-    width: 50px;
-    height: 50px;
-    float:left;
-    border: 1px;
-}
-  
-.homeButtons2{
-    width: 50px;
-    height: 50px;
-    
-    border: 1px;
-} */
