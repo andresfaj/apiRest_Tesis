@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, Component } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 //Modulo para fomularios
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -29,6 +29,7 @@ import { FilterpublicationsPipe } from './pipes/filterpublications.pipe';
 import { NgxCurrencyModule } from "ngx-currency";
 import { PostDetailComponent } from './components/post-detail/post-detail.component';
 import { EditPostComponent } from './components/edit-post/edit-post.component';
+import { Aframe360Component } from './components/aframe360/aframe360.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { EditPostComponent } from './components/edit-post/edit-post.component';
     DialogupdatepostComponent,
     DialogexistinguserComponent,
     PostDetailComponent,
-    EditPostComponent
+    EditPostComponent,
+    Aframe360Component
   ],
   imports: [ //Depedencias = imports
     BrowserModule,
@@ -71,7 +73,9 @@ import { EditPostComponent } from './components/edit-post/edit-post.component';
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [DialogsComponent, DialogloginComponent, DialogemptyloginComponent, DialogsignupComponent, DialogprofileComponent, DialogpostComponent, DialogdeletepostComponent, DialogdeletepostsucessComponent, DialogupdatepostComponent, DialogexistinguserComponent]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  entryComponents: [DialogsComponent, DialogloginComponent, DialogemptyloginComponent, DialogsignupComponent, DialogprofileComponent, DialogpostComponent, DialogdeletepostComponent, DialogdeletepostsucessComponent, DialogupdatepostComponent, DialogexistinguserComponent],
+  
 })
 
 export class AppModule { }

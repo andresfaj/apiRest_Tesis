@@ -12,6 +12,7 @@ import { PostComponent } from './components/post/post.component';
 import { AuthGuard } from './guards/auhtGuard/auth.guard';
 import { PostDetailComponent } from './components/post-detail/post-detail.component';
 import { EditPostComponent } from './components/edit-post/edit-post.component';
+import { Aframe360Component } from './components/aframe360/aframe360.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -24,7 +25,8 @@ const routes: Routes = [
   { path: 'myposts', component: UserpublicationsComponent, canActivate: [AuthGuard] },
   { path: 'newpost', component: PostComponent, canActivate: [AuthGuard] },
   { path: 'postdetail/:id', component: PostDetailComponent },
-  { path: 'editpost/:id', component: EditPostComponent,canActivate: [AuthGuard]},
+  { path: 'editpost/:id', component: EditPostComponent, canActivate: [AuthGuard]},
+  { path: '360view', component: Aframe360Component, canActivate: [AuthGuard]},
   { path: '**', component: HomeComponent }
 ];
 

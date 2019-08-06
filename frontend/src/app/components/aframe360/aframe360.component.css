@@ -1,0 +1,60 @@
+/* .intro-overlay {
+    z-index: 1;
+    position: absolute;
+    top: 80px;
+    left: 20px;
+    max-width: 700px;
+    box-sizing: border-box;
+    padding: 1.5em;
+    color: #FFF;
+    background: rgba(0, 0, 0, 0.75);
+    font-family: Source Sans Pro, Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+.menu-overlay {
+    z-index: 99999;
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    box-sizing: border-box;
+    padding: 1.5em;
+    width: 60px;
+    height: 60px;
+    padding-bottom: 0px;
+    background: rgba(0, 0, 0, 0.5) url(/assets/images/hamburger-white.png) center no-repeat;
+    background-size: 40px 40px;
+    font-family: Source Sans Pro, Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+.menu-overlay:hover {
+    background: rgba(0, 0, 0, 0.2) url(/assets/images/hamburger-white.png) center no-repeat;
+    background-size: 40px 40px;
+}
+
+.menuAframe{
+    position: fixed;
+}
+
+.allbuttons{
+    display: block;
+}
+  
+.componenteObjetos{
+    display: inline-block;
+    flex-wrap: wrap;
+    text-align: center;
+}
+#homeButtons p { display: inline-block; }
+#homeButtons2 p { display: inline-block; }
+  
+.homeButtons{
+    width: 50px;
+    height: 50px;
+    float:left;
+    border: 1px;
+}
+  
+.homeButtons2{
+    width: 50px;
+    height: 50px;
+    
+    border: 1px;
+} */

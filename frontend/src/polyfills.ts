@@ -68,6 +68,13 @@ import 'core-js/es7/reflect';
  */
 // (window as any).__Zone_enable_cross_context_check = true;
 
+// import 'aframe';
+
+// import aframe from 'aframe';
+// import 'aframe-keyboard-controls';
+// import registerClickDrag from 'aframe-click-drag-component';
+// registerClickDrag(aframe);
+
 /***************************************************************************************************
  * Zone JS is required by default for Angular itself.
  */

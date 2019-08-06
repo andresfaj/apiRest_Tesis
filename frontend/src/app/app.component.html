@@ -1,11 +1,10 @@
 <!-- https://stackblitz.com/edit/responsive-menu-angular-material-flex-layout?file=src/app/app.component.html -->
 <div>
-
-    <div>
+    <div [hidden]=false>
         <mat-toolbar color="primary" class="toolbar">
             <mat-toolbar-row class="firsttoolbar">
                 <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
-                    <mat-icon>menu</mat-icon> <!--icono de material icons-->
+                    <mat-icon>menu</mat-icon>
                 </button>        
                 <span class="">Aloz Homes </span>
                 <span class="menu-spacer"></span>
@@ -82,15 +81,16 @@
                 </mat-nav-list>
             </mat-sidenav>
             <mat-sidenav-content>
-                <router-outlet ></router-outlet> 
+                <!-- <router-outlet></router-outlet>  -->
             </mat-sidenav-content>        
-        </mat-sidenav-container>
- 
+        </mat-sidenav-container> 
     </div>
     <div>
-        <app-footer></app-footer>   
+        <!-- <app-footer [hidden]=false></app-footer>    -->
     </div>
 </div>
+<router-outlet></router-outlet>
+<app-footer></app-footer>   
 
 
 
