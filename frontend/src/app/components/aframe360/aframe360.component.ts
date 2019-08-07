@@ -92,9 +92,13 @@ export class Aframe360Component implements OnInit {
     var object = this.selectObject(objectR);
     console.log("objeto seleccionado:",object);
     this.currentObject = object;
-    object.toggleClass('intro- ');
     var el = document.querySelector(object);
-    el.setAttribute("visible",true);
+    el.setAttribute("visible","true");
+  }
+
+  hideFurniture() {
+    var el = document.querySelector(this.currentObject);
+    el.setAttribute("visible","false");
   }
 
 }
