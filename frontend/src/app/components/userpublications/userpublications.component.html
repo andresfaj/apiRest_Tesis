@@ -16,138 +16,120 @@
     </mat-card>
   </div>
 
-  <!-- <div class="mat-elevation-z8" *ngIf="flag==true" style="margin: 15px;">
-
-    <div fxLayout="row wrap" fxLayoutAlign="space-around center" >
-      <button mat-raised-button color="primary" routerLink="/newpost">Create a post</button>
-  
-      <mat-form-field>
-        <input matInput (keyup)="applyFilterTable($event.target.value)" placeholder="Filter by any item in the table">
-      </mat-form-field>
-    </div>
-
-    <table class="example-full-width" mat-table [dataSource]="rStates" matSort>
-      <ng-container matColumnDef="typeProperty">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Type of property </th>
-        <td mat-cell *matCellDef="let rstate"> {{rstate.typeProperty}} </td>
-      </ng-container>
+  <mat-tab-group mat-align-tabs="center">
+    <mat-tab>
+        <ng-template mat-tab-label>
+          <mat-icon>view_module</mat-icon>
+        </ng-template>
+        <div fxLayoutAlign="center">
+          <mat-form-field class="filterWidth">
+            <input matInput placeholder="Filters by property type" type="text" name="filterPost" [(ngModel)]="filterPost">
+          </mat-form-field>
+        </div>
+        <div class="container3" fxLayout="row" fxLayoutAlign="center" fxLayoutGap="10px">
+          <mat-card *ngFor="let rstate of rStates | filterpublications: filterPost" >
+            <mat-card-title class="mat-h1" *ngIf="rstate.typeOffer == 'sale'"> {{rstate.typeProperty}} for {{rstate.typeOffer | uppercase}} in</mat-card-title>
+            <mat-card-title class="mat-h1" *ngIf="rstate.typeOffer == 'lease'"> {{rstate.typeProperty}} for {{rstate.typeOffer | uppercase}} in </mat-card-title>
+            <h1 class="mat-h1"> {{rstate.city}} </h1>
+            <img class="imagenes2d" mat-card-image src="http://localhost:8000{{rstate?.path}}" alt="Real state">
+            <mat-card-content class="mat-h2">
+              <h4>{{rstate.price | currency:'COP'}}</h4>
+            </mat-card-content>
+            <mat-card-actions>
+              <button routerLink="/editpost/{{rstate._id}}" matTooltip="Edit post" mat-button>
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button (click)="dialogDeletepost(rstate._id)" matTooltip="Delete post" mat-button>
+                <mat-icon>delete</mat-icon>
+              </button>              
+              <button routerLink="/postdetail/{{rstate._id}}" matTooltip="More detailed info" mat-button>
+                <mat-icon>launch</mat-icon>
+              </button>
+              <button routerLink="/360view/{{rstate._id}}" matTooltip="360 degree view" mat-button>
+                <img style="width: 40px; height:40px;" src="assets/images/vr2.png">  
+              </button>
+            </mat-card-actions>
+          </mat-card>
+        </div> 
+    </mat-tab>
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon>view_list</mat-icon>
+      </ng-template>
+      <div class="mat-elevation-z8" style="margin: 15px;" *ngIf="flag==true">
+        <div fxLayout="row wrap" fxLayoutAlign="space-around center" >
+          <button mat-raised-button color="primary" routerLink="/newpost">Create a post</button>
       
-      <ng-container matColumnDef="typeOffer">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Type of offer </th>
-        <td mat-cell *matCellDef="let rstate"> {{rstate.typeOffer}} </td>
-      </ng-container>
+          <mat-form-field>
+            <input matInput (keyup)="applyFilterTable($event.target.value)" placeholder="Filter by any item in the table">
+          </mat-form-field>
+        </div>
 
-      <ng-container matColumnDef="price">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Price </th>
-        <td mat-cell *matCellDef="let rstate"> {{rstate.price | currency:'COP'}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="city">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> City </th>
-        <td mat-cell *matCellDef="let rstate"> {{rstate.city}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="area">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Area M² </th>
-        <td mat-cell *matCellDef="let rstate"> {{rstate.area}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="bathrooms">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Bathrooms </th>
-        <td mat-cell *matCellDef="let rstate"> {{rstate.bathrooms}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="actions">
-        <th mat-header-cell *matHeaderCellDef> Actions </th>
-        <td mat-cell *matCellDef="let rstate">
-          <button routerLink="/editpost/{{rstate._id}}" matTooltip="Edit post" mat-button>
-            <mat-icon>edit</mat-icon>
-          </button>
-          <button matTooltip="Delete post" (click)="dialogDeletepost(rstate._id)" mat-button>
-            <mat-icon>delete</mat-icon>
-          </button>
-          <button [routerLink]="['/postdetail', rstate._id]" matTooltip="View my post" mat-button>
-            <mat-icon>launch</mat-icon>
-          </button>
-          <button matTooltip="Tour in 360 degrees" mat-button [disabled]="isAuthenticated">
-            <img style="width: 35px; height:35px;" src="assets/images/vr2.png">  
-          </button>                                
-        </td>
-      </ng-container>
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
-    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
-  </div> -->
-
-  <div class="mat-elevation-z8" style="margin: 15px;" *ngIf="flag==true">
-    <div fxLayout="row wrap" fxLayoutAlign="space-around center" >
-      <button mat-raised-button color="primary" routerLink="/newpost">Create a post</button>
-  
-      <mat-form-field>
-        <input matInput (keyup)="applyFilterTable($event.target.value)" placeholder="Filter by any item in the table">
-      </mat-form-field>
-    </div>
+        <table class="example-full-width" mat-table [dataSource]="dataTabla" matSort>
+          <ng-container matColumnDef="typeProperty">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="mat-h1"> Type of property </th>
+            <td mat-cell *matCellDef="let rstate"> {{rstate.typeProperty}} </td>
+          </ng-container>
         
-    <table class="example-full-width" mat-table [dataSource]="dataSource" matSort>
-      <ng-container matColumnDef="typeProperty">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Type of property </th>
-        <td mat-cell *matCellDef="let rstate"> {{rstate.typeProperty}} </td>
-      </ng-container>
+          <ng-container matColumnDef="typeOffer">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="mat-h1"> Type of offer </th>
+            <td mat-cell *matCellDef="let rstate"> {{rstate.typeOffer}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="price">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="mat-h1"> Price </th>
+            <td mat-cell *matCellDef="let rstate"> {{rstate.price | currency:'COP'}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="city">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="mat-h1"> City </th>
+            <td mat-cell *matCellDef="let rstate"> {{rstate.city}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="area">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="mat-h1"> Area M² </th>
+            <td mat-cell *matCellDef="let rstate"> {{rstate.area}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="bathrooms">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="mat-h1"> Bathrooms </th>
+            <td mat-cell *matCellDef="let rstate"> {{rstate.bathrooms}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef> Actions </th>
+            <td mat-cell *matCellDef="let rstate">
+              <button routerLink="/editpost/{{rstate._id}}" matTooltip="Edit post" mat-button>
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button matTooltip="Delete post" (click)="dialogDeletepost(rstate._id)" mat-button>
+                <mat-icon>delete</mat-icon>
+              </button>
+              <button [routerLink]="['/postdetail', rstate._id]" matTooltip="View my post" mat-button>
+                <mat-icon>launch</mat-icon>
+              </button>
+              <button routerLink="/360view/{{rstate._id}}" matTooltip="360 degree view" mat-button>
+                <img style="width: 35px; height:35px;" src="assets/images/vr2.png">  
+              </button>                       
+            </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+      </div>
+
+    </mat-tab>
     
-      <ng-container matColumnDef="typeOffer">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Type of offer </th>
-        <td mat-cell *matCellDef="let rstate"> {{rstate.typeOffer}} </td>
-      </ng-container>
+  </mat-tab-group>
 
-      <ng-container matColumnDef="price">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Price </th>
-        <td mat-cell *matCellDef="let rstate"> {{rstate.price | currency:'COP'}} </td>
-      </ng-container>
+  
 
-      <ng-container matColumnDef="city">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> City </th>
-        <td mat-cell *matCellDef="let rstate"> {{rstate.city}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="area">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Area M² </th>
-        <td mat-cell *matCellDef="let rstate"> {{rstate.area}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="bathrooms">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Bathrooms </th>
-        <td mat-cell *matCellDef="let rstate"> {{rstate.bathrooms}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="actions">
-        <th mat-header-cell *matHeaderCellDef> Actions </th>
-        <td mat-cell *matCellDef="let rstate">
-          <button routerLink="/editpost/{{rstate._id}}" matTooltip="Edit post" mat-button>
-            <mat-icon>edit</mat-icon>
-          </button>
-          <button matTooltip="Delete post" (click)="dialogDeletepost(rstate._id)" mat-button>
-            <mat-icon>delete</mat-icon>
-          </button>
-          <button [routerLink]="['/postdetail', rstate._id]" matTooltip="View my post" mat-button>
-            <mat-icon>launch</mat-icon>
-          </button>
-          <button matTooltip="Tour in 360 degrees" mat-button [disabled]="isAuthenticated">
-            <img style="width: 35px; height:35px;" src="assets/images/vr2.png">  
-          </button>                                
-        </td>
-      </ng-container>
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
-    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
-  </div>
-
-  <div id="flotante" *ngIf="flag!=true">
+  <!-- <div id="flotante" *ngIf="flag!=true">
       <button mat-fab color="primary" routerLink="/newpost">
         <mat-icon>add</mat-icon>
       </button>
-  </div>
+  </div> -->
 
 </div>
 

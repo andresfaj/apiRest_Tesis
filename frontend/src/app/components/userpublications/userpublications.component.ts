@@ -22,9 +22,10 @@ export class UserpublicationsComponent implements OnInit {
   rStates: RealState[] = [];
   r: any;
   displayedColumns: string[] = ['typeProperty', 'typeOffer', 'price', 'city', 'area', 'bathrooms', 'actions'];
-  dataSource: MatTableDataSource<RealState>;
+  dataTabla: MatTableDataSource<RealState>;
+  filterPost = '';
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatPaginator) paginador: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(private userService: UserService, private rState: RstateService, public dialog: MatDialog) { }
@@ -34,13 +35,12 @@ export class UserpublicationsComponent implements OnInit {
     this.rState.getRstatesUser(this.informationUser).subscribe(
       res => {
         this.r = res;
-        this.rStates = this.r;
-
+        this.rStates = this.r;        
         if(this.rStates.length > 0){
           this.flag = true;
-          this.dataSource = new MatTableDataSource<RealState>(this.rStates);
-          this.dataSource.paginator = this.paginator;
-          // this.dataSource.sort = this.sort;
+          this.dataTabla = new MatTableDataSource<RealState>(this.rStates);
+          setTimeout(() => this.dataTabla.paginator = this.paginador);
+          setTimeout(() => this.dataTabla.sort = this.sort);
         }
       }
     )
@@ -87,9 +87,9 @@ export class UserpublicationsComponent implements OnInit {
   }
 
   applyFilterTable(filterValue: string){
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
+    this.dataTabla.filter = filterValue.trim().toLowerCase();
+    if (this.dataTabla.paginator) {
+      this.dataTabla.paginator.firstPage();
     }
   }
 

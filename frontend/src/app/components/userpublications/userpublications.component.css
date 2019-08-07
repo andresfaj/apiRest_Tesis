@@ -78,3 +78,16 @@
 .filterWidth{
     width: 450px;;
 }
+
+.mat-card{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 300px;
+    text-align: center;
+    font-family: sans-serif;
+}
+
+.imagenes2d{
+    width: 200px;
+    height: 200px;
+}
