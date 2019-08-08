@@ -16,7 +16,7 @@
     </mat-card>
   </div>
 
-  <mat-tab-group mat-align-tabs="center">
+  <mat-tab-group mat-align-tabs="center" *ngIf="flag==true">
     <mat-tab>
         <ng-template mat-tab-label>
           <mat-icon>view_module</mat-icon>
@@ -50,7 +50,12 @@
               </button>
             </mat-card-actions>
           </mat-card>
-        </div> 
+        </div>
+        <div id="flotante">
+          <button mat-fab color="primary" routerLink="/newpost">
+            <mat-icon>add</mat-icon>
+          </button>
+      </div> 
     </mat-tab>
     <mat-tab>
       <ng-template mat-tab-label>
@@ -121,15 +126,13 @@
 
     </mat-tab>
     
-  </mat-tab-group>
+  </mat-tab-group> 
 
-  
-
-  <!-- <div id="flotante" *ngIf="flag!=true">
+  <div id="flotante" *ngIf="flag!=true">
       <button mat-fab color="primary" routerLink="/newpost">
         <mat-icon>add</mat-icon>
       </button>
-  </div> -->
+  </div>
 
 </div>
 

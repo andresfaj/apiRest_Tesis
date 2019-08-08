@@ -73,3 +73,9 @@ export class DialogupdatepostComponent {}
   templateUrl: './dialogexistinguser.html'
 })
 export class DialogexistinguserComponent {}
+
+@Component({
+  selector: 'app-dialogcontactform',
+  templateUrl: './dialogcontactform.html'
+})
+export class DialogcontactformComponent {}

@@ -4,17 +4,27 @@
 
 <div class="container mat-body" fxLayoutAlign="center">
 
-  <form #formContact="ngForm" class="example-form" (ngSubmit)="sendMessage(formContact)">
+  <form [formGroup]="formContact" #formDirective="ngForm" class="example-form" (ngSubmit)="sendMessage(formContact,formDirective)">
       <mat-form-field class="example-full-width">
-        <input matInput placeholder="Name" name="name" ngModel required>
+        <input matInput placeholder="Name" formControlName="name" required>
+        <mat-error *ngIf="!formContact.controls['name'].valid && formContact.controls['name'].touched"> A name is required  </mat-error>
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
-        <input matInput placeholder="Email" name="email" ngModel required>
+        <input matInput placeholder="Email" formControlName="email" required>
+        <mat-error *ngIf="formContact.controls['email'].invalid && (formContact.controls['email'].dirty || formContact.controls['email'].touched)">
+          <div *ngIf="formContact.controls['email'].errors.required">
+            Mail is required        
+          </div>
+          <div *ngIf="formContact.controls['email'].errors.email">
+            Wrong email format
+          </div>
+        </mat-error> 
       </mat-form-field>
     
       <mat-form-field class="example-full-width">
-        <textarea matInput placeholder="Comment" name="comment" ngModel required></textarea>
+        <textarea matInput placeholder="Comment" formControlName="comment" required></textarea>
+        <mat-error *ngIf="!formContact.controls['comment'].valid && formContact.controls['comment'].touched"> A comment is required  </mat-error>
       </mat-form-field>
 
       <button type="submit" [disabled]="formContact.invalid" mat-raised-button color="primary" class="example-full-width">Send</button>

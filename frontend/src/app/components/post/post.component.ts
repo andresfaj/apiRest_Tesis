@@ -184,6 +184,8 @@ export class PostComponent implements OnInit {
         if(res == "true"){
           formDirective.resetForm();
           this.formPost.reset();
+          this.formPost.clearValidators();
+          this.formPost.updateValueAndValidity();
           this.formPost.patchValue({typeOffer:'sale'});  
           
         }else{

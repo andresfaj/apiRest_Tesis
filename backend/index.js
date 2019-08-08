@@ -59,6 +59,7 @@ app.use('',require('./routes/index.routes'));
 app.use('/session/user',require('./routes/sessionUsers.routes'));
 app.use('/rstate',require('./routes/publications.routes'));
 app.use('/rstate',require('./routes/publicationsUser.routes'));
+app.use(require('./routes/formulario.routes'));
 
 //Static files
 //Con esta linea se pueden ver la imagenes que están en el backend en el navegador
