@@ -35,7 +35,7 @@ export class UserpublicationsComponent implements OnInit {
     this.rState.getRstatesUser(this.informationUser).subscribe(
       res => {
         this.r = res;
-        this.rStates = this.r;        
+        this.rStates = this.r;   
         if(this.rStates.length > 0){
           this.flag = true;
           this.dataTabla = new MatTableDataSource<RealState>(this.rStates);
@@ -56,7 +56,7 @@ export class UserpublicationsComponent implements OnInit {
   deletePost(id: string){
     this.rState.deleteRstate(id).subscribe(
       res => {
-        console.log(res);
+        // console.log(res);
       }
     )
   }
@@ -67,7 +67,24 @@ export class UserpublicationsComponent implements OnInit {
     dialogRef.afterClosed().subscribe(
       res => {
         if(res){
-          location.reload();
+          this.rState.getRstatesUser(this.informationUser).subscribe(
+            res => {
+              this.r = res;
+              this.rStates = this.r;   
+              if(this.rStates.length > 0){
+                this.flag = true;
+                this.dataTabla = new MatTableDataSource<RealState>(this.rStates);
+                setTimeout(() => this.dataTabla.paginator = this.paginador);
+                setTimeout(() => this.dataTabla.sort = this.sort);
+              }else{
+                this.flag = false;
+                this.dataTabla = new MatTableDataSource<RealState>(this.rStates);
+                setTimeout(() => this.dataTabla.paginator = this.paginador);
+                setTimeout(() => this.dataTabla.sort = this.sort);
+              }         
+
+            }
+          )
         }
       }
     )

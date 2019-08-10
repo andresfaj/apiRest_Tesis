@@ -15,7 +15,7 @@
         <mat-tab-group mat-align-tabs="center">
           <mat-tab label="In 2D">
             <img class="carrusel" [src]="imageUrl">
-            <input placeholder="Select an image" name="image" type="file" accept="image/jpeg, image/png" (change)="onFileSelected($event)">
+            <input placeholder="Select an image" formControlName="image2d" name="image" type="file" accept="image/jpeg, image/png" (change)="onFileSelected($event)">
 
           </mat-tab>
           <mat-tab label="In 360">
@@ -276,9 +276,9 @@
     <div class="section5">
       <button class="example-full-width" mat-raised-button type="submit" color="primary" [disabled]="formPost.invalid"> Create a post </button>
     </div>
-<!-- 
+
     {{formPost.value | json}}
-    <p>Form status: {{ formPost.status | json }}</p>     -->
+    <p>Form status: {{ formPost.status | json }}</p>    
   </form>
 
 </div>

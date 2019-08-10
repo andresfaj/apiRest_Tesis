@@ -37,7 +37,7 @@
             <button routerLink="/postdetail/{{rstate._id}}" matTooltip="More detailed info" mat-button>
               <mat-icon>launch</mat-icon>
             </button>
-            <button routerLink="/360view/{{rstate._id}}" matTooltip="360 degree view" mat-button [disabled]="isAuthenticated">
+            <button *ngIf="rstate.pathvr != null" routerLink="/360view/{{rstate._id}}" matTooltip="360 degree view" mat-button [disabled]="isAuthenticated">
               <img style="width: 40px; height:40px;" src="assets/images/vr2.png">  
             </button>
           </mat-card-actions>
@@ -94,7 +94,7 @@
               <button [routerLink]="['/postdetail', rstate._id]" matTooltip="More detailed info" mat-button>
                 <mat-icon>launch</mat-icon>
               </button>
-              <a matTooltip="360 degree view" href="/360view/{{rstate._id}}" target="_blank">
+              <a *ngIf="rstate.pathvr != null" matTooltip="360 degree view" href="/360view/{{rstate._id}}" target="_blank">
                 <img style="width: 40px; height:40px;" src="assets/images/vr2.png"> 
               </a>                         
             </td>

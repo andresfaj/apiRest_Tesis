@@ -1,11 +1,16 @@
 export class RealState {
 
     _id: string;
-    // originalname: string;
-    // filename: string;
-    // path: string;
-    // mimetype: string;
-    // size: string;
+    originalnamevr: string;
+    filenamevr: string;
+    pathvr: string;
+    mimetypevr: string;
+    sizevr: number;
+    originalname: string;
+    filename: string;
+    path: string;
+    mimetype: string;
+    size: number;
     typeProperty: string;
     typeOffer: string;
     price: number;
@@ -57,8 +62,18 @@ export class RealState {
     user: string;
     disabled: boolean;
 
-    constructor(_id = '', typeProperty = '', typeOffer = '', price = 0, negotiable = false, incluAdmin = false, adminValue = 0, department= '', city = '', neighborhood = '', address = '', area = 0, antiquity = 0, rooms = 0, bathrooms = 0, apartmentFloor = 0, parking = 0, description = '', interior = {aircondi: false, jacuzzi: false, fwood: false, cfloor: false, ikitchen: false, akitchen: false }, exterior = {pool: false, ccondominium:false, pvisitors:false}, careas = {cliving:false, fcourt:false, bcourt:false, tcourt:false, greenery:false, chareas:false}, sector = {schoolnear:false, unear:false, smarkets:false, parks:false, malls:false, ptransport:false, czone:false}, user = '', disabled = true){
+    constructor(_id = '', originalnamevr = '', filenamevr = '', pathvr = '', mimetypevr = '', sizevr = 0, originalname = '', filename = '', path = '', mimetype = '', size = 0,typeProperty = '', typeOffer = '', price = 0, negotiable = false, incluAdmin = false, adminValue = 0, department= '', city = '', neighborhood = '', address = '', area = 0, antiquity = 0, rooms = 0, bathrooms = 0, apartmentFloor = 0, parking = 0, description = '', interior = {aircondi: false, jacuzzi: false, fwood: false, cfloor: false, ikitchen: false, akitchen: false }, exterior = {pool: false, ccondominium:false, pvisitors:false}, careas = {cliving:false, fcourt:false, bcourt:false, tcourt:false, greenery:false, chareas:false}, sector = {schoolnear:false, unear:false, smarkets:false, parks:false, malls:false, ptransport:false, czone:false}, user = '', disabled = true){
         this._id = _id;
+        this.originalnamevr = originalnamevr,
+        this.filenamevr = filenamevr,
+        this.pathvr = pathvr,
+        this.mimetypevr = mimetypevr, 
+        this.sizevr = sizevr,
+        this.originalname = originalname,
+        this.filename = filename,
+        this.path = path,
+        this.mimetype = mimetype,
+        this.size = size,
         this.typeProperty = typeProperty;
         this.typeOffer = typeOffer;
         this.price = price;

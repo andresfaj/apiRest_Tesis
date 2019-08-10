@@ -79,8 +79,18 @@ export class PostComponent implements OnInit {
   departmentsOptions: Observable<Departmentgroup[]>;
 
   ngOnInit() {
+    this.createForm();    
+    this.departmentsOptions = this.formPost.get('department')!.valueChanges
+    .pipe(
+      startWith(''),
+      map(value => this._filterGroup(value))
+    );
+  }
+
+  createForm(){
     this.informationUser = this.userService.getInformation();
     this.formPost = this.fb.group({
+      image2d: [null, Validators.required],
       typeProperty: ['', Validators.required],
       typeOffer: ['sale', Validators.required],
       price: [null, Validators.required],
@@ -131,11 +141,6 @@ export class PostComponent implements OnInit {
       user: [this.informationUser],
       disabled: [true]
     });
-    this.departmentsOptions = this.formPost.get('department')!.valueChanges
-    .pipe(
-      startWith(''),
-      map(value => this._filterGroup(value))
-    );
   }
 
   onFileSelected(event){
@@ -182,15 +187,26 @@ export class PostComponent implements OnInit {
     dialogRef.afterClosed().subscribe(
       res => {
         if(res == "true"){
-          formDirective.resetForm();
-          this.formPost.reset();
-          this.formPost.clearValidators();
-          this.formPost.updateValueAndValidity();
-          this.formPost.patchValue({typeOffer:'sale'});  
-          
-        }else{
           this.router.navigate(['/myposts']);
         }
+        // if(res == "true"){
+        //   this.createForm();
+        //   formDirective.resetForm();
+        //   // this.formPost.reset();
+        //   // this.formPost.clearValidators();
+        //   // this.formPost.updateValueAndValidity();
+        //   // this.formPost.patchValue({typeOffer:'sale'});
+        //   this.imageUrl = "/assets/images/housecreate.png";
+        //   this.imageUrl2 = "/assets/images/360-degrees.png";
+        //   this.formPost.controls['image2d'].reset();
+        //   // this.formPost.controls['user'].setValue(this.informationUser);
+        //   // this.formPost.controls['disabled'].setValue(true);
+
+  
+          
+        // }else{
+        //   this.router.navigate(['/myposts']);
+        // }
       }
     )
        

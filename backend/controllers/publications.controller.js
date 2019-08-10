@@ -1,3 +1,5 @@
+const { unlink } = require('fs-extra');
+const path = require('path');
 const modelPublications = require('../models/publications.model');
 const publicationsController = {};
 
@@ -15,12 +17,15 @@ publicationsController.getPublication = async (req, res) => {
 };
 
 publicationsController.postPublication = async (req, res) => {
+    console.log("publicacion", req.body);
     const publication = new modelPublications();
-    publication.originalnamevr = req.files['image2'][0].originalname;
-    publication.filenamevr = req.files['image2'][0].filename;
-    publication.pathvr = '/images/'+ req.files['image2'][0].filename;
-    publication.mimetypevr = req.files['image2'][0].mimetype;
-    publication.sizevr = req.files['image2'][0].size;
+    if(typeof req.files['image2'] !== "undefined"){
+        publication.originalnamevr = req.files['image2'][0].originalname;
+        publication.filenamevr = req.files['image2'][0].filename;
+        publication.pathvr = '/images/'+ req.files['image2'][0].filename;
+        publication.mimetypevr = req.files['image2'][0].mimetype;
+        publication.sizevr = req.files['image2'][0].size;
+    }
     publication.originalname = req.files['image'][0].originalname;
     publication.filename = req.files['image'][0].filename;
     publication.path = '/images/'+ req.files['image'][0].filename;
@@ -171,7 +176,7 @@ publicationsController.postPublication = async (req, res) => {
     }
     publication.user = req.body.user;
     publication.disabled = true;
-    console.log(publication);
+    // console.log(publication);
     await publication.save();
     // console.log(req.body);
     res.json({
@@ -180,55 +185,119 @@ publicationsController.postPublication = async (req, res) => {
 };
 
 publicationsController.updatePublication = async (req, res) => {
+    var poriginalnamevr;
+    var pfilenamevr;
+    var ppathvr;
+    var pmimetypevr;
+    var psizevr;
+    var poriginalname;
+    var pfilename;
+    var ppath;
+    var pmimetype;
+    var psize;
+    var papartmentFloor;
+    var stringValue = "true";
+    if(typeof req.files['image2'] !== "undefined"){
+        poriginalnamevr = req.files['image2'][0].originalname;
+        pfilenamevr = req.files['image2'][0].filename;
+        ppathvr = '/images/'+ req.files['image2'][0].filename;
+        pmimetypevr = req.files['image2'][0].mimetype;
+        psizevr = req.files['image2'][0].size;
+    }else{
+        poriginalnamevr = req.body.originalnamevr;
+        pfilenamevr = req.body.filenamevr;
+        ppathvr = req.body.pathvr;
+        pmimetypevr = req.body.mimetypevr;
+        psizevr = req.body.sizevr;
+    }
+    if(typeof req.files['image'] !== "undefined"){
+        poriginalname = req.files['image'][0].originalname;
+        pfilename = req.files['image'][0].filename;
+        ppath = '/images/'+ req.files['image'][0].filename;
+        pmimetype = req.files['image'][0].mimetype;
+        psize = req.files['image'][0].size;
+    }else{
+        poriginalname = req.body.originalname; 
+        pfilename = req.body.filename;
+        ppath = req.body.path;
+        pmimetype = req.body.mimetype;
+        psize = req.body.size;
+    }
+    if(req.body.incluAdmin == 'true' && req.body.typeOffer == 'lease'){
+        var pincluAdmin = true;
+        var padminValue = 0;        
+    }else if(req.body.incluAdmin == 'false' && req.body.typeOffer == 'lease'){
+        var pincluAdmin = false;
+        var padminValue = parseInt(req.body.adminValue);
+    }else{
+        var pincluAdmin = false;
+        var padminValue = 0;
+    }
+    if(req.body.typeProperty == "Apartment"){
+        papartmentFloor = parseInt(req.body.apartmentFloor);
+    }else{
+        papartmentFloor = 0;
+    }
     const publication = {
+        originalnamevr: poriginalnamevr,
+        filenamevr: pfilenamevr,
+        pathvr: ppathvr,
+        mimetypevr: pmimetypevr,
+        sizevr: psizevr,
+        originalname: poriginalname,
+        filename: pfilename,
+        path: ppath,
+        mimetype: pmimetype,
+        size: psize,
         typeProperty: req.body.typeProperty,
         typeOffer: req.body.typeOffer,
-        price: req.body.price,
-        negotiable: req.body.negotiable,
-        incluAdmin: req.body.incluAdmin,
-        adminValue: req.body.adminValue,
-        department: req.body.department,
-        city: req.body.city,        
+        price: parseInt(req.body.price),
+        negotiable: (stringValue === req.body.negotiable),
+        incluAdmin: pincluAdmin,
+        adminValue: padminValue,
+        department:  req.body.department,
+        city: req.body.city,
         neighborhood: req.body.neighborhood,
         address: req.body.address,
-        area: req.body.area,
-        antiquity: req.body.antiquity,        
-        rooms: req.body.rooms,
-        bathrooms: req.body.bathrooms,
-        apartmentFloor: req.body.apartmentFloor,
-        parking: req.body.parking,
+        area: parseInt(req.body.area),
+        antiquity: parseInt(req.body.antiquity),
+        rooms: parseInt(req.body.rooms),
+        bathrooms: parseInt(req.body.bathrooms),
+        apartmentFloor: papartmentFloor,
+        parking: parseInt(req.body.parking),
         description: req.body.description,
         interior: {
-            aircondi: req.body.interior.aircondi,
-            jacuzzi: req.body.interior.jacuzzi,
-            fwood: req.body.interior.fwood,
-            cfloor: req.body.interior.cfloor,
-            ikitchen: req.body.interior.ikitchen,
-            akitchen: req.body.interior.akitchen
+            aircondi: (stringValue === req.body.aircondi),
+            jacuzzi: (stringValue === req.body.jacuzzi),
+            fwood: (stringValue === req.body.fwood),
+            cfloor: (stringValue === req.body.cfloor),
+            ikitchen: (stringValue === req.body.ikitchen),
+            akitchen: (stringValue === req.body.akitchen),
         },
         exterior: {
-            pool: req.body.exterior.pool,
-            ccondominium: req.body.exterior.ccondominium,
-            pvisitors: req.body.exterior.pvisitors
+            pool: (stringValue === req.body.pool),
+            ccondominium: (stringValue === req.body.ccondominium),
+            pvisitors: (stringValue === req.body.pvisitors)
         },
         careas: {
-            cliving: req.body.careas.cliving,
-            fcourt: req.body.careas.fcourt,
-            bcourt: req.body.careas.bcourt,
-            tcourt: req.body.careas.tcourt,
-            greenery: req.body.careas.greenery,
-            chareas: req.body.careas.chareas,
+            cliving: (stringValue === req.body.cliving),
+            fcourt: (stringValue === req.body.fcourt),
+            bcourt: (stringValue === req.body.bcourt),
+            tcourt: (stringValue === req.body.tcourt),
+            greenery: (stringValue === req.body.greenery),
+            chareas: (stringValue === req.body.chareas),
         },
         sector: {
-            schoolnear: req.body.sector.schoolnear,
-            unear: req.body.sector.unear,
-            smarkets: req.body.sector.smarkets,
-            parks: req.body.sector.parks,
-            malls: req.body.sector.malls,
-            ptransport: req.body.sector.ptransport,
-            czone: req.body.sector.czone            
+            schoolnear: (stringValue === req.body.schoolnear),
+            unear: (stringValue === req.body.unear),
+            smarkets: (stringValue === req.body.smarkets),
+            parks: (stringValue === req.body.parks),
+            malls: (stringValue === req.body.malls),
+            ptransport: (stringValue === req.body.ptransport),
+            czone: (stringValue === req.body.czone)            
         },
-        user: req.body.user
+        user: req.body.user,
+        disabled: true
     }
 
     const { id } = req.params;
@@ -237,7 +306,9 @@ publicationsController.updatePublication = async (req, res) => {
 };
 
 publicationsController.deletePublication = async (req, res) => {
-    await modelPublications.findByIdAndRemove(req.params.id);
+    const post = await modelPublications.findByIdAndRemove(req.params.id);
+    await unlink(path.resolve('./backend/public/' + post.path));
+    await unlink(path.resolve('./backend/public/' + post.pathvr));
     res.json({status: 'Post deleted'});
 };
 

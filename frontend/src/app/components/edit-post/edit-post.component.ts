@@ -20,7 +20,9 @@ export class EditPostComponent implements OnInit {
   labelPosition: string = 'before';
   formEditpost: NgForm;
   imageUrl: string;
+  imageUrl2: string;
   selectedFile: File = null;
+  selectedFile2: File = null;
   fd = new FormData();
 
   tipoInmueble: any = [
@@ -82,13 +84,33 @@ export class EditPostComponent implements OnInit {
 
   }
 
+  onFileSelected2(event){
+
+    if(event.target.files.length > 0){
+      this.selectedFile2 = <File>event.target.files[0];
+      this.fd.append('image2', this.selectedFile2, this.selectedFile2.name);
+      // console.log("form data:", this.fd);
+      // this.formPost.get('image').setValue(this.fd);
+
+      var reader = new FileReader();
+      reader.onload = (event:any) => {
+        this.imageUrl2 = event.target.result;
+      }
+      reader.readAsDataURL(this.selectedFile2);
+
+      // console.log(this.selectedFile2);
+    }
+
+  }
+
   getidPost(): void{
     const id = this.route.snapshot.paramMap.get('id');
     this.rstateService.getRstate(id).subscribe(
       post => {
         this.restate = new RealState();    
-        this.restate = post; 
+        this.restate = post;
         this.imageUrl = "http://localhost:8000"+this.restate.path;
+        this.imageUrl2 = "http://localhost:8000"+this.restate.pathvr;
       }
     )
   }
@@ -107,7 +129,7 @@ export class EditPostComponent implements OnInit {
 
   savePost(formEditpost: NgForm){
 
-    this.rstateService.updateRstate(this.restate).subscribe(
+    this.rstateService.updateRstate(this.fd, this.restate).subscribe(
       res => {
         this.dialogUpdatepost();
       }

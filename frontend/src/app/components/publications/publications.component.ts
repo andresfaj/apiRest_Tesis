@@ -40,8 +40,7 @@ export class PublicationsComponent implements OnInit {
         this.rStates = this.r;
         this.dataSource = new MatTableDataSource<RealState>(this.rStates);
         this.dataSource.sort = this.sort;
-        this.dataSource.paginator = this.paginator;
-        
+        this.dataSource.paginator = this.paginator;        
       }
     );    
   }

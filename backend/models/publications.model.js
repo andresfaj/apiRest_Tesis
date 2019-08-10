@@ -2,11 +2,11 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const publicationSchema = new Schema({
-    originalnamevr: {type: String, required: true},
-    filenamevr: {type: String, required:true},
-    pathvr: {type: String, required:true},
-    mimetypevr: {type: String},
-    sizevr: {type: Number},
+    originalnamevr: {type: String, default: null},
+    filenamevr: {type: String, default: null},
+    pathvr: {type: String, default: null},
+    mimetypevr: {type: String, default: null},
+    sizevr: {type: Number, default: null},
     originalname: {type: String, required: true},
     filename: {type: String, required:true},
     path: {type: String, required:true},

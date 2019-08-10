@@ -31,6 +31,7 @@ export class PostDetailComponent implements OnInit {
       post => {
         this.restate = new RealState();        
         this.restate = post;
+        console.log(this.restate);
       }
     )
   }
