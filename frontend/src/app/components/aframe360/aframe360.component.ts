@@ -14,6 +14,8 @@ export class Aframe360Component implements OnInit {
   currentObject: any;
   restate: any;
   imageUrl="localhost:8000";
+  arrayObjects: any = [];
+
 
   constructor(private route: ActivatedRoute,
     private rstateService: RstateService) { }
@@ -91,12 +93,14 @@ export class Aframe360Component implements OnInit {
   showFurniture(objectR: number){
     var object = this.selectObject(objectR);
     console.log("objeto seleccionado:",object);
-    this.currentObject = object;
+    // this.currentObject = object;
+    this.arrayObjects.push(object);
     var el = document.querySelector(object);
     el.setAttribute("visible","true");
   }
 
   hideFurniture() {
+    this.currentObject = this.arrayObjects.pop();
     var el = document.querySelector(this.currentObject);
     el.setAttribute("visible","false");
   }

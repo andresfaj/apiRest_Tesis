@@ -5,19 +5,30 @@
   <form [formGroup]="formProfile" class="example-form" (ngSubmit)="onSubmit(buttonType)">
     <mat-form-field>
         <label class="mat-h3"> Name: </label> <input matInput type="text" formControlName="name">
+        <mat-error *ngIf="!formProfile.controls['name'].valid && formProfile.controls['name'].touched"> A name is required  </mat-error>
     </mat-form-field>
     <mat-form-field>
         <label class="mat-h3"> Last Name: </label> <input matInput type="text" formControlName="lastName">
+        <mat-error *ngIf="!formProfile.controls['lastName'].valid && formProfile.controls['lastName'].touched"> A lastname is required  </mat-error>
     </mat-form-field>
     <mat-form-field>
         <label class="mat-h3"> Number: </label> <input matInput type="number" formControlName="phone">
+        <mat-error *ngIf="!formProfile.controls['phone'].valid && formProfile.controls['phone'].touched"> A phone is required  </mat-error>
     </mat-form-field>
     <mat-form-field>
         <label class="mat-h3"> Email: </label> <input matInput type="email" formControlName="email">
+        <mat-error *ngIf="formProfile.controls['email'].invalid && (formProfile.controls['email'].dirty || formProfile.controls['email'].touched)">
+            <div *ngIf="formProfile.controls['email'].errors.required">
+                Mail is required        
+            </div>
+            <div *ngIf="formProfile.controls['email'].errors.email">
+                Wrong email format
+            </div>
+        </mat-error>  
     </mat-form-field>
 
     <button mat-raised-button color="primary" id="button1" (click)="onSubmit('edit')">Edit</button>
-    <button mat-raised-button color="primary" id="button2" (click)="onSubmit('save')">Save</button>
+    <button [disabled]="formProfile.invalid" mat-raised-button color="primary" id="button2" (click)="onSubmit('save')">Save</button>
 
   </form> 
 

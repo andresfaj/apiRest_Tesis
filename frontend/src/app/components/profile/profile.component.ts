@@ -23,10 +23,10 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.formProfile = this.fb.group({
-      name: [{value: null, disabled: true}],
-      lastName: [{value: null, disabled: true}],
-      phone: [{value: null, disabled: true}],
-      email: [{value: null, disabled: true}]
+      name: [{value: null, disabled: true}, Validators.required],
+      lastName: [{value: null, disabled: true}, Validators.required],
+      phone: [{value: null, disabled: true}, Validators.required],
+      email: [{value: null, disabled: true}, Validators.compose([Validators.required,Validators.email])]
     });
     this.informationUser = this.userService.getInformation();
     this.userService.getUser(this.informationUser).subscribe(
