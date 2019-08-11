@@ -36,8 +36,7 @@ export class PostComponent implements OnInit {
   fd = new FormData();
   tipoInmueble: any = [
     {value: 'Apartment'},
-    {value: 'Home'},
-    {value: 'Estate'}
+    {value: 'Home'}
   ]
 
   antiquitys: Multipleoptions[] = [

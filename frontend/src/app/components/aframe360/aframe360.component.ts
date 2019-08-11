@@ -64,8 +64,11 @@ export class Aframe360Component implements OnInit {
     var el = document.querySelector("#myTable");
     el.setAttribute("visible","false");
 
-    var el = document.querySelector("#myWardrobe");
-    el.setAttribute("visible","false");    
+    var el = document.querySelector("#myLamp");
+    el.setAttribute("visible","false");
+    
+    var el = document.querySelector("#myFrame");
+    el.setAttribute("visible","false");   
   }
 
   selectObject(objectS: number): any{
@@ -73,19 +76,22 @@ export class Aframe360Component implements OnInit {
       var object = "#myChair";
     }
     if(objectS == 2){
-      var object = "#myTable";
+      var object = "#myBed";
     }
     if(objectS == 3){
       var object = "#mySofa";
     }
     if(objectS == 4){
-      var object = "#myBed";
-    }
-    if(objectS == 5){
       var object = "#myDesk";
     }
+    if(objectS == 5){
+      var object = "#myTable";
+    }
     if(objectS == 6){
-      var object = "#myWardrobe";
+      var object = "#myLamp";
+    }
+    if(objectS == 7){
+      var object = "#myFrame";
     }
     return object;
   }

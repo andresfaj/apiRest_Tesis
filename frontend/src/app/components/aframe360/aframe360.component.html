@@ -6,27 +6,38 @@
   
     <a-assets>
       <a-asset-item id="object" src="assets/objetos/Chair/Chair.obj"></a-asset-item>
-      <a-asset-item id="material" src="assets/objetos/Chair/Chair.mtl"></a-asset-item> 
-  
-      <a-asset-item id="object2" src="assets/objetos/sofa/sofa1.obj"></a-asset-item>
-      <a-asset-item id="material2" src="assets/objetos/sofa/sofa1.mtl"></a-asset-item> 
-  
-      <a-asset-item id="object3" src="assets/objetos/bed2/bed.obj"></a-asset-item>
-      <a-asset-item id="material3" src="assets/objetos/bed2/bed.mtl"></a-asset-item> 
-  
-      <a-asset-item id="object4" src="assets/objetos/desk/Desk.obj"></a-asset-item>
-      <a-asset-item id="material4" src="assets/objetos/desk/Desk.mtl"></a-asset-item> 
-  
+      <a-asset-item id="material" src="assets/objetos/Chair/Chair.mtl"></a-asset-item>
+
+      <a-asset-item id="object4" src="assets/objetos/sofa3/sofa3.obj"></a-asset-item>
+      <a-asset-item id="material4" src="assets/objetos/sofa3/sofa3.mtl"></a-asset-item>
+      
+      <a-asset-item id="object2" src="assets/objetos/bed2/bed.obj"></a-asset-item>
+      <a-asset-item id="material2" src="assets/objetos/bed2/bed.mtl"></a-asset-item>
+
+      <a-asset-item id="object3" src="assets/objetos/desk/Desk.obj"></a-asset-item>
+      <a-asset-item id="material3" src="assets/objetos/desk/Desk.mtl"></a-asset-item> 
+
+
+      <a-asset-item id="object5" src="assets/objetos/table3/Wooden_Table.obj"></a-asset-item>
+      <a-asset-item id="material5" src="assets/objetos/table3/Wooden_Table.mtl"></a-asset-item>
+      
+      <a-asset-item id="object6" src="assets/objetos/lamp/lamp.obj"></a-asset-item>
+      <a-asset-item id="material6" src="assets/objetos/lamp/lamp.mtl"></a-asset-item>
+
+      <a-asset-item id="object7" src="assets/objetos/frame/frame.obj"></a-asset-item>
+      <a-asset-item id="material7" src="assets/objetos/frame/frame.mtl"></a-asset-item>
+      
       <!-- <a-asset-item id="object5" src="assets/objetos/table/Wood_Table.obj"></a-asset-item>
       <a-asset-item id="material5" src="assets/objetos/table/Wood_Table.mtl"></a-asset-item>  -->
   
     </a-assets>
-    <a-obj-model click-drag id="myChair" src="#object" mtl="#material" scale="0.5 0.5 0.5" position="0 -1 -2"></a-obj-model>
-    <a-obj-model click-drag id="mySofa" src="#object2" mtl="#material2" scale="0.5 0.5 0.5" position="0 -1 -2"></a-obj-model>
-    <a-obj-model click-drag id="myBed" src="#object3" mtl="#material3" position="0 -1 -2"></a-obj-model>
-    <a-obj-model click-drag id="myDesk" src="#object4" mtl="#material4" scale="3 3 3" position="0 -1 -2"></a-obj-model>
-    <a-obj-model click-drag id="myTable" src="#object5" mtl="#material5" scale="2 2 2" position="0 -1 -2"></a-obj-model>
-    <a-obj-model click-drag id="myWardrobe" src="#object6" mtl="#material6" scale="0.5 0.5 0.5" position="0 -1 -2"></a-obj-model>
+    <a-obj-model click-drag id="myChair" src="#object" mtl="#material" scale="0.5 0.5 0.5" position="-1 0 -5"></a-obj-model>
+    <a-obj-model click-drag id="myBed" src="#object2" mtl="#material2" scale="0.2 0.2 0.2" position="0 -1 -10" rotation="0 -90 0"></a-obj-model>
+    <a-obj-model click-drag id="myDesk" src="#object3" mtl="#material3" scale="2 2 2" position="0 0 -5"></a-obj-model>
+    <a-obj-model click-drag id="mySofa" src="#object4" mtl="#material4" scale="0.5 0.5 0.5" position="0 0 -150" rotation="270 0 0"></a-obj-model>
+    <a-obj-model click-drag id="myTable" src="#object5" mtl="#material5" scale="0.5 0.5 0.5" position="0 -50 -150"></a-obj-model>
+    <a-obj-model click-drag id="myLamp" src="#object6" mtl="#material6" scale="1 1 1" position="0 -1 -10"></a-obj-model>
+    <a-obj-model click-drag id="myFrame" src="#object7" mtl="#material7" scale="1 1 1" position="0 -1 -100" rotation="270 0 0"></a-obj-model>
   
     <a-camera  look-controls-enabled="false" keyboard-controls="fpsMode: true"></a-camera>
   
@@ -39,26 +50,26 @@
     <h3>Furniture</h3>
     <div  class="componenteObjetos" fxLayout="row wrap" fxLayoutAlign="space-around center">
       <button matTooltip="select a chair" mat-button (click)="showFurniture(1)">
-        <img style="width: 40px; height:40px;" src="assets/images/asiento.png">  
-      </button>
-      <button matTooltip="select a sofa" mat-button (click)="showFurniture(2)">
-        <img style="width: 40px; height:40px;" src="assets/images/sofa.png">  
-      </button>
-      <button matTooltip="select a table" mat-button (click)="showFurniture(3)">
-        <img style="width: 40px; height:40px;" src="assets/images/mesa.png">  
-      </button>
-      <button matTooltip="select a lamp" mat-button (click)="showFurniture(4)">
-        <img style="width: 40px; height:40px;" src="assets/images/lampara.png">  
-      </button>
-      <button matTooltip="select a bed" mat-button (click)="showFurniture(5)">
-        <img style="width: 40px; height:40px;" src="assets/images/cama.png">  
-      </button>
-      <button matTooltip="select a desk" mat-button (click)="showFurniture(6)">
-        <img style="width: 40px; height:40px;" src="assets/images/escritorio.png">  
-      </button>
-      <button matTooltip="select a picture" mat-button (click)="showFurniture(7)">
-        <img style="width: 40px; height:40px;" src="assets/images/cuadro.png">  
-      </button>
+        <img style="width: 40px; height:40px;" src="assets/images/asiento.png"> 
+        </button>
+        <button matTooltip="select a table" mat-button (click)="showFurniture(5)">
+        <img style="width: 40px; height:40px;" src="assets/images/mesa.png">
+        </button>
+        <button matTooltip="select a sofa" mat-button (click)="showFurniture(3)">
+        <img style="width: 40px; height:40px;" src="assets/images/sofa.png"> 
+        </button>
+        <button matTooltip="select a lamp" mat-button (click)="showFurniture(6)">
+        <img style="width: 40px; height:40px;" src="assets/images/lampara.png"> 
+        </button>
+        <button matTooltip="select a bed" mat-button (click)="showFurniture(2)">
+        <img style="width: 40px; height:40px;" src="assets/images/cama.png">
+        </button>
+        <button matTooltip="select a desk" mat-button (click)="showFurniture(4)">
+        <img style="width: 40px; height:40px;" src="assets/images/escritorio.png"> 
+        </button>
+        <button matTooltip="select a picture" mat-button (click)="showFurniture(7)">
+        <img style="width: 40px; height:40px;" src="assets/images/cuadro.png"> 
+        </button>
     </div>   
   
     <div class="botonesAframe" fxLayoutAlign="space-around center">
