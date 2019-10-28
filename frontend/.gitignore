@@ -8,6 +8,10 @@
 # dependencies
 /node_modules
 
+#Subfolders
+**/node_modules
+**/backend/public/*
+
 # IDEs and editors
 /.idea
 .project
@@ -38,5 +42,3 @@ testem.log
 .DS_Store
 Thumbs.db
 
-#Subfolders
-**/node_modules
