@@ -1,2 +1,2 @@
-./node_modules/*
-backend/public/*
+node_modules/*
+backend/public/images/*
