@@ -8,7 +8,7 @@
 # dependencies
 /node_modules
 
-#Subfolders
+# #Subfolders
 **/node_modules
 **/backend/public/*
 
